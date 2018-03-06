@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 #sync vim config
 #cp ~/.vimrc $1
@@ -7,11 +7,10 @@
 #sync shadowsocks config
 #cp -r ~/.ss.d $1
 
-
 while getopts 'o:' args
 do
 	case $args in
-		0)  #orientation
+		o)  #orientation
                         if [ $OPTARG = "backup" ]
                         then
                                 cp ~/.vimrc                       ./
@@ -25,7 +24,6 @@ do
                                 cp .ss.d/.ss.pac       ~/
                                 cp .ss.d/.ss.conf.json /etc/shadowsocks/
                         else
-                        then 
                                 echo "Unknown argument $OPTARG"
                         fi
 			;;

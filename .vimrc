@@ -1,10 +1,14 @@
 syntax on
 set nu
 set cc=80
-set guifont=Source\ Code\ Pro\ 16
+set guifont=Source\ Code\ Pro\ 14
 
 set background=dark
 colorscheme solarized
+
+set tabstop=8
+set shiftwidth=8
+set expandtab
 
 "show visible files only
 let g:netrw_hide=1 

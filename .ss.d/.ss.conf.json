@@ -1,7 +1,8 @@
 {
 	"server":"67.216.206.224",
-	"server_port":8388,
+	"server_port":443,
 	"local_port":1080,
-	"password":"58671253",
-	"method":"rc4-md5"
+	"password":"OWU2YzUxNW",
+	"method":"aes-256-cfb",
+	"fast_open":true
 }
