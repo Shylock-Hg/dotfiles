@@ -1,6 +1,6 @@
 #! /bin/sh
 
-while getopts 'o:' args
+while getopts 'o:h' args
 do
 	case $args in
 		o)  #orientation
@@ -20,6 +20,9 @@ do
                                 echo "Unknown argument $OPTARG"
                         fi
 			;;
+                h)
+                        echo "Usage: ./sync.sh -o <backup or reduct>!"
+                        ;;
 		?)
 			echo "Unknown parameter!"
 			;;
