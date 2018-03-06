@@ -10,6 +10,8 @@ do
                                 cp -r ~/.vim/                     ./
                                 cp ~/.ss.pac                      ./.ss.d/
                                 cp /etc/shadowsocks/.ss.conf.json ./.ss.d/
+                                source activate mltoolchain
+                                conda env export -f               ./.conda/mltoolchain.yml
                         elif [ $OPTARG = "reduct" ]
                         then
                                 cp .vimrc              ~/
