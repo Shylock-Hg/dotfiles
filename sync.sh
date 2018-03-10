@@ -13,16 +13,19 @@ do
                                 if [ ! -e ./.ss.d/ ]
                                 then 
                                         mkdir ./.ss.d
-                                if
+                                fi
                                 cp ~/.ss.pac                      ./.ss.d/
                                 cp /etc/shadowsocks/.ss.conf.json ./.ss.d/
                                 #conda
                                 if [ ! -e .conda ]
                                 then
                                         mkdir .conda
-                                if
+                                fi
                                 source activate mltoolchain
                                 conda env export -f               ./.conda/mltoolchain.yml
+                                source deactivate
+                                echo "Backup ok!"
+
                         elif [ $OPTARG = "reduct" ]
                         then
                                 #vim
@@ -35,7 +38,9 @@ do
                                         cp .ss.d/.ss.conf.json /etc/shadowsocks/
                                 else
                                         echo "null /ect/shadowsocks!"
-                                if
+                                fi
+                                echo "Reduct ok!"
+
                         else
                                 echo "Unknown argument $OPTARG"
                         fi

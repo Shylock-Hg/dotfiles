@@ -1,3 +1,4 @@
+set nocompatible
 syntax on
 set nu
 set cc=80
@@ -9,6 +10,15 @@ colorscheme solarized
 set tabstop=8
 set shiftwidth=8
 set expandtab
+
+"complete search path
+augroup setcomplete  "ensure for once
+autocmd FileType python :set complete+=k/home/shylock/App/miniconda3/envs/mltoolchain/lib/python3.6
+autocmd FileType c :set complete+=k/usr/local/include
+autocmd FileType c :set complete+=k/usr/include
+autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include
+autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include-fixed
+augroup END
 
 "show visible files only
 let g:netrw_hide=1 
