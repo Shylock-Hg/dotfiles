@@ -1,10 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/shylock/Workspace/blog/_posts'
-let g:netrw_dirhist_2='/home/shylock/Workspace/esp/esp-idf/examples/wifi/wpa2_enterprise/main'
-let g:netrw_dirhist_3='/home/shylock/Workspace/blog/_posts'
-let g:netrw_dirhist_4='/home/shylock/Workspace/config.linux'
-let g:netrw_dirhist_5='/home/shylock/Workspace/config.linux/.conda'
-let g:netrw_dirhist_6='/home/shylock/Workspace/python/rosenbrock_ga'
-let g:netrw_dirhist_7='/home/shylock/Workspace/config.linux/.git'
-let g:netrw_dirhist_8='/home/shylock/Workspace/blog/_posts'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/shylock/Workspace/AD602_G1S1_Demo'
+let g:netrw_dirhist_2='/home/shylock/Workspace/AD602_G1S1_Demo/Project'
+let g:netrw_dirhist_3='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example'
+let g:netrw_dirhist_4='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example/Source'
+let g:netrw_dirhist_5='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example/Source/periph'
