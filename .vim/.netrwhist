@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/shylock/Workspace/AD602_G1S1_Demo'
-let g:netrw_dirhist_2='/home/shylock/Workspace/AD602_G1S1_Demo/Project'
-let g:netrw_dirhist_3='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example'
-let g:netrw_dirhist_4='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example/Source'
-let g:netrw_dirhist_5='/home/shylock/Workspace/AD602_G1S1_Demo/Project/AS569_Mpos_Example/Source/periph'

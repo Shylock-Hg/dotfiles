@@ -2,7 +2,7 @@ set nocompatible
 syntax on
 set nu
 set cc=80
-set guifont=Source\ Code\ Pro\ 14
+set guifont=Source\ Code\ Pro\ 12
 
 set background=dark
 colorscheme solarized
