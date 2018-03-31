@@ -1,0 +1,5 @@
+# vim swap
+.vim/swap/
+
+# vim netree cache
+.vim/.netrwhist
