@@ -9,7 +9,6 @@ colorscheme solarized
 
 set tabstop=8
 set shiftwidth=8
-"set expandtab
 
 "complete search path
 augroup setcomplete  "ensure for once
@@ -26,7 +25,6 @@ let g:netrw_hide=1
 "indent guideline
 set listchars=tab:\|\ 
 set list
-"let g:indent_guides_enable_on_vim_startup = 1
 
 "Taglist
 let Tlist_Show_One_File=1
@@ -41,10 +39,6 @@ set cscopequickfix=s-,c-,d-,i-,e-
 "new-omni-completion
 filetype plugin indent on
 set completeopt=longest,menu
-
-"super tab autocomplete
-"let g:SuperTabRetainCompletionType=2
-"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
 
 "esp component
 "set tags=/home/shylock/Workspace/esp/esp-idf/components/tags
