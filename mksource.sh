@@ -31,8 +31,8 @@ do
 			fi
 			;;
 		h)
-			echo "usage: $0 -n <name-of-source> -o <output directory>\n\
-				eg.$0 -n example.h -o ~/Workspace/example/"
+			echo "usage: $0 -o <output directory> -n <name-of-source>\n\
+				eg.$0 -o ~/Workspace/example/ -n example.h"
 			;;
 		?)
 			echo "[err]:Unknown argument $OPTARG!"
