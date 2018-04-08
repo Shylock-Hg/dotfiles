@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 while getopts 'o:h' args
 do
