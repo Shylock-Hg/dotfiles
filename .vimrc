@@ -13,10 +13,10 @@ set shiftwidth=8
 "complete search path
 augroup setcomplete  "ensure for once
 autocmd FileType python :set complete+=k/home/shylock/App/miniconda3/envs/mltoolchain/lib/python3.6
-autocmd FileType c :set complete+=k/usr/local/include
-autocmd FileType c :set complete+=k/usr/include
-autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include
-autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include-fixed
+"autocmd FileType c :set complete+=k/usr/local/include
+"autocmd FileType c :set complete+=k/usr/include
+"autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include
+"autocmd FileType c :set complete+=k/usr/lib/gcc/x86_64-pc-linux-gnu/7.3.0/include-fixed
 augroup END
 
 "show visible files only
@@ -40,9 +40,5 @@ set cscopequickfix=s-,c-,d-,i-,e-
 filetype plugin indent on
 set completeopt=longest,menu
 
-"esp component
-"set tags=/home/shylock/Workspace/esp/esp-idf/components/tags
-
-"mqttor 
-set tags=/home/shylock/Workspace/mqttor/tags
+echo "(^.^)"
 
