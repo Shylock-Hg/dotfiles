@@ -10,17 +10,19 @@ do
                                 cp ~/.vimrc                       ./
                                 cp -r ~/.vim/                     ./
                                 #shadowsocks
-                                if [ ! -e ./.ss.d/ ]
-                                then 
-                                        mkdir ./.ss.d
-                                fi
+                                #if [ ! -e ./.ss.d/ ]
+                                #then 
+                                #        mkdir ./.ss.d
+                                #fi
+				mkdir -p                          ./.ss.d
                                 cp ~/.ss.pac                      ./.ss.d/
                                 cp /etc/shadowsocks/.ss.conf.json ./.ss.d/
                                 #conda
-                                if [ ! -e .conda ]
-                                then
-                                        mkdir .conda
-                                fi
+                                #if [ ! -e .conda ]
+                                #then
+                                #        mkdir .conda
+                                #fi
+				mkdir -p                          .conda
                                 source activate mltoolchain
                                 conda env export -f               ./.conda/mltoolchain.yml
                                 source deactivate
