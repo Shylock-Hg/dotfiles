@@ -16,20 +16,20 @@ DEPFILES = $(patsubst %.o, %.d, $(OBJS))
 #vpath %.h ../../inc/core
 #vpath %.h ../../inc/toolkit
 
-.PHONY : all output clean
+.PHONY : all clean
 all : $(DIR_BUILD)/$(TARGET)
 
-$(DIR_BUILD)/$(TARGET) : $(OBJS) output
+$(DIR_BUILD)/$(TARGET) : $(OBJS) $(DIR_BUILD)
 	cc $(CFLAGS) -o $@ $(OBJS)
 
-$(DIR_BUILD)/%.o : %.c $(DIR_BUILD)/%.d output
+$(DIR_BUILD)/%.o : %.c $(DIR_BUILD)/%.d $(DIR_BUILD)
 	cc $(PPFLAGS) $(CFLAGS) -c $< -o $@
 
 $(DIR_BUILD)/%.d : ;
 .PRECIOUS : $(DIR_BUILD)/%.d
 
 #create build directory
-output : 
+$(DIR_BUILD) : 
 	mkdir -p $(DIR_BUILD)
 
 #clean outputs
