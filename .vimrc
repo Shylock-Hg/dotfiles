@@ -23,8 +23,13 @@ augroup END
 let g:netrw_hide=1 
 
 "indent guideline
-set listchars=tab:\|\ 
-set list
+augroup setindent  
+autocmd FileType python :set listchars=tab:\|\ 
+autocmd FileType python :set list
+
+autocmd FileType c :set listchars=tab:\|\ 
+autocmd FileType c :set list
+augroup END
 
 "Taglist
 let Tlist_Show_One_File=1
