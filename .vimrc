@@ -45,5 +45,5 @@ set cscopequickfix=s-,c-,d-,i-,e-
 filetype plugin indent on
 set completeopt=longest,menu
 
-echo "(^.^)"
+echo "(>^.<^)"
 
