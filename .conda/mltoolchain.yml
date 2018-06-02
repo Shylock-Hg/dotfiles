@@ -1,7 +1,7 @@
 name: mltoolchain
 channels:
-- pytorch
 - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+- pytorch
 - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
 - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
 - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
