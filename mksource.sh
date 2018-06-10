@@ -17,7 +17,7 @@ do
 			# Makefile
 			#if [ $OPTARG == 'Makefile' ] && [ -e $prefix/Makefile ]; then
 			if [ $OPTARG == 'Makefile' ]; then
-				cp $prefix/Makefile $PWD/$OPTARG
+				cp $prefix/linux.mk $PWD/$OPTARG
 
 			# header file
 			elif [[ $OPTARG =~ $pattern_header ]]; then
