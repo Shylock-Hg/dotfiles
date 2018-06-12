@@ -13,9 +13,9 @@ do
 			if [ -e /usr/sbin/$OPTARG ]; then 
 				sudo mv /usr/sbin/python /usr/sbin/python.bak
 				sudo ln -s /usr/sbin/$OPTARG /usr/sbin/python
-				echo "Change python to /usr/sbin/$OPTARG!"
+				#echo "Change python to /usr/sbin/$OPTARG!"
 			else
-				ehco "/usr/sbin/$OPTART:no such file or directory!"
+				ehco "[err]:/usr/sbin/$OPTART:no such file or directory!"
 			fi
 
 			;;
