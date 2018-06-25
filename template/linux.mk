@@ -12,9 +12,6 @@ TARGET = test
 
 DEPFILES = $(patsubst %.o, %.d, $(OBJS))
 
-# core header
-#vpath %.h ../../inc/core
-#vpath %.h ../../inc/toolkit
 
 .PHONY : all clean
 all : $(DIR_BUILD)/$(TARGET)
