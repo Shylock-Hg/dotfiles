@@ -3,10 +3,6 @@ syntax on
 set nu
 set cc=80
 set guifont=Source\ Code\ Pro\ 12
-
-set background=dark
-colorscheme solarized
-
 set tabstop=8
 set shiftwidth=8
 
@@ -31,6 +27,16 @@ autocmd FileType c :set listchars=tab:\|\
 autocmd FileType c :set list
 augroup END
 
+"""""""""""""""""""""""""""""plugin support""""""""""""""""""""""""""""""""""""
+
+"apt-vim
+execute pathogen#infect()
+call pathogen#helptags()
+
+"solarized
+set background=dark
+colorscheme solarized
+
 "Taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -39,22 +45,18 @@ let Tlist_Exit_OnlyWindow=1
 let g:winManagerWindowLayout='FileExplorer|TagList'
 
 "cscope
-set cscopequickfix=s-,c-,d-,i-,e-
+"set cscopequickfix=s-,c-,d-,i-,e-
 
 "new-omni-completion
 filetype plugin indent on
 set completeopt=longest,menu
 
 "linux kernel headers
-set tags+=/lib/modules/4.17.3-1-ARCH/build/tags
+"set tags+=/lib/modules/4.17.3-1-ARCH/build/tags
 
 "airline
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
-
-"apt-vim
-execute pathogen#infect()
-call pathogen#helptags()
 
 echo "(>^.^<)"
 
