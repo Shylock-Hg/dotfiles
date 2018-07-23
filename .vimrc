@@ -20,7 +20,7 @@ autocmd FileType python :set complete+=k/home/shylock/App/miniconda3/envs/mltool
 augroup END
 
 "show visible files only
-let g:netrw_hide=1 
+"let g:netrw_hide=1 
 
 "indent guideline
 augroup setindent  
@@ -44,6 +44,17 @@ set cscopequickfix=s-,c-,d-,i-,e-
 "new-omni-completion
 filetype plugin indent on
 set completeopt=longest,menu
+
+"linux kernel headers
+set tags+=/lib/modules/4.17.3-1-ARCH/build/tags
+
+"airline
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
+
+"apt-vim
+execute pathogen#infect()
+call pathogen#helptags()
 
 echo "(>^.^<)"
 

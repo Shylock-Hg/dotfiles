@@ -8,8 +8,7 @@ do
                         then
                                 #vim
                                 cp ~/.vimrc                       ./
-                                cp -r ~/.vim/                     ./
-				cp -r ~/.vimpkg                   ./
+				cp ~/.vimpkg/vim_config.json      ./
                                 #shadowsocks
                                 #if [ ! -e ./.ss.d/ ]
                                 #then 
@@ -33,8 +32,6 @@ do
                         then
                                 #vim
                                 cp .vimrc              ~/
-                                cp -r .vim/            ~/
-				cp -r .vimpkg/         ~/
                                 #shadowsocks
                                 cp .ss.d/.ss.pac       ~/
                                 if [ -e /etc/shadowsocks/ ] 
@@ -59,4 +56,5 @@ do
 done
 
 shift $(($OPTIND - 1))
+
 
