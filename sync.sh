@@ -9,6 +9,7 @@ do
                                 #vim
                                 cp ~/.vimrc                       ./
                                 cp -r ~/.vim/                     ./
+				cp -r ~/.vimpkg                   ./
                                 #shadowsocks
                                 #if [ ! -e ./.ss.d/ ]
                                 #then 
@@ -33,6 +34,7 @@ do
                                 #vim
                                 cp .vimrc              ~/
                                 cp -r .vim/            ~/
+				cp -r .vimpkg/         ~/
                                 #shadowsocks
                                 cp .ss.d/.ss.pac       ~/
                                 if [ -e /etc/shadowsocks/ ] 
