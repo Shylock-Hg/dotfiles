@@ -48,10 +48,10 @@ let Tlist_Exit_OnlyWindow=1
 "let g:winManagerWindowLayout='NERDTree|Tagbar'
 
 "NERDTree
-let NERDTreeWinSize=30
+let NERDTreeWinSize=20
 
 "Tarbar
-let g:tagbar_width=30
+let g:tagbar_width=20
 
 "cscope
 "set cscopequickfix=s-,c-,d-,i-,e-
