@@ -8,14 +8,14 @@ do
                         then
                                 #vim
                                 cp ~/.vimrc                       ./
-				cp ~/.viman.yml                   ./
+								cp ~/.viman.yml                   ./
 				#cp ~/.vimpkg/vim_config.json      ./
                                 #shadowsocks
                                 #if [ ! -e ./.ss.d/ ]
                                 #then 
                                 #        mkdir ./.ss.d
                                 #fi
-				mkdir -p                          ./.ss.d
+								mkdir -p                          ./.ss.d
                                 cp ~/.ss.pac                      ./.ss.d/
                                 cp /etc/shadowsocks/.ss.conf.json ./.ss.d/
                                 #conda
@@ -23,17 +23,17 @@ do
                                 #then
                                 #        mkdir .conda
                                 #fi
-				mkdir -p                          .conda
-                                source activate mltoolchain
-                                conda env export -f               ./.conda/mltoolchain.yml
-                                source deactivate
+								#mkdir -p                          .conda
+                                #source activate mltoolchain
+                                #conda env export -f               ./.conda/mltoolchain.yml
+                                #source deactivate
                                 echo "Backup ok!"
 
                         elif [ $OPTARG = "reduct" ]
                         then
                                 #vim
                                 cp .vimrc              ~/
-				cp .viman.yml          ~/
+								cp .viman.yml          ~/
                                 #shadowsocks
                                 cp .ss.d/.ss.pac       ~/
                                 if [ -e /etc/shadowsocks/ ] 

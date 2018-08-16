@@ -4,8 +4,8 @@ syntax on
 set nu
 set cc=80
 set guifont=Source\ Code\ Pro\ 12
-set tabstop=8
-set shiftwidth=8
+set tabstop=4
+set shiftwidth=4
 
 "complete search path
 "augroup setcomplete  "ensure for once
@@ -40,8 +40,8 @@ set background=dark
 colorscheme solarized
 
 "Taglist
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
+"let Tlist_Show_One_File=1
+"let Tlist_Exit_OnlyWindow=1
 
 "WinManager
 "let g:winManagerWindowLayout='FileExplorer|TagList'
@@ -49,6 +49,7 @@ let Tlist_Exit_OnlyWindow=1
 
 "NERDTree
 let NERDTreeWinSize=20
+let NERDTreeShowHidden=1
 
 "Tarbar
 let g:tagbar_width=20
