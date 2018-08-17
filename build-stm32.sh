@@ -34,7 +34,7 @@ do
 			# linker script
 			cp    $PATH_REPO/Projects/$PATH_BOARD/Templates/SW4STM32/STM32F723E_DISCOVERY_AXIM-FLASH/STM32F723IEKx_FLASH.ld $OPTARG
 			# Makefile
-			cp $PATH_TEMPLATE/stm32.mk $OPTARG/Makefile
+			cp $PATH_TEMPLATE/cortex-m7-fpu.mk $OPTARG/Makefile
 			# stlink gdb server config
 			cp $PATH_TEMPLATE/stlink-gdbserver.conf $OPTARG/
 			;;
