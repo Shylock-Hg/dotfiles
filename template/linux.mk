@@ -1,16 +1,18 @@
 CC = gcc
 
-CFLAGS = -std=c99 -Wall
+CFLAGS = -std=c99 -Wall -fprofile-arcs -ftest-coverage
 
 DIR_BUILD = ./build
 
-PPFLAGS = -MT $@ -MMD -MP -MF $(DIR_BUILD)/$*.d
+INCLUDES = 
 
 SOURCES = 
 
-OBJECTS = $(addprefix $(DIR_BUILD)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))
-
 TARGET = test
+
+PPFLAGS = -MT $@ -MMD -MP -MF $(DIR_BUILD)/$*.d $(INCLUDES)
+
+OBJECTS = $(addprefix $(DIR_BUILD)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))
 
 DEPFILES = $(patsubst %.o, %.d, $(OBJECTS))
 
