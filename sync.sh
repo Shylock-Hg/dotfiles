@@ -8,7 +8,7 @@ do
                         then
                                 #vim
                                 cp ~/.vimrc                       ./
-								cp ~/.viman.yml                   ./
+								cp ~/.viman.yml                   ./viman
 				#cp ~/.vimpkg/vim_config.json      ./
                                 #shadowsocks
                                 #if [ ! -e ./.ss.d/ ]
@@ -33,7 +33,7 @@ do
                         then
                                 #vim
                                 cp .vimrc              ~/
-								cp .viman.yml          ~/
+								cp viman/.viman.yml          ~/
                                 #shadowsocks
                                 cp .ss.d/.ss.pac       ~/
                                 if [ -e /etc/shadowsocks/ ] 
