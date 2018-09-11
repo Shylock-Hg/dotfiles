@@ -48,7 +48,7 @@ do
 				then
 					sudo cp ${SS_CONF[1]} ${SS_CONF[0]}
 				else
-					echo "error : $(dirname ${SS_CONF[1]}) do not exist!"
+					echo "error : $(dirname ${SS_CONF[0]}) do not exist!"
 				fi
 
 			else
