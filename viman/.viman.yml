@@ -1,5 +1,5 @@
 ale:
-  recipe: 'curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-ale.sh | sh'
+  recipe: ''
   url: https://github.com/w0rp/ale.git
 nerdtree:
   recipe: ''
