@@ -9,7 +9,9 @@ echo '" Load all plugins now.
 packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
-silent! helptags ALL' >> $HOME/.vimrc
+silent! helptags ALL
+" Enable completion where available.
+let g:ale_completion_enabled = 1'  >> $HOME/.vimrc
 
 # support for python
 pip install --user autopep8 black flake8 isort mypy prospector pycodestyle 'python-language-server[all]' pyre-check pylint vulture yapf
