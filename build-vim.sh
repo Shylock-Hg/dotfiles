@@ -20,6 +20,13 @@ fi
 # install and configure `pathogen`, `git`, `vim` and `viman`
 curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh
 
+if command -v viman > /dev/null ; then
+	echo 'Viman is in PATH!'
+else
+	export PATH="$PATH:$HOME/.local/bin"
+fi
+
+
 # backup `.vimrc`, `.viman.yml`, `shadowsocks`
 if ./sync.sh -o reduct ; then
 	viman -Sf $HOME/.viman.yml
