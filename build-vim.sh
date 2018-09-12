@@ -29,11 +29,6 @@ else
 	export PATH="$PATH:$HOME/.local/bin"
 fi
 
-
-# backup `.vimrc`, `.viman.yml`, `shadowsocks`
-if ./sync.sh -o reduct ; then
-	viman -Sf $HOME/.viman.yml
-else
-	echo 'error : reduct configuration failed!'
-fi
+cp ./viman/.viman.yml $HOME/.viman.yml
+viman -Sf $HOME/.viman.yml
 
