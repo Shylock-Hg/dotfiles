@@ -29,8 +29,8 @@ sudo npm install alex write-good
 pip install --user proselint pyredpen rstcheck
 
 # support for c
-$(NATIVE_INSTALL) cppcheck clang gcc
-$(AUR_INSTALL) cquery
+$NATIVE_INSTALL cppcheck clang gcc
+$AUR_INSTALL cquery
 pip install --user cpplint flawfinder
 
 
