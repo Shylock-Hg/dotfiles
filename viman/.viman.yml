@@ -2,22 +2,22 @@ ale:
   recipe: 'curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-ale.sh | sh'
   url: https://github.com/w0rp/ale.git
 nerdtree:
-  recipe: ''
+  recipe: 'echo -e "\"NERDTree\nlet NERDTreeWinSize=20\nlet NERDTreeShowHidden=1" >> $HOME/.vimrc'
   url: https://github.com/scrooloose/nerdtree.git
 nerdtree-git-plugin:
   recipe: ''
   url: https://github.com/xuyuanp/nerdtree-git-plugin.git
 tagbar:
-  recipe: ''
+  recipe: 'echo -e "\"Tarbar\nlet g:tagbar_width=20" >> $HOME/.vimrc'
   url: https://github.com/majutsushi/tagbar.git
 vim-airline:
-  recipe: ''
+  recipe: 'sh -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-airline.sh | sh'
   url: https://github.com/vim-airline/vim-airline.git
 vim-airline-themes:
   recipe: ''
   url: https://github.com/vim-airline/vim-airline-themes.git
 vim-colors-solarized:
-  recipe: ''
+  recipe: 'echo -e \"solarized\nset background=dark\ncolorscheme solarized >> $HOME/.vimrc'
   url: https://github.com/altercation/vim-colors-solarized.git
 vim-fugitive:
   recipe: ''
