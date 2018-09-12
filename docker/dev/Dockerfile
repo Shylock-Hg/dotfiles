@@ -13,7 +13,7 @@ Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch\n\
 ## China\n\
 Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch\n' > /etc/pacman.d/mirrorlist
 RUN echo -e '\n' | pacman -Syu
-RUN echo -e '\n' | pacman -Sy base-devel curl wget sudo git vim python-pip
+RUN echo -e '\n' | pacman -Sy base-devel curl wget sudo git vim python-pip ruby nodejs
 
 USER shylock
 WORKDIR /home/shylock
