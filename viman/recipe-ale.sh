@@ -4,7 +4,7 @@ NATIVE_INSTALL='sudo pacman -Sy'
 AUR_INSTALL='sudo yay -Sy'
 
 # ale plugin setting in $HOME.vimrc
-echo '" Load all plugins now.
+echo -e '\n" Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
 " Load all of the helptags now, after plugins have been loaded.
