@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
-NATIVE_INSTALL='pacman -S'
-AUR_INSTALL='aurman -S'
+NATIVE_INSTALL='pacman -Sy'
+AUR_INSTALL='yay -Sy'
 
 # build vim help documents
 echo '" Load all plugins now.
