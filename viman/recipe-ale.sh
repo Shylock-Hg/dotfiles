@@ -1,9 +1,9 @@
 #! /usr/bin/env sh
 
-NATIVE_INSTALL='pacman -Sy'
-AUR_INSTALL='yay -Sy'
+NATIVE_INSTALL='sudo pacman -Sy'
+AUR_INSTALL='sudo yay -Sy'
 
-# build vim help documents
+# ale plugin setting in $HOME.vimrc
 echo '" Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
