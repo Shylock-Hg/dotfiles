@@ -1,8 +1,11 @@
-# configure native setting for vim
-echo '""""""""""""""""""""""""""""""native setting"""""""""""""""""""""""""""""""     
-set nocompatible                                                                
-syntax on                                                                       
-set nu                                                                          
-set cc=80                                                                       
-set tabstop=4                                                                   
-set shiftwidth=4' >> $HOME/.vimrc
+""""""""""""""""""""""""""""""native setting""""""""""""""""""""""""""""""""""
+set nocompatible
+syntax on
+set nu
+set cc=80
+set tabstop=4
+set shiftwidth=4
+
+
+""""""""""""""""""""""""""""""plugin setting""""""""""""""""""""""""""""""""""
+
