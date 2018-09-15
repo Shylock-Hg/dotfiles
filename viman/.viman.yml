@@ -8,7 +8,7 @@ nerdtree-git-plugin:
   recipe: ''
   url: https://github.com/xuyuanp/nerdtree-git-plugin.git
 tagbar:
-  recipe: 'echo -e "\n\"Tarbar\nlet g:tagbar_width=20" >> $HOME/.vimrc'
+  recipe: 'echo -e "\n\"Tarbar\nlet g:tagbar_width=20" >> $HOME/.vimrc && yes | sudo pacman -Sy ctags'
   url: https://github.com/majutsushi/tagbar.git
 vim-airline:
   recipe: 'curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-airline.sh | sh'
