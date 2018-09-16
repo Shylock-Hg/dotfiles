@@ -3,8 +3,10 @@ set nocompatible
 syntax on
 set nu
 set cc=80
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
+set shiftwidth=8
+set expandtab
+set softtabstop=8
 
 
 """"""""""""""""""""""""""""""plugin setting""""""""""""""""""""""""""""""""""
