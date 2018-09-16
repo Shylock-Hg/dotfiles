@@ -18,7 +18,8 @@ else
 fi
 
 # reduct native setting of vim
-cp ./.vimrc.native $HOME/.vimrc
+#cp ./.vimrc.native $HOME/.vimrc
+curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/.vimrc.native -o $HOME/.vimrc
 
 # install and configure `pathogen`, `git`, `vim` and `viman`
 curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh
@@ -29,6 +30,7 @@ else
 	export PATH="$PATH:$HOME/.local/bin"
 fi
 
-cp ./viman/.viman.yml $HOME/.viman.yml
+#cp ./viman/.viman.yml $HOME/.viman.yml
+curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/.viman.yml -o $HOME/.viman.yml
 viman -Sf $HOME/.viman.yml
 

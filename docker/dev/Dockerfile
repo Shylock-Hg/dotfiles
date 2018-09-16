@@ -21,5 +21,5 @@ RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
 
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && rm -rf yay
 ENV NATIVE_INSTALL='yes | sudo pacman -Sy'
-RUN git clone https://github.com/Shylock-Hg/config.linux.git && cd config.linux && ./build-vim.sh && cd ..
+RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
