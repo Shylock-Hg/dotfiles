@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
-NATIVE_INSTALL='yes | sudo pacman -Sy'
-AUR_INSTALL='yes | sudo yay -Sy'
+NATIVE_INSTALL='sudo pacman -Sy'
+AUR_INSTALL='sudo yay -Sy'
 
 # ale plugin setting in $HOME.vimrc
 echo -e '\n" Load all plugins now.
@@ -29,8 +29,8 @@ yes | npm install alex write-good
 pip install --user proselint pyredpen rstcheck
 
 # support for c
-eval $NATIVE_INSTALL cppcheck clang gcc
-eval $AUR_INSTALL cquery
+eval echo -e '\n' | $NATIVE_INSTALL cppcheck clang gcc
+eval yes | $AUR_INSTALL cquery
 pip install --user cpplint flawfinder
 
 
