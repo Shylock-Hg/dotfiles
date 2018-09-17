@@ -2,6 +2,13 @@ FROM base/devel
 MAINTAINER 'Shylock Hg'
 RUN useradd -m -g users -G wheel -s /bin/bash shylock
 RUN echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+# Set the locale
+RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+#RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 RUN yes | pacman -Syu
 RUN yes | pacman -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm
