@@ -1,6 +1,6 @@
 FROM base/devel
 MAINTAINER 'Shylock Hg'
-RUN useradd -m -g users -G wheel -s /usr/bin/bash shylock
+RUN useradd -m -g users -G wheel -s /bin/bash shylock
 RUN echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 RUN yes | pacman -Syu
