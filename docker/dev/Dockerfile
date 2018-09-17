@@ -5,13 +5,12 @@ RUN echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Set the locale
 RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
 RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-#RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN yes | pacman -Syu
-RUN yes | pacman -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm
+RUN pacman --noconfirm -Syu
+RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm
 
 USER shylock
 WORKDIR /home/shylock
@@ -26,7 +25,7 @@ RUN conda config --set show_channel_urls yes
 RUN conda create --name=torch && conda install --name=torch pytorch torchvision cuda92
 RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
 
-RUN git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && rm -rf yay
-ENV NATIVE_INSTALL='yes | sudo pacman -Sy'
+RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
+ENV NATIVE_INSTALL='sudo pacman --noconfirm -Sy'
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
