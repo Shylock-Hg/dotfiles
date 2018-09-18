@@ -37,3 +37,5 @@ RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm
 ENV NATIVE_INSTALL='sudo pacman --noconfirm -Sy'
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
+# Acceleration agent configuration for `github.com`, `archlinux sources`
+RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
