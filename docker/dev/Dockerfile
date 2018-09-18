@@ -10,7 +10,8 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN pacman --noconfirm -Syu
-RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm
+RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib \
+arm-none-eabi-binutils
 
 USER shylock
 WORKDIR /home/shylock
