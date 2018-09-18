@@ -21,6 +21,10 @@ arm-none-eabi-binutils
 USER shylock
 WORKDIR /home/shylock
 
+# Git configuration
+RUN git config --global user.name 'Shylock-Hg'
+RUN git config --global user.email 'tcath2s@gmail.com'
+
 # Conda and torch, tensorflow
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null
 RUN sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh
