@@ -14,8 +14,9 @@ ENV LC_ALL en_US.UTF-8
 
 # Archlinux installation
 RUN pacman --noconfirm -Syu
-RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake python-pip ruby nodejs npm arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib \
-arm-none-eabi-binutils
+RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake openssh \
+python-pip ruby nodejs npm scons\
+arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib arm-none-eabi-binutils
 
 # Change user and workdir
 USER shylock
@@ -35,6 +36,9 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cl
 RUN conda config --set show_channel_urls yes
 RUN conda create --name=torch && conda install --name=torch pytorch torchvision cuda92
 RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
+
+# pyyaml
+RUN pip install --user pyyaml
 
 # Vim installation and configuration
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
