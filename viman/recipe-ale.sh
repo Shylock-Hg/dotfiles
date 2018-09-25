@@ -33,5 +33,6 @@ eval $NATIVE_INSTALL cppcheck clang gcc
 eval $AUR_INSTALL cquery
 pip install --user cpplint flawfinder
 
-# support for c++
+# support for c++ extra based on c support
+eval $NATIVE_INSTALL clazy
 
