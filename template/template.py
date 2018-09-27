@@ -7,6 +7,3 @@
 @email tcath2s@gmail.com
 '''
 
-if '__main__' == __name__:
-    main()
-

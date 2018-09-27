@@ -13,37 +13,47 @@ do
 			pattern_header='\.h$'
 			pattern_source='\.c$'
 			pattern_python='\.py$'
+			pattern_hheader='\.hh$'  # hh
+			pattern_ssource='\.cc$'  # cc
 				
 			# Makefile
 			#if [ $OPTARG == 'Makefile' ] && [ -e $prefix/Makefile ]; then
 			if [ $OPTARG == 'Makefile' ]; then
 				cp $prefix/linux.mk $PWD/$OPTARG
 
-			# header file
+			# c
 			elif [[ $OPTARG =~ $pattern_header ]]; then
-				uppername=$( sed -e 's/\.h$//g' -e 's/\([a-z]\+\)/\U\1/g' <<< $OPTARG )
+				uppername=$( sed -e "s/${pattern_header}//g" -e 's/\([a-z]\+\)/\U\1/g' <<< $OPTARG )
 				cp $prefix/template.h $PWD/$OPTARG
 				sed -i  -e "s/\\date.\+/\\date $today/g" \
 					-e "s/_.\+_H_/_${uppername}_H_/g" $PWD/$OPTARG
-		
-			# source file
 			elif [[ $OPTARG =~ $pattern_source ]]; then
 				cp $prefix/template.c $PWD/$OPTARG
 				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
+
+			# c++
+			elif [[ $OPTARG =~ $pattern_hheader ]]; then
+				uppername=$( sed -e "s/${pattern_hheader}//g" -e 's/\([a-z]\+\)/\U\1/g' <<< $OPTARG )
+				cp $prefix/template.hh $PWD/$OPTARG
+				sed -i  -e "s/\\date.\+/\\date $today/g" \
+					-e "s/_.\+_HH_/_${uppername}_HH_/g" $PWD/$OPTARG
+			elif [[ $OPTARG =~ $pattern_ssource ]]; then
+				cp $prefix/template.cc $PWD/$OPTARG
+				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
+			# python
 			elif [[ $OPTARG =~ $pattern_python ]]; then
 				cp $prefix/template.py $PWD/$OPTARG
 				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
 			else
-				echo '[err]:Unkown file type!'
+				echo 'error:Unkown file type!'
 			fi
 
 			;;
 		h)
-			echo "usage: $0 -n <name-of-source>\n\
-				eg.$0 -n example.h"
+			echo -e "usage: $0 -n <name-of-source>\neg.$0 -n example.h"
 			;;
 		?)
-			echo "[err]:Unknown argument $OPTARG!"
+			echo "error:Unknown argument $OPTARG!"
 			;;
 	esac
 done
