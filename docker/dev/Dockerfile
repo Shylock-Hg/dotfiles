@@ -14,7 +14,7 @@ ENV LC_ALL en_US.UTF-8
 
 # Archlinux installation
 RUN pacman --noconfirm -Syu
-RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake openssh boost boost-libs\
+RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake openssh boost boost-libs \
 python-pip ruby nodejs npm scons \
 arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib arm-none-eabi-binutils
 
