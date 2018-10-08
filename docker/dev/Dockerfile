@@ -15,7 +15,7 @@ ENV LC_ALL en_US.UTF-8
 # Archlinux installation
 RUN pacman --noconfirm -Syu
 RUN pacman --noconfirm -Sy wget git vim gdb clang lldb cmake openssh boost boost-libs \
-python-pip python2-pip ruby nodejs npm scons \
+python-pip python2-pip ruby nodejs npm \
 arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib arm-none-eabi-binutils
 
 # Change user and workdir
@@ -37,8 +37,9 @@ RUN conda config --set show_channel_urls yes
 RUN conda create --name=torch && conda install --name=torch pytorch torchvision cuda92
 RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
 
-# pyyaml
-RUN pip install --user pyyaml
+# boudica development environment
+RUN pip2 install --user pyyaml
+RUN sudo pacman --noconfirm -Sy scons
 
 # Vim installation and configuration
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
