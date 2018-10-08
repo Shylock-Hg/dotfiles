@@ -3,7 +3,7 @@
 VIM_RC=("$HOME/.vimrc" './.vimrc')
 VIM_MAN=("$HOME/.viman.yml" './viman/.viman.yml')
 
-SS_PAC=("$HOME/.ss.pac" './.ss.d/.ss.pac')
+#SS_PAC=("$HOME/.ss.pac" './.ss.d/.ss.pac')
 SS_CONF=('/etc/shadowsocks/.ss.conf.json' './.ss.d/.ss.conf.json')
 
 while getopts 'o:h' args
@@ -25,11 +25,6 @@ do
 				fi
 
 				#shadowsocks
-				if [ -e ${SS_PAC[0]} ] ; then
-					cp  ${SS_PAC[0]}  ${SS_PAC[1]}
-				else
-					echo "error : ${SS_PAC[0]} do not exist!"
-				fi
 				if [ -e ${SS_CONF[0]} ] ; then
 					cp ${SS_CONF[0]} ${SS_CONF[1]}
 				else
@@ -43,7 +38,6 @@ do
 				cp ${VIM_MAN[1]} ${VIM_MAN[0]}
 
 				#shadowsocks
-				cp ${SS_PAC[1]} ${SS_PAC[0]}
 				if [ -e $(dirname ${SS_CONF[0]}) ] 
 				then
 					sudo cp ${SS_CONF[1]} ${SS_CONF[0]}
