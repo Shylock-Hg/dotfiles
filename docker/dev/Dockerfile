@@ -55,7 +55,7 @@ RUN ${NATIVE_INSTALL} scons
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts
 RUN sudo chsh -s $(which zsh) shylock
-RUN "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN '$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'
 
 # Vim installation and configuration
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
