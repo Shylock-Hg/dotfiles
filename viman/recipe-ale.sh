@@ -1,7 +1,7 @@
 #! /usr/bin/env sh
 
-NATIVE_INSTALL='sudo pacman -Sy --noconfirm'
-AUR_INSTALL='sudo yay -Sy --noconfirm'
+NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
+AUR_INSTALL='sudo yay --noconfirm --needed -Sy'
 
 # ale plugin setting in $HOME.vimrc
 echo -e '\n" Load all plugins now.
