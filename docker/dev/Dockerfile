@@ -12,11 +12,16 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
+# environament variable for system package manager
+ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
+ENV AUR_INSTALL='sudo yay --noconfirm --needed -Sy'
+
 # Archlinux installation
-RUN pacman --noconfirm --needed -Syu
-RUN pacman --noconfirm --needed -Sy wget git vim gdb clang lldb cmake openssh boost boost-libs \
+RUN ${NATIVE_INSTALL}u
+RUN ${NATIVE_INSTALL} wget git vim gdb clang lldb cmake openssh boost boost-libs \
 python-pip python2-pip ruby nodejs npm \
 arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib arm-none-eabi-binutils
+RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Change user and workdir
 USER shylock
@@ -45,17 +50,14 @@ RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
 
 # boudica development environment
 RUN pip2 install --user pyyaml
-RUN sudo pacman --needed --noconfirm -Sy scons
+RUN ${NATIVE_INSTALL} scons
 
 # zsh installation & oh-my-zsh configuration
-RUN sudo pacman --needed --noconfirm -Sy zsh powerline-fonts
-RUN chsh -s $(which zsh)
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN ${NATIVE_INSTALL} zsh powerline-fonts
+RUN sudo chsh -s $(which zsh) shylock
+RUN "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Vim installation and configuration
-RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
-ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-ENV AUR_INSTALL='sudo yay --noconfirm --needed -Sy'
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
