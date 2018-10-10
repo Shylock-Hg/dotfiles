@@ -45,7 +45,12 @@ RUN conda create --name=tf && conda install --name=tf tensorflow-gpu
 
 # boudica development environment
 RUN pip2 install --user pyyaml
-RUN sudo pacman --noconfirm -Sy scons
+RUN sudo pacman --needed --noconfirm -Sy scons
+
+# zsh installation & oh-my-zsh configuration
+RUN sudo pacman --needed --noconfirm -Sy zsh powerline-fonts
+RUN chsh -s $(which zsh)
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Vim installation and configuration
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
