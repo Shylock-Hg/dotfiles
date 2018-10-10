@@ -21,7 +21,6 @@ RUN ${NATIVE_INSTALL}u
 RUN ${NATIVE_INSTALL} wget git vim gdb clang lldb cmake openssh boost boost-libs \
 python-pip python2-pip ruby nodejs npm \
 arm-none-eabi-gcc arm-none-eabi-gdb arm-none-eabi-newlib arm-none-eabi-binutils
-RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Change user and workdir
 USER shylock
@@ -36,6 +35,8 @@ ENV PATH="$PATH:/home/shylock/node_modules/.bin"
 
 # local gem path
 ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
+
+RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Conda and torch, tensorflow
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null
