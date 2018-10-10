@@ -26,10 +26,13 @@ WORKDIR /home/shylock
 RUN git config --global user.name 'Shylock-Hg'
 RUN git config --global user.email 'tcath2s@gmail.com'
 
+# local node path
+ENV PATH="$PATH:$HOME/node_modules/.bin"
+
 # Conda and torch, tensorflow
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null
 RUN sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
+ENV PATH="$PATH:$HOME/Miniconda3/bin"
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
