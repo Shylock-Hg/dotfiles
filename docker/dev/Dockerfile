@@ -63,3 +63,5 @@ RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/bu
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
+
+ENTRYPOINT /usr/sbin/init && /usr/sbin/zsh
