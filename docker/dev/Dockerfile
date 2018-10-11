@@ -65,7 +65,7 @@ RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/bu
 RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
 
 # remove useless linux
-RUN sudo pacman -Rs linux
+RUN sudo pacman --noconfirm -Rs linux
 
 # entrypoint with zsh
 ENTRYPOINT /usr/sbin/zsh
