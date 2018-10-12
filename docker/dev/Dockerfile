@@ -36,6 +36,7 @@ ENV PATH="$PATH:/home/shylock/node_modules/.bin"
 # local gem path
 ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
 
+# install aur helper yay
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Conda and torch, tensorflow
@@ -63,3 +64,6 @@ RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/bui
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
 RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
+
+# entrypoint with zsh
+ENTRYPOINT eval $(which zsh)
