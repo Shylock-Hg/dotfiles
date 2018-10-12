@@ -36,6 +36,9 @@ ENV PATH="$PATH:/home/shylock/node_modules/.bin"
 # local gem path
 ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
 
+# local python path
+ENV PATH="$PATH:/home/shylock/.local/bin"
+
 # install aur helper yay
 RUN git clone https://aur.archlinux.org/yay.git && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
