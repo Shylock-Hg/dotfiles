@@ -19,10 +19,10 @@ fi
 
 # reduct native setting of vim
 #cp ./.vimrc.native $HOME/.vimrc
-curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/.vimrc.native -o $HOME/.vimrc
+curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/.vimrc.native -o $HOME/.vimrc
 
 # install and configure `pathogen`, `git`, `vim` and `viman`
-curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh
+curl -s https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh
 
 if command -v viman > /dev/null ; then
 	echo 'Viman is in PATH!'

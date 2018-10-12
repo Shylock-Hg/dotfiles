@@ -56,10 +56,10 @@ RUN ${NATIVE_INSTALL} scons
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts
 RUN sudo chsh -s $(which zsh) shylock
-RUN curl -sL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+RUN curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 # Vim installation and configuration
-RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
+RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
-RUN curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
+RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
