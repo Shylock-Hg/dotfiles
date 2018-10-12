@@ -62,6 +62,11 @@ RUN ${NATIVE_INSTALL} zsh powerline-fonts
 RUN sudo chsh -s $(which zsh) shylock
 RUN curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
+# mysql installation and config
+RUN ${NATIVE_INSTALL} mariadb
+RUN sudo usermod -a -G mysql shylock && sudo chmod g+rwx /var/lib/mysql
+RUN mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
 # Vim installation and configuration
 RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
