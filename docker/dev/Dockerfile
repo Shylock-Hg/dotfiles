@@ -65,5 +65,8 @@ RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/bui
 # Acceleration agent configuration for `github.com`, `archlinux sources`
 RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
 
+# Install my custom ultility to `/usr/local/bin`
+RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
+
 # entrypoint with zsh
 ENTRYPOINT eval $(which zsh)
