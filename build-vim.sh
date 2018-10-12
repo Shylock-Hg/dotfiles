@@ -31,6 +31,6 @@ else
 fi
 
 #cp ./viman/.viman.yml $HOME/.viman.yml
-curl -sL https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/.viman.yml -o $HOME/.viman.yml
+curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/.viman.yml -o $HOME/.viman.yml
 viman -Sf $HOME/.viman.yml
 
