@@ -14,7 +14,7 @@ ENV LC_ALL=en_US.UTF-8
 
 # environament variable for system package manager
 ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-ENV AUR_INSTALL='sudo yay --noconfirm --needed -Sy'
+ENV AUR_INSTALL='yay --noconfirm --needed -Sy'
 
 # Archlinux installation
 RUN ${NATIVE_INSTALL}u
