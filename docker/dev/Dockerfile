@@ -80,4 +80,7 @@ RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/bui
 RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
 # entrypoint with zsh
-ENTRYPOINT eval $(which zsh)
+#ENTRYPOINT eval $(which zsh)
+
+VOLUME [ "/sys/fs/cgroup" ]
+CMD ["/usr/sbin/init"]
