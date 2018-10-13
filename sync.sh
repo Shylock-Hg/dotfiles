@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 VIM_RC=("$HOME/.vimrc" './.vimrc')
 VIM_MAN=("$HOME/.viman.yml" './viman/.viman.yml')

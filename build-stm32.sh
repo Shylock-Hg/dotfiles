@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 ##################create stm32 project from official repository################
 ##################only for stm32f723e-disco this version#######################

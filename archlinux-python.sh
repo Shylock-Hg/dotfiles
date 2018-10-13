@@ -1,7 +1,7 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 
 ################################################################################
-#switch python2 or python3 to python
+# switch python2 or python3 to python
 ################################################################################
 
 
@@ -20,7 +20,7 @@ do
 
 			;;
 		h)
-			echo "usage: $0 -n <python>\n\
+			echo -e "usage: $0 -n <python>\n\
 				eg.$0 -p python2"
 			;;
 		?)
