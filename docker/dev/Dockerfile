@@ -1,5 +1,5 @@
 FROM base/devel
-MAINTAINER 'Shylock Hg'
+MAINTAINER 'Shylock Hg' <tcath2s@gmail.com>
 
 # Add user
 RUN useradd -m -g users -G wheel -s /bin/bash shylock \
