@@ -10,7 +10,7 @@ before_install:
   - docker build -t shylockhg/dev .
 
 script:
-  - true
+  - docker run shylockhg/dev
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
