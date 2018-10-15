@@ -7,14 +7,11 @@ RUN useradd -m -g users -G wheel -s /bin/bash shylock \
 
 # Set the locale
 RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
-        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf \
-        && LANG=en_US.UTF-8 \
-        && LANGUAGE=en_US:en \
-        && LC_ALL=en_US.UTF-8
+        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 # environament variable for system package manager
-ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-ENV AUR_INSTALL='yay --noconfirm --needed -Sy'
+ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' AUR_INSTALL='yay --noconfirm --needed -Sy'
 
 # Archlinux installation
 RUN ${NATIVE_INSTALL}u
