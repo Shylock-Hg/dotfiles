@@ -29,8 +29,8 @@ yes | npm install alex write-good
 pip install --user proselint pyredpen rstcheck
 
 # support for c
-eval $NATIVE_INSTALL cppcheck clang gcc
-eval $AUR_INSTALL cquery
+eval $NATIVE_INSTALL cppcheck clang gcc uncrustify
+eval $AUR_INSTALL cquery ccls
 pip install --user cpplint flawfinder
 
 # support for c++ extra based on c support
