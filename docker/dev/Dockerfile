@@ -15,7 +15,7 @@ ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' AUR_INSTALL='yay --noc
 
 # Archlinux installation
 RUN ${NATIVE_INSTALL}u
-RUN ${NATIVE_INSTALL} wget git vim gdb clang lldb cmake openssh boost boost-libs \
+RUN ${NATIVE_INSTALL} wget git vim gdb clang lldb cmake openssh boost boost-libs valgrind\
 python-pip python2-pip ruby nodejs npm
 
 # Change user and workdir
