@@ -26,14 +26,10 @@ WORKDIR /home/shylock
 RUN git config --global user.name 'Shylock-Hg' \
         && git config --global user.email 'tcath2s@gmail.com'
 
-# local node path
-ENV PATH="$PATH:/home/shylock/node_modules/.bin"
-
-# local gem path
-ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
-
-# local python path
-ENV PATH="$PATH:/home/shylock/.local/bin"
+# local node, ruby and python path
+ENV PATH="$PATH:/home/shylock/node_modules/.bin" \
+	PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin" \
+	PATH="$PATH:/home/shylock/.local/bin"
 
 # install aur helper yay
 RUN git clone https://aur.archlinux.org/yay.git \
@@ -63,9 +59,9 @@ RUN ${NATIVE_INSTALL} zsh powerline-fonts \
         && curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
 # mysql installation and config
-RUN ${NATIVE_INSTALL} mariadb \
-        && sudo usermod -a -G mysql shylock \
-        && sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+# RUN ${NATIVE_INSTALL} mariadb \
+#        && sudo usermod -a -G mysql shylock \
+#        && sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 # Vim installation and configuration
 RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
