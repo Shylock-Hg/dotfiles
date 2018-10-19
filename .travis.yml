@@ -12,6 +12,14 @@ before_install:
 script:
   - docker run shylockhg/dev
 
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push $DOCKER_USERNAME/$REPO
+#after_success:
+#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#  - docker push $DOCKER_USERNAME/$REPO
+
+deploy:
+  provider: script
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push $DOCKER_USERNAME/$REPO
+  on:
+    branch: master
