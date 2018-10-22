@@ -18,6 +18,8 @@ script:
 
 deploy:
   provider: script
-  script: ./.travis-ci/deploy-docker.sh
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push $DOCKER_USERNAME/$REPO
   on:
     branch: master
