@@ -57,6 +57,7 @@ RUN pip2 install --user pyyaml && ${NATIVE_INSTALL} scons
 RUN ${NATIVE_INSTALL} zsh powerline-fonts \
         && sudo chsh -s $(which zsh) shylock \
         && curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+ENV SHELL=/usr/sbin/zsh
 
 # mysql installation and config
 # RUN ${NATIVE_INSTALL} mariadb \
