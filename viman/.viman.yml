@@ -22,3 +22,6 @@ vim-colors-solarized:
 vim-fugitive:
   recipe: ''
   url: https://github.com/tpope/vim-fugitive.git
+vim-wakatime:
+  recipe: ''
+  url: https://github.com/wakatime/vim-wakatime.git
