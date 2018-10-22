@@ -21,3 +21,4 @@ deploy:
   script: ./.travis-ci/deploy-docker.sh
   on:
     branch: master
+  skip_cleanup: true
