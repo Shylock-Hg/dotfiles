@@ -59,6 +59,9 @@ RUN ${NATIVE_INSTALL} zsh powerline-fonts \
         && curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ENV SHELL=/usr/sbin/zsh
 
+# travis-ci cli
+RUN gem install travis -v 1.8.9 --no-rdoc --no-ri
+
 # mysql installation and config
 # RUN ${NATIVE_INSTALL} mariadb \
 #        && sudo usermod -a -G mysql shylock \
