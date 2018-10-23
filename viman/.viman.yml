@@ -23,5 +23,5 @@ vim-fugitive:
   recipe: ''
   url: https://github.com/tpope/vim-fugitive.git
 vim-wakatime:
-  recipe: ''
+  recipe: 'curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh | sh'
   url: https://github.com/wakatime/vim-wakatime.git
