@@ -28,8 +28,8 @@ RUN git config --global user.name 'Shylock-Hg' \
 
 # local node, ruby and python path
 ENV PATH="$PATH:/home/shylock/node_modules/.bin" \
-	PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin" \
-	PATH="$PATH:/home/shylock/.local/bin"
+        PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin" \
+        PATH="$PATH:/home/shylock/.local/bin"
 
 # install aur helper yay
 RUN git clone https://aur.archlinux.org/yay.git \
