@@ -6,8 +6,7 @@ services:
   - docker
 
 before_install:
-  - cd docker/dev
-  - docker build -t shylockhg/dev .
+  - docker build -t shylockhg/dev docker/dev
 
 script:
   - docker run shylockhg/dev
@@ -18,7 +17,7 @@ script:
 
 deploy:
   provider: script
-  script: sh ./.travis-ci/deploy-docker.sh
+  script: ./.travis-ci/deploy-docker.sh
   on:
     branch: master
   skip_cleanup: true
