@@ -68,13 +68,13 @@ RUN gem install travis -v 1.8.9 --no-rdoc --no-ri
 #        && sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 # Vim installation and configuration
-RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
+RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
-RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
+RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
 
 # Install my custom ultility to `/usr/local/bin`
-RUN curl -s https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
+RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
 # entrypoint with zsh
 ENTRYPOINT eval $(which zsh)

@@ -21,35 +21,35 @@ do
 			#if [ $OPTARG == 'Makefile' ] && [ -e $prefix/Makefile ]; then
 			if [ $OPTARG == 'Makefile' ]; then
 				#cp $prefix/linux.mk $PWD/$OPTARG
-                                curl -s $prefix/linux.mk -o $PWD/$OPTARG
+                                curl $prefix/linux.mk -o $PWD/$OPTARG
 
 			# c
 			elif [[ $OPTARG =~ $pattern_header ]]; then
 				uppername=$( sed -e "s/${pattern_header}//g" -e 's/\([a-z]\+\)/\U\1/g' <<< $OPTARG )
 				#cp $prefix/template.h $PWD/$OPTARG
-                                curl -s $prefix/template.h -o $PWD/$OPTARG
+                                curl $prefix/template.h -o $PWD/$OPTARG
 				sed -i  -e "s/\\date.\+/\\date $today/g" \
 					-e "s/_.\+_H_/_${uppername}_H_/g" $PWD/$OPTARG
 			elif [[ $OPTARG =~ $pattern_source ]]; then
 				#cp $prefix/template.c $PWD/$OPTARG
-                                curl -s $prefix/template.c -o $PWD/$OPTARG
+                                curl $prefix/template.c -o $PWD/$OPTARG
 				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
 
 			# c++
 			elif [[ $OPTARG =~ $pattern_hheader ]]; then
 				uppername=$( sed -e "s/${pattern_hheader}//g" -e 's/\([a-z]\+\)/\U\1/g' <<< $OPTARG )
 				#cp $prefix/template.hh $PWD/$OPTARG
-                                curl -s $prefix/template.hh -o $PWD/$OPTARG
+                                curl $prefix/template.hh -o $PWD/$OPTARG
 				sed -i  -e "s/\\date.\+/\\date $today/g" \
 					-e "s/_.\+_HH_/_${uppername}_HH_/g" $PWD/$OPTARG
 			elif [[ $OPTARG =~ $pattern_ssource ]]; then
 				#cp $prefix/template.cc $PWD/$OPTARG
-                                curl -s $prefix/template.cc -o $PWD/$OPTARG
+                                curl $prefix/template.cc -o $PWD/$OPTARG
 				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
 			# python
 			elif [[ $OPTARG =~ $pattern_python ]]; then
 				#cp $prefix/template.py $PWD/$OPTARG
-                                curl -s $prefix/template.py -o $PWD/$OPTARG
+                                curl $prefix/template.py -o $PWD/$OPTARG
 				sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
 			else
 				echo 'error:Unkown file type!'
