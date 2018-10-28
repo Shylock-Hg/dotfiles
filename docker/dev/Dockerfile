@@ -36,6 +36,7 @@ RUN git clone https://aur.archlinux.org/yay.git \
         && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Conda and torch, tensorflow
+ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null \
         && sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh \
         && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ \
@@ -44,7 +45,6 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2
         && conda config --set show_channel_urls yes \
         && conda create --name=torch && conda install --name=torch pytorch torchvision cuda92 \
         && conda create --name=tf && conda install --name=tf tensorflow-gpu
-ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 
 # arm-nono-eabi-gcc toolchain
 RUN ${NATIVE_INSTALL} arm-none-eabi-gcc arm-none-eabi-gdb \
