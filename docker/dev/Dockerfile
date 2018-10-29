@@ -36,9 +36,9 @@ RUN git clone https://aur.archlinux.org/yay.git \
         && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
 
 # Conda and torch, tensorflow
+ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null \
         && sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh \
-        && PATH="$PATH:/home/shylock/Miniconda3/bin" \
         && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ \
         && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ \
         && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/ \
