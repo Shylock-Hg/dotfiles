@@ -9,5 +9,5 @@
 
 
 
-#endif  //!< _TEMPLATE_H_
+#endif  //!< _TEMPLATE_HH_
 
