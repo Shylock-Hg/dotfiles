@@ -14,14 +14,21 @@ EXPOSE 80
 
 RUN sudo pacman --noconfirm --needed -Syu && \
         sudo pacman --noconfirm --needed -Sy git ruby nginx
-RUN gem install bundler
 
 USER shylock
 WORKDIR /home/shylock
 
+# local gems environment
+ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
+RUN gem install bundler
+
 # build generate static site by jekyll stack
-RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && cd blog && bundle install && production bundle exec jekyll b
-RUN cp -r _site /usr/share/www.shylock-hg.com && cd ..
+RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
+        cd blog && \
+        bundle install && \
+        production bundle exec jekyll b && \
+        cp -r _site /usr/share/www.shylock-hg.com && \
+        cd ~
 
 # configuration nginx
 COPY nginx.conf /etc/nginx/
