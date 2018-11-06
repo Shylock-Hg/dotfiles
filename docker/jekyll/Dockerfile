@@ -34,4 +34,4 @@ RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
 COPY nginx.conf /etc/nginx/
 
 # entrypoint
-ENTRYPOINT ['sudo', 'nginx']
+ENTRYPOINT sudo nginx
