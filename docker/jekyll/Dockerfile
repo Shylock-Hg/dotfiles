@@ -31,7 +31,7 @@ RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
         cd ~
 
 # configuration nginx
-COPY nginx.conf /etc/nginx/
+COPY blog.nginx.conf /etc/nginx/
 
 # entrypoint
-ENTRYPOINT sudo nginx
+ENTRYPOINT sudo nginx -c /etc/nginx/blog.nginx.conf
