@@ -6,11 +6,11 @@ services:
   - docker
 
 before_install:
-  - docker build -t shylockhg/dev docker/dev
+#  - docker build -t shylockhg/dev docker/dev
   - docker build -t shylockhg/blog docker/jekyll
 
 script:
-  - docker run shylockhg/dev
+#  - docker run shylockhg/dev
   - docker run shylockhg/blog
 
 #after_success:
