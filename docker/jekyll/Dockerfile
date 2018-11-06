@@ -27,7 +27,7 @@ RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
         cd blog && \
         bundle install && \
         JEKYLL_ENV=production bundle exec jekyll b && \
-        cp -r _site /usr/share/www.shylock-hg.com && \
+        sudo cp -r _site /usr/share/www.shylock-hg.com && \
         cd ~
 
 # configuration nginx
