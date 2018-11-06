@@ -26,7 +26,7 @@ RUN gem install bundler
 RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
         cd blog && \
         bundle install && \
-        bundle exec jekyll b && \
+        JEKYLL_ENV=production bundle exec jekyll b && \
         cp -r _site /usr/share/www.shylock-hg.com && \
         cd ~
 
