@@ -13,7 +13,7 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 EXPOSE 80
 
 RUN sudo pacman --noconfirm --needed -Syu && \
-        sudo pacman --noconfirm --needed -Sy git ruby nginx
+        sudo pacman --noconfirm --needed -Sy git ruby ruby-rdoc nginx
 
 USER shylock
 WORKDIR /home/shylock
