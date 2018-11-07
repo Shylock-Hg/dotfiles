@@ -27,11 +27,11 @@ RUN git clone --depth=1 https://github.com/Shylock-Hg/blog.git && \
         cd blog && \
         bundle install && \
         JEKYLL_ENV=production bundle exec jekyll b && \
-        sudo cp -r _site /usr/share/www.shylock-hg.com && \
+        sudo cp -r _site/* /usr/share/nginx/html && \
         cd ~
 
 # configuration nginx
-COPY blog.nginx.conf /etc/nginx/
+RUN sudo usermod -G http,log shylock
 
 # entrypoint
-ENTRYPOINT sudo nginx -c /etc/nginx/blog.nginx.conf
+ENTRYPOINT sudo nginx
