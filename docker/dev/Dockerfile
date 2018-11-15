@@ -80,7 +80,7 @@ RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
 # clean up
-RUN yes y | conda clean && \
+RUN yes y | conda clean --all && \
         rm -rf .cache/*
 
 # systemd
