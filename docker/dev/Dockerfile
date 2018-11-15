@@ -54,7 +54,7 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2
 
 
 # boudica development environment
-RUN pip2 install --user pyyaml && ${NATIVE_INSTALL} scons
+RUN pip2 install --no-cache-dir --user pyyaml && ${NATIVE_INSTALL} scons
 
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts \
@@ -80,7 +80,9 @@ RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
 # clean up
-RUN yay --noconfirm -Sc
+RUN yay --noconfirm -Sc && \
+        yes y | conda clean \
+        yes y | rm -rf .cache/*
 
 # systemd
 CMD ['/usr/sbin/init']
