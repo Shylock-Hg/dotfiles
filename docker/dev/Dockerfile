@@ -83,5 +83,5 @@ RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.
 RUN yes y | conda clean --all && \
         rm -rf .cache/*
 
-# systemd
-CMD ['/usr/sbin/init']
+# zsh
+CMD ['eval', '$SHELL']
