@@ -15,10 +15,11 @@ ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
         AUR_INSTALL='yay --noconfirm --needed -Sy'
 
 # Archlinux installation
-RUN ${NATIVE_INSTALL} base-devel \
+RUN pacman --noconfirm --needed -Sy \
+        base-devel \
         git vim emacs-nox gdb clang lldb cmake \
         openssh boost boost-libs valgrind \
-        wget \
+        wget sudo \
         python-pip python2-pip ruby nodejs npm \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils
