@@ -1,22 +1,28 @@
-FROM base/devel
-MAINTAINER 'Shylock Hg' <tcath2s@gmail.com>
+FROM archlinux/base
+LABEL maintainer="tcath2s@gmail.com"
 
 # Add user
 RUN useradd -m -g users -G wheel -s /bin/bash shylock \
         && echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Set the locale
-RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
-        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+#RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
+#        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+#ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 # environament variable for system package manager
-ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' AUR_INSTALL='yay --noconfirm --needed -Sy'
+ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
+        AUR_INSTALL='yay --noconfirm --needed -Sy'
 
 # Archlinux installation
-RUN ${NATIVE_INSTALL}u
-RUN ${NATIVE_INSTALL} wget git vim gdb clang lldb cmake openssh boost boost-libs valgrind \
-python-pip python2-pip ruby nodejs npm
+RUN pacman --noconfirm --needed -Sy \
+        base-devel \
+        git vim emacs-nox gdb clang lldb cmake \
+        openssh boost boost-libs valgrind \
+        wget sudo \
+        python-pip python2-pip ruby nodejs npm \
+        arm-none-eabi-gcc arm-none-eabi-gdb \
+        arm-none-eabi-newlib arm-none-eabi-binutils
 
 # Change user and workdir
 USER shylock
@@ -46,12 +52,9 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2
         && conda create --name=torch && conda install --name=torch pytorch torchvision cuda92 \
         && conda create --name=tf && conda install --name=tf tensorflow-gpu
 
-# arm-nono-eabi-gcc toolchain
-RUN ${NATIVE_INSTALL} arm-none-eabi-gcc arm-none-eabi-gdb \
-        arm-none-eabi-newlib arm-none-eabi-binutils
 
 # boudica development environment
-RUN pip2 install --user pyyaml && ${NATIVE_INSTALL} scons
+RUN pip2 install --no-cache-dir --user pyyaml && ${NATIVE_INSTALL} scons
 
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts \
@@ -76,5 +79,9 @@ RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-
 # Install my custom ultility to `/usr/local/bin`
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
-# entrypoint with zsh
-ENTRYPOINT eval $(which zsh)
+# clean up
+RUN yes y | conda clean --all && \
+        rm -rf .cache/*
+
+# zsh
+CMD ["/usr/sbin/zsh"]
