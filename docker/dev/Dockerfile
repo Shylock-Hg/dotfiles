@@ -50,7 +50,8 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2
         && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/ \
         && conda config --set show_channel_urls yes \
         && conda create --name=torch && conda install --name=torch pytorch torchvision cuda92 \
-        && conda create --name=tf && conda install --name=tf tensorflow-gpu
+        && conda create --name=tf && conda install --name=tf tensorflow-gpu \
+        && yes y | conda clean --all
 
 
 # boudica development environment
@@ -78,10 +79,6 @@ RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-
 
 # Install my custom ultility to `/usr/local/bin`
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
-
-# clean up
-RUN yes y | conda clean --all && \
-        rm -rf .cache/*
 
 # zsh
 CMD ["/usr/sbin/zsh"]
