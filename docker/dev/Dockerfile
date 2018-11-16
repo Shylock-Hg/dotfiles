@@ -84,4 +84,4 @@ RUN yes y | conda clean --all && \
         rm -rf .cache/*
 
 # zsh
-CMD ['eval', '$SHELL']
+CMD ["eval", "$SHELL"]
