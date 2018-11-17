@@ -45,8 +45,9 @@ RUN git clone https://aur.archlinux.org/yay.git \
 ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null \
         && sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh \
-        && conda create --name=torch && conda install --name=torch pytorch torchvision cuda92 -c pytorch \
-        && conda create --name=tf && conda install --name=tf tensorflow-gpu \
+        && conda create --name=ml \
+        && conda install --name=ml tensorflow-gpu \
+        && conda install --name=ml -c pytorch pytorch torchvision cuda92 \
         && yes y | conda clean --all
 
 
