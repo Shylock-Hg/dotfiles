@@ -17,7 +17,7 @@ ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
 # Archlinux installation
 RUN pacman --noconfirm --needed -Sy \
         base-devel \
-        git vim emacs-nox gdb clang lldb cmake \
+        git vi vim emacs-nox gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
         wget sudo \
         python-pip python2-pip ruby nodejs npm \
