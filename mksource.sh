@@ -17,6 +17,7 @@ do
                         readonly suffix_python='py'
                         readonly suffix_ccheader='hh'
                         readonly suffix_ccsource='cc'
+                        readonly suffix_sh='sh'
 				
 			# Makefile
 			if [ $OPTARG = 'Makefile' ]; then
@@ -52,6 +53,11 @@ do
                                 if curl $prefix/template.py -o $PWD/$OPTARG; then
 				        sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
                                 fi
+                        elif [ ${OPTARG##*.} = $suffix_sh ]; then
+                                if curl $prefix/template.sh -o $PWD/$OPTARG; then
+				        sed -i "s/\\date.\+/\\date $today/g" $PWD/$OPTARG
+                                fi
+                        # shell
 			else
 				echo 'error:Unkown file type!'
 			fi
