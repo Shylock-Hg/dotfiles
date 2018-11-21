@@ -24,7 +24,6 @@ LIB_SOURCES = src/at_command.c \
         src/stdlog.c \
         src/at_table.c \
         src/at_param.c
-#LIB_OBJECTS = $(addprefix $(DIR_BUILD)/, $(patsubst %.c, %.o, $(notdir $(LIB_SOURCES))))
 LIB_OBJECTS = $(patsubst %.c, %.o, $(notdir $(LIB_SOURCES)))
 LIBVERSION = 0.0.1
 LIBNAME = at
