@@ -39,7 +39,7 @@ ENV PATH="$PATH:/home/shylock/.local/bin"
 
 # install aur helper yay
 RUN git clone https://aur.archlinux.org/yay.git \
-        && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay
+        && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache
 
 # Conda and torch, tensorflow
 ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
