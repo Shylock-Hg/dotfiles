@@ -72,7 +72,7 @@ RUN gem install travis -v 1.8.9 --no-rdoc --no-ri
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
 
 # Acceleration agent configuration for `github.com`, `archlinux sources`
-RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
+#RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
 
 # Install my custom ultility to `/usr/local/bin`
 RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
