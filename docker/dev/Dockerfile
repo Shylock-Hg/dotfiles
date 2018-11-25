@@ -55,6 +55,9 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2
 # boudica development environment
 RUN pip2 install --no-cache-dir --user pyyaml && ${NATIVE_INSTALL} scons
 
+# rust
+RUN curl https://sh.rustup.rs -sSf | sh
+
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts \
         && sudo chsh -s $(which zsh) shylock \
