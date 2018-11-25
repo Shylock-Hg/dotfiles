@@ -31,7 +31,8 @@ ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 ENV SHELL=/usr/sbin/zsh
 
 # building dev image
-RUN ./build-dev.sh
+COPY build-dev.sh .
+RUN ./build-dev.sh && rm build-dev.sh
 
 # zsh
 CMD ["/usr/sbin/zsh"]
