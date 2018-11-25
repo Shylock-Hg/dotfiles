@@ -7,11 +7,13 @@
 #   \email tcath2s@gmail.com
 ###############################################################################
 
-# yay
-eval git clone https://aur.archlinux.org/yay.git && \
-cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache && \
+# Add user
+eval \
+useradd -m -g users -G wheel -s /bin/bash shylock && \
+echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+\
 # Archlinux installation
-        $AUR_INSTALL \
+pacman --noconfirm --needed -Sy \
         base-devel \
         git vi vim emacs-nox gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
@@ -19,9 +21,19 @@ cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache && \
         python-pip python2-pip ruby nodejs npm \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils && \
+\
+# to Shylock
+su shylock && \
+cd && \
+\
+# yay
+git clone https://aur.archlinux.org/yay.git && \
+cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache && \
+\
 # Git configuration
 git config --global user.name 'Shylock-Hg' && \
 git config --global user.email 'tcath2s@gmail.com' && \
+\
 # Conda and torch, tensorflow
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null && \
 sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && \
@@ -30,18 +42,24 @@ conda create --name=ml && \
 conda install --name=ml tensorflow-gpu && \
 conda install --name=ml -c pytorch pytorch torchvision cuda92 && \
 yes y | conda clean --all && \
+\
 # boudica development environment
 pip2 install --no-cache-dir --user pyyaml && $AUR_INSTALL scons && \
+\
 # rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+\
 # zsh installation & oh-my-zsh configuration
 $AUR_INSTALL zsh powerline-fonts && \
 sudo chsh -s $(which zsh) shylock && \
 curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh && \
+\
 # travis-ci cli
 gem install travis -v 1.8.9 --no-rdoc --no-ri && \
+\
 # Vim installation and configuration
 curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh && \
+\
 # Install my custom ultility to `/usr/local/bin`
 curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 

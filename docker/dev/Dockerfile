@@ -1,18 +1,14 @@
 FROM archlinux/base
 LABEL maintainer="tcath2s@gmail.com"
 
-# Add user
-RUN useradd -m -g users -G wheel -s /bin/bash shylock \
-        && echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-
 # Set the locale
 #RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
 #        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 #ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 # Change user and workdir
-USER shylock
-WORKDIR /home/shylock
+#USER shylock
+#WORKDIR /home/shylock
 
 # environament variable for system package manager
 ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
