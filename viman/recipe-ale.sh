@@ -1,7 +1,13 @@
 #! /usr/bin/env sh
 
-NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-AUR_INSTALL='yay --noconfirm --needed -Sy'
+if  [ -z "$NATIVE_INSTALL" ]; then
+        NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
+        AUR_INSTALL='yay --noconfirm --needed -Sy'
+fi
+
+if [ -z "$AUR_INSTALL" ]; then
+        AUR_INSTALL='yay --noconfirm --needed -Sy'
+fi
 
 # ale plugin setting in $HOME.vimrc
 echo -e '\n" Load all plugins now.
@@ -30,7 +36,7 @@ pip install --no-cache-dir --user proselint pyredpen rstcheck
 
 # support for c
 eval $NATIVE_INSTALL cppcheck clang gcc uncrustify
-eval $AUR_INSTALL cquery ccls
+eval $AUR_INSTALL cquery ccls && rm -rf $HOME/.cache
 pip install --no-cache-dir --user cpplint flawfinder
 
 # support for c++ extra based on c support
