@@ -10,76 +10,28 @@ RUN useradd -m -g users -G wheel -s /bin/bash shylock \
 #        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 #ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
-# environament variable for system package manager
-ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
-        AUR_INSTALL='yay --noconfirm --needed -Sy'
-
-# Archlinux installation
-RUN pacman --noconfirm --needed -Sy \
-        base-devel \
-        git vi vim emacs-nox gdb clang lldb cmake \
-        openssh boost boost-libs valgrind man man-pages \
-        wget sudo \
-        python-pip python2-pip ruby nodejs npm \
-        arm-none-eabi-gcc arm-none-eabi-gdb \
-        arm-none-eabi-newlib arm-none-eabi-binutils
-
 # Change user and workdir
 USER shylock
 WORKDIR /home/shylock
 
-# Git configuration
-RUN git config --global user.name 'Shylock-Hg' \
-        && git config --global user.email 'tcath2s@gmail.com'
+# environament variable for system package manager
+ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
+        AUR_INSTALL='yay --noconfirm --needed -Sy'
 
 # local node, ruby and python path
 ENV PATH="$PATH:/home/shylock/node_modules/.bin"
 ENV PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"
 ENV PATH="$PATH:/home/shylock/.local/bin"
-ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
-# install aur helper yay
-RUN git clone https://aur.archlinux.org/yay.git \
-        && cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
 # Conda and torch, tensorflow
 ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
-RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null \
-        && sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && rm Miniconda3-latest-Linux-x86_64.sh \
-        && conda create --name=ml \
-        && conda install --name=ml tensorflow-gpu \
-        && conda install --name=ml -c pytorch pytorch torchvision cuda92 \
-        && yes y | conda clean --all
 
-
-# boudica development environment
-RUN pip2 install --no-cache-dir --user pyyaml && ${NATIVE_INSTALL} scons
-
-# rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
-
-# zsh installation & oh-my-zsh configuration
-RUN ${NATIVE_INSTALL} zsh powerline-fonts \
-        && sudo chsh -s $(which zsh) shylock \
-        && curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 ENV SHELL=/usr/sbin/zsh
 
-# travis-ci cli
-RUN gem install travis -v 1.8.9 --no-rdoc --no-ri
-
-# mysql installation and config
-# RUN ${NATIVE_INSTALL} mariadb \
-#        && sudo usermod -a -G mysql shylock \
-#        && sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-
-# Vim installation and configuration
-RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh
-
-# Acceleration agent configuration for `github.com`, `archlinux sources`
-#RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
-
-# Install my custom ultility to `/usr/local/bin`
-RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
+# building dev image
+RUN ./build-dev.sh
 
 # zsh
 CMD ["/usr/sbin/zsh"]
