@@ -28,6 +28,7 @@ ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 # Conda and torch, tensorflow
 ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 
+# zsh
 ENV SHELL=/usr/sbin/zsh
 
 # building dev image
