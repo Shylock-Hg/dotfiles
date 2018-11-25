@@ -57,6 +57,7 @@ RUN pip2 install --no-cache-dir --user pyyaml && ${NATIVE_INSTALL} scons
 
 # rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+ENV PATH="$PATH:/home/shylock/.cargo/bin"
 
 # zsh installation & oh-my-zsh configuration
 RUN ${NATIVE_INSTALL} zsh powerline-fonts \
