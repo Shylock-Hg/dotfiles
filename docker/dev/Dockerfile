@@ -20,7 +20,7 @@ ENV SHELL=/usr/sbin/zsh
 
 RUN useradd -m -g users -G wheel -s /bin/bash shylock && \
 echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
-pacman -Sy sudo
+pacman --noconfirm -Sy sudo
 
 # Change user and workdir
 USER shylock
