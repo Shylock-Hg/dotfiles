@@ -9,11 +9,9 @@
 
 # Add user
 eval \
-useradd -m -g users -G wheel -s /bin/bash shylock && \
-echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
 \
 # Archlinux installation
-pacman --noconfirm --needed -Sy \
+$NATIVE_INSTALL \
         base-devel \
         git vi vim emacs-nox gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
@@ -21,10 +19,6 @@ pacman --noconfirm --needed -Sy \
         python-pip python2-pip ruby nodejs npm \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils && \
-\
-# to Shylock
-su shylock && \
-cd && \
 \
 # yay
 git clone https://aur.archlinux.org/yay.git && \

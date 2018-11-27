@@ -1,15 +1,6 @@
 FROM archlinux/base
 LABEL maintainer="tcath2s@gmail.com"
 
-# Set the locale
-#RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
-#        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-#ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
-
-# Change user and workdir
-#USER shylock
-#WORKDIR /home/shylock
-
 # environament variable for system package manager
 ENV NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy' \
         AUR_INSTALL='yay --noconfirm --needed -Sy'
@@ -27,9 +18,23 @@ ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 # zsh
 ENV SHELL=/usr/sbin/zsh
 
+RUN useradd -m -g users -G wheel -s /bin/bash shylock && \
+echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+pacman -Sy sudo
+
+# Change user and workdir
+USER shylock
+WORKDIR /home/shylock
+
 # building dev image
 COPY build-dev.sh .
-RUN ./build-dev.sh && rm build-dev.sh
+RUN ./build-dev.sh && \
+rm build-dev.sh
+
+# Set the locale
+#RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
+#        && echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+#ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 # zsh
 CMD ["/usr/sbin/zsh"]
