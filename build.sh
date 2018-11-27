@@ -7,15 +7,20 @@
 # 3. win2nix
 ###############################################################################
 
-# archlinux-python
-sudo curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/archlinux-python.sh -o /usr/local/bin/archlinux-python
-sudo chmod a+x /usr/local/bin/archlinux-python
+readonly url_prefix='https://raw.githubusercontent.com/Shylock-Hg/config.linux/master'
+readonly prefix='/usr/local/bin'
 
-# mksource
-sudo curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/mksource.sh -o /usr/local/bin/mksource
-sudo chmod a+x /usr/local/bin/mksource
+readonly scripts='archlinux-python mksource win2nix startup'
 
-# win2nix
-sudo curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/win2nix.sh -o /usr/local/bin/win2nix
-sudo chmod a+x /usr/local/bin/win2nix
+# build scripts
+build() {
+        for script in $*
+        do
+                echo "From $url_prefix/$script.sh to $prefix/$script"
+                if ! sudo curl $url_prefix/$script.sh -o $prefix/$script; then
+                        exit 1
+                fi
+        done
+}
 
+build $scripts
