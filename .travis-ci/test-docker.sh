@@ -24,3 +24,8 @@ docker run $DOCKER_USERNAME/$REPO win2nix
 docker run $DOCKER_USERNAME/$REPO archlinux-python -h && \
 docker run $DOCKER_USERNAME/$REPO archlinux-python -p python2 && \
 docker run $DOCKER_USERNAME/$REPO archlinux-python -p python3
+
+# testing startup.sh
+docker run $DOCKER_USERNAME/$REPO startup -h && \
+docker run $DOCKER_USERNAME/$REPO startup -t c test.c hello.c && \
+docker run $DOCKER_USERNAME/$REPO startup -t cc test.cc hello.cc
