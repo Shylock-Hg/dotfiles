@@ -20,6 +20,7 @@ build() {
                 if ! sudo curl $url_prefix/$script.sh -o $prefix/$script; then
                         exit 1
                 fi
+                sudo chmod a+x $prefix/$script
         done
 }
 
