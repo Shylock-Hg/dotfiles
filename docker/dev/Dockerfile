@@ -18,6 +18,9 @@ ENV PATH="$PATH:/home/shylock/Miniconda3/bin"
 # zsh
 ENV SHELL=/usr/sbin/zsh
 
+# cargo
+ENV PATH="$PATH:/home/shylock/.cargo/bin"
+
 RUN useradd -m -g users -G wheel -s /bin/bash shylock && \
 echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
 pacman --noconfirm -Sy sudo
