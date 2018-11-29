@@ -40,7 +40,7 @@ do
 			;;
 
 		h)
-			echo "usage: $0 -n <name-of-project>\n\
+			printf "usage: $0 -n <name-of-project>\n\
 				eg.$0 -n example"
 			;;
 		?)
