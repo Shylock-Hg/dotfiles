@@ -10,8 +10,3 @@ My config file for linux.
 ## Standard development environment in docker
 
 ./docker/dev/Dockerfile
-
-## Jekyll environment for static blog generating
-
-./docker/jekyll/Dockerfile
-

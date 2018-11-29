@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux/base:latest
 LABEL maintainer="tcath2s@gmail.com"
 
 # environament variable for system package manager
