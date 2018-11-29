@@ -70,7 +70,7 @@ do
 	esac
 done
 
-shift $(($OPTIND - 1))
+shift $($OPTIND - 1)
 
 # check target input
 if [ -z "$target" ]; then
