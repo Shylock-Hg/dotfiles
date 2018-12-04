@@ -7,6 +7,8 @@
 #   \email tcath2s@gmail.com
 ###############################################################################
 
+set -e  # exit when error
+
 # Add user
 eval \
 \
