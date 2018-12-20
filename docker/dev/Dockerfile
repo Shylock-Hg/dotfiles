@@ -23,7 +23,8 @@ ENV PATH="$PATH:/home/shylock/.cargo/bin"
 
 RUN useradd -m -g users -G wheel -s /bin/bash shylock && \
 echo 'shylock ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
-pacman --noconfirm -Sy sudo
+pacman --noconfirm -Sy sudo && \
+pacman --noconfirm -Syu
 
 # Change user and workdir
 USER shylock
