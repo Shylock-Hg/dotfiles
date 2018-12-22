@@ -1,0 +1,11 @@
+version: '3'
+services:
+    dev:
+        image: "shylockhg/dev"
+        volumns: "/run/postgresql:/run/postgresql/"
+        stdin_open: true
+        tty: true
+    postgres:
+        image: postgres
+        volumns: "/run/postgresql:/run/postgresql/"
+        restart: always
