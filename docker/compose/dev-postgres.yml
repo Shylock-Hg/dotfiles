@@ -6,6 +6,8 @@ services:
             - "/run/postgresql:/run/postgresql/"
         stdin_open: true
         tty: true
+        logging:
+            driver: none
     postgres:
         image: postgres
         volumes:
