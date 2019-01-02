@@ -44,6 +44,7 @@ pip2 install --no-cache-dir --user pyyaml && $AUR_INSTALL scons && \
 \
 # rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+rustup install nightly && \
 \
 # zsh installation & oh-my-zsh configuration
 $AUR_INSTALL zsh powerline-fonts && \
