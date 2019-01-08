@@ -40,7 +40,7 @@ conda install --name=ml -c pytorch pytorch torchvision cuda92 && \
 yes y | conda clean --all && \
 \
 # boudica development environment
-pip2 install --no-cache-dir --user pyyaml && $AUR_INSTALL scons && \
+pip2 install --no-cache-dir --user pyyaml scons && \
 \
 # rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y && \
