@@ -1,0 +1,9 @@
+version: '3'
+services:
+    shadowsocks:
+        image: "shadowsocks/shadowsocks-libev"
+        restart: always
+        ports:
+            - "8388:8388"
+        environment:
+            - PASSWORD="OWU2YzUxNW"
