@@ -27,6 +27,7 @@ pacman --noconfirm --needed -Sy base-devel \
         python-pip python2-pip ruby nodejs npm \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils \
+        cronie \
         xorg-xinit gnome firefox docker docker-compose && \
 \
 # add the user
