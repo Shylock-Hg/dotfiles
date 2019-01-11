@@ -39,6 +39,9 @@ echo 'export PATH="$PATH:/home/shylock/Miniconda3/bin"' >> $HOME/.envs && \
 echo 'export SHELL=/usr/sbin/zsh' >> $HOME/.envs && \
 echo 'source $HOME/.envs' >> $HOME/.zshrc && \
 \
+# travis-ci cli
+gem install travis -v 1.8.9 --no-rdoc --no-ri && \
+\
 # Vim installation and configuration
 curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh && \
 \
