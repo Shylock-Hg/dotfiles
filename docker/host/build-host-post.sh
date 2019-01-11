@@ -19,6 +19,7 @@ git config --global user.email 'tcath2s@gmail.com' && \
 # zsh installation & oh-my-zsh configuration
 $NATIVE_INSTALL zsh powerline-fonts && \
 sudo chsh -s /bin/zsh shylock && \
+echo 'export SHELL=/usr/sbin/zsh' >> $HOME/.envs && \
 curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh && \
 \
 # rust
@@ -28,15 +29,22 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 git clone https://aur.archlinux.org/yay.git && \
 cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache && \
 \
+# Conda and torch, tensorflow
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null && \
+sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && \
+rm Miniconda3-latest-Linux-x86_64.sh && \
+$HOME/Miniconda3/bin/conda create --name=ml && \
+$HOME/Miniconda3/bin/conda install --name=ml tensorflow-gpu && \
+$HOME/Miniconda3/bin/conda install --name=ml -c pytorch pytorch torchvision cuda92 && \
+yes y | conda clean --all && \
+echo 'export PATH="$PATH:/home/shylock/Miniconda3/bin"' >> $HOME/.envs && \
+\
 # local node, ruby and python path
 echo 'export PATH="$PATH:/home/shylock/node_modules/.bin"' >> $HOME/.envs && \
 echo 'export PATH="$PATH:/home/shylock/.gem/ruby/2.5.0/bin"' >> $HOME/.envs && \
 echo 'export PATH="$PATH:/home/shylock/.local/bin"' >> $HOME/.envs && \
 echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"' >> $HOME/.envs && \
-# Conda and torch, tensorflow
-echo 'export PATH="$PATH:/home/shylock/Miniconda3/bin"' >> $HOME/.envs && \
-# zsh
-echo 'export SHELL=/usr/sbin/zsh' >> $HOME/.envs && \
+# source all environments
 echo 'source $HOME/.envs' >> $HOME/.zshrc && \
 \
 # travis-ci cli
