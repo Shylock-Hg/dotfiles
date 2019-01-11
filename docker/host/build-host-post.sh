@@ -48,4 +48,9 @@ curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh |
 # gnome/xorg session
 echo 'export XDG_CURRENT_DESKTOP=GNOME-Classic:GNOME' >> $HOME/.xinitrc && \
 echo 'export GNOME_SHELL_SESSION_MODE=classic' >> $HOME/.xinitrc && \
-echo 'exec gnome-session --session=gnome-classic' >> $HOME/.xinitrc
+echo 'exec gnome-session --session=gnome-classic' >> $HOME/.xinitrc && \
+\
+# vscode
+$NATIVE_INSTALL code && \
+# reStructuredText supports for vscode plugin
+pip install --user docutils doc8
