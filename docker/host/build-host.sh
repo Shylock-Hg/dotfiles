@@ -28,6 +28,7 @@ pacman --noconfirm --needed -Sy base-devel \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils \
         cronie \
+        ttf-hack \
         xorg-xinit gnome firefox docker docker-compose && \
 \
 # add the user
