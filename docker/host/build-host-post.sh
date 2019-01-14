@@ -63,5 +63,8 @@ echo 'exec gnome-session --session=gnome-classic' >> $HOME/.xinitrc && \
 \
 # vscode
 $NATIVE_INSTALL code && \
+# vscode setting map
+ln -sf $HOME/.config/'Code - OSS' $HOME/.config/Code && \
+ln -sf $HOME/.vscode-oss $HOME/.vscode && \
 # reStructuredText supports for vscode plugin
 pip install --user docutils doc8
