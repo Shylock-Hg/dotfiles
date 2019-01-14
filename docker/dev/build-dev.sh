@@ -52,7 +52,7 @@ sudo chsh -s $(which zsh) shylock && \
 curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh && \
 \
 # travis-ci cli
-gem install travis -v 1.8.9 --no-rdoc --no-ri && \
+gem install travis -v 1.8.9 && \
 \
 # Vim installation and configuration
 curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh && \
