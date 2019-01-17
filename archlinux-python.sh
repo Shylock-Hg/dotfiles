@@ -4,18 +4,30 @@
 # switch python2 or python3 to python
 ################################################################################
 
-prefix=/usr/sbin
+readonly prefix=/usr/sbin
+readonly prefix2=/usr/bin
 
 while getopts 'p:h' args
 do
 	case $args in
 		p)  #!< name of source file
+			# check the input
+			if [ $OPTARG != 'python2' ] && [ $OPTARG != 'python3' ]; then
+				echo "Invalid python version $OPTARG!"
+				echo 'Please input `python2` or `python3`!'
+				exit 1
+			fi
+			readonly input_python="$(which $OPTARG)"
 
-			if [ -e $prefix/$OPTARG ]; then 
+			# change the default command entry python
+			if [ -e $input_python ]; then
 				sudo mv $prefix/python $prefix/python.bak
-				sudo ln -s $prefix/$OPTARG $prefix/python
+				sudo ln -s $input_python $prefix/python
+
+				sudo mv $prefix2/python $prefix2/python.bak
+				sudo ln -s $input_python $prefix2/python
 			else
-				echo "[err]:$prefix/$OPTART:no such file or directory!"
+				echo "[err]:$input_python - no such file or directory!"
 			fi
 
 			;;
