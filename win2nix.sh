@@ -30,7 +30,7 @@ done
 shift $((OPTIND - 1))
 
 # convert backslash to slash in include path for the c header/source file
-find $dir -type f -name '*.h' -name '*.c' -exec sed -i -e '/#include/s/\\/\//' {} \;
+find $dir -type f -name '*.[h\|c]' -exec sed -i -e '/#include/s/\\/\//' {} \;
 
 # convert line break to unix flavor
 # delete trailing spaces

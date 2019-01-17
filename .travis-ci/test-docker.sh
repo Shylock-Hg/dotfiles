@@ -18,7 +18,7 @@ docker run $DOCKER_USERNAME/$REPO mksource -n hello_python.py && \
 docker run $DOCKER_USERNAME/$REPO mksource -n hello_shell.py
 
 # testing win2nix.sh
-docker run $DOCKER_USERNAME/$REPO win2nix
+#docker run $DOCKER_USERNAME/$REPO win2nix -h
 
 # testing archlinux-python.sh
 docker run $DOCKER_USERNAME/$REPO archlinux-python -h && \
