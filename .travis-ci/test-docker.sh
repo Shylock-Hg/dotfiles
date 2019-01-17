@@ -12,10 +12,10 @@ docker run $DOCKER_USERNAME/$REPO mksource -h && \
 docker run $DOCKER_USERNAME/$REPO mksource -n Makefile && \
 docker run $DOCKER_USERNAME/$REPO mksource -n hello_c.h && \
 docker run $DOCKER_USERNAME/$REPO mksource -n hello_c.c && \
-docker run $DOCKER_USERNAME/$REPO mksource -n hello_cc.h && \
-docker run $DOCKER_USERNAME/$REPO mksource -n hello_cc.c && \
+docker run $DOCKER_USERNAME/$REPO mksource -n hello_cc.hh && \
+docker run $DOCKER_USERNAME/$REPO mksource -n hello_cc.cc && \
 docker run $DOCKER_USERNAME/$REPO mksource -n hello_python.py && \
-docker run $DOCKER_USERNAME/$REPO mksource -n hello_shell.py
+docker run $DOCKER_USERNAME/$REPO mksource -n hello_shell.sh
 
 # testing win2nix.sh
 #docker run $DOCKER_USERNAME/$REPO win2nix -h
