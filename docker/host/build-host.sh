@@ -10,8 +10,19 @@
 set -e;
 
 # environament variable for system package manager
-export readonly NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-export readonly AUR_INSTALL='yay --noconfirm --needed -Sy'
+readonly packages='\
+        base-devel \
+        git vi vim emacs-nox wget gdb clang lldb cmake \
+        openssh boost boost-libs valgrind man man-pages \
+        python-pip python2-pip ruby nodejs npm \
+        arm-none-eabi-gcc arm-none-eabi-gdb \
+        arm-none-eabi-newlib arm-none-eabi-binutils \
+        cronie \
+        ttf-hack otf-fira-code \
+        xorg-xinit gnome \
+        firefox \
+        docker docker-compose \
+'
 
 # root
 eval \
@@ -21,15 +32,7 @@ echo 'root:hsh5757124xyz' | chpasswd && \
 pacman --noconfirm -Syu && \
 \
 # install the softwares
-pacman --noconfirm --needed -Sy base-devel \
-        git vi vim emacs-nox wget gdb clang lldb cmake \
-        openssh boost boost-libs valgrind man man-pages \
-        python-pip python2-pip ruby nodejs npm \
-        arm-none-eabi-gcc arm-none-eabi-gdb \
-        arm-none-eabi-newlib arm-none-eabi-binutils \
-        cronie \
-        ttf-hack otf-fira-code \
-        xorg-xinit gnome firefox docker docker-compose && \
+pacman --noconfirm --needed -Sy $packages && \
 \
 # add the user
 useradd -m -g users -G wheel -s /bin/bash shylock && \
