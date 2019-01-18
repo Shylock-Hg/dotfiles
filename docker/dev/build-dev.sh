@@ -18,7 +18,7 @@ $NATIVE_INSTALL \
         git vi vim emacs-nox gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
         wget sudo \
-        python-pip python2-pip ruby nodejs npm \
+        python-pip python2-pip ruby nodejs yarn \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils && \
 \

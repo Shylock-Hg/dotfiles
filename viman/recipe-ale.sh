@@ -22,14 +22,14 @@ pip install --no-cache-dir --user autopep8 black flake8 isort mypy prospector py
 
 # support for markdown
 #mkdir temp && cd temp && curl -L https://github.com/errata-ai/vale/releases/download/v1.0.1/vale_1.0.1_Linux_64-bit.tar.gz | tar -zxvf - && sudo cp vale /usr/bin/ && cd .. && rm -rf ./temp
-yes | npm install alex prettier remark-lint textlint markdownlint write-good
+yarn add alex prettier remark-lint textlint markdownlint write-good
 gem install mdl
 pip install --no-cache-dir --user proselint pyredpen
 
 # support for reStructuredText
 #$(AUR_INSTALL) vale
 #mkdir temp && cd temp && curl -L https://github.com/errata-ai/vale/releases/download/v1.0.1/vale_1.0.1_Linux_64-bit.tar.gz | tar -zxvf - && sudo cp vale /usr/bin/ && cd .. && rm -rf ./temp
-yes | npm install alex write-good
+yarn add alex write-good
 pip install --no-cache-dir --user proselint pyredpen rstcheck
 
 # support for c

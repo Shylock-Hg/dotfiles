@@ -14,7 +14,7 @@ readonly packages='\
         base-devel \
         git vi vim emacs-nox wget gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
-        python-pip python2-pip ruby nodejs npm \
+        python-pip python2-pip ruby nodejs yarn \
         arm-none-eabi-gcc arm-none-eabi-gdb \
         arm-none-eabi-newlib arm-none-eabi-binutils \
         cronie \
