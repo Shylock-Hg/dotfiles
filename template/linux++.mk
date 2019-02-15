@@ -32,7 +32,7 @@ DEPFILES = $(patsubst %.o, %.d, $(addprefix $(DIR_BUILD)/, $(APP_OBJECTS)) $(add
 
 .PHONY : all clean install uninstall test
 
-all : $(DIR_BUILD) $(DIR_BUILD)/$(APP) $(DIR_BUILD)/lib$(LIB_NAME).so $(DIR_BUILD)/lib$(LIB_NAME).a
+all : $(DIR_BUILD)/$(APP)
 
 $(DIR_BUILD)/$(APP) : $(addprefix $(DIR_BUILD)/, $(APP_OBJECTS)) $(DIR_BUILD)/$(LIB_SO) $(DIR_BUILD)/$(LIB_A) Makefile | $(DIR_BUILD)
 	$(CXX) $(CFLAGS_LOCAL) -o $@ ${addprefix $(DIR_BUILD)/, $(APP_OBJECTS)} -L$(shell pwd)/$(DIR_BUILD) -l$(LIB_NAME)
