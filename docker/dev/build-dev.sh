@@ -36,7 +36,7 @@ sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && \
 rm Miniconda3-latest-Linux-x86_64.sh && \
 conda create --name=ml && \
 conda install --name=ml tensorflow-gpu && \
-conda install --name=ml -c pytorch pytorch torchvision cuda100 && \
+conda install --name=ml -c pytorch pytorch torchvision cudatoolkit=10.0 && \
 yes y | conda clean --all && \
 \
 # boudica development environment
