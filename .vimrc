@@ -15,14 +15,14 @@ set hlsearch " highlight the search match
 """"""""""""""""""""""""""""""plugin setting""""""""""""""""""""""""""""""""""
 " vim-plug
 call plug#begin()
-Plug 'w0rp/ale', {do: 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-ale.sh | sh'}
+Plug 'w0rp/ale', {'do': 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-ale.sh \| sh'}
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar', {do: 'sudo pacman --noconfirm --needed -Sy ctags'}
-Plug 'vim-airline/vim-airline', {do: 'sudo pacman --needed --noconfirm -Sy powerline-fonts'}
+Plug 'majutsushi/tagbar', {'do': 'sudo pacman --noconfirm --needed -Sy ctags'}
+Plug 'vim-airline/vim-airline', {'do': 'sudo pacman --needed --noconfirm -Sy powerline-fonts'}
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'wakatime/vim-wakatime', {do: 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh | sh'}
+Plug 'wakatime/vim-wakatime', {'do': 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh \| sh'}
 call plug#end()
 
 " Load all of the helptags now, after plugins have been loaded.
