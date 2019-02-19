@@ -2,7 +2,6 @@
 
 if  [ -z "$NATIVE_INSTALL" ]; then
         NATIVE_INSTALL='sudo pacman --noconfirm --needed -Sy'
-        AUR_INSTALL='yay --noconfirm --needed -Sy'
 fi
 
 if [ -z "$AUR_INSTALL" ]; then
@@ -10,12 +9,12 @@ if [ -z "$AUR_INSTALL" ]; then
 fi
 
 # ale plugin setting in $HOME/.vimrc
-echo '
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
-" Enable completion where available.
-let g:ale_completion_enabled = 1'  >> $HOME/.vimrc
+#echo '
+#" Load all of the helptags now, after plugins have been loaded.
+#" All messages and errors will be ignored.
+#silent! helptags ALL
+#" Enable completion where available.
+#let g:ale_completion_enabled = 1'  >> $HOME/.vimrc
 
 # support for python
 pip install --no-cache-dir --user autopep8 black flake8 isort mypy prospector pycodestyle 'python-language-server[all]' pyre-check pylint vulture yapf
