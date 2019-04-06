@@ -4,11 +4,13 @@
 LN = ln
 INSTALL = install
 MKDIR = mkdir
+CP = cp
 
 DIR_BUILD = .build
+DIR_INCLUDES = include
 prefix = /usr/local
 
-PPFLAGS = -MT $@ -MMD -MP -MF $(patsubst %.o, %.d, $@)
+PPFLAGS = -MT $@ -MMD -MP -MF $(patsubst %.o, %.d, $@) -I$(DIR_INCLUDES)
 
 CFLAGS_LOCAL = -Wall -g -std=c99 -coverage
 CFLAGS_LOCAL += $(CFLAGS)
@@ -19,14 +21,14 @@ APP_SOURCES = sample.c
 APP_OBJECTS = $(patsubst %.c, %.o, $(APP_SOURCES))
 APP = at
 
-LIB_INCLUDES = inc/at_command.h \
-        inc/at_fsm.h \
-        inc/at_param.h \
-        inc/at_table.h \
-        inc/at_xrecord.h \
-        inc/hash.h \
-        inc/queue.h \
-        inc/stdlog.h
+LIB_INCLUDES = include/at/at_command.h \
+        include/at/at_fsm.h \
+        include/at/at_param.h \
+        include/at/at_table.h \
+        include/at/internal/at_xrecord.h \
+        include/at/internal/hash.h \
+        include/at/internal/queue.h \
+        include/at/internal/stdlog.h
 LIB_SOURCES = src/at_command.c \
         src/at_fsm.c \
         src/at_param.c \
@@ -85,8 +87,7 @@ install : all
 	$(INSTALL) -d "$(prefix)/bin"
 	$(INSTALL) "$(DIR_BUILD)/$(APP)" "$(prefix)/bin"
 	$(INSTALL) -d "$(prefix)/include"
-	$(MKDIR) -p "$(prefix)/include/$(LIB_NAME)"
-	for header in $(LIB_INCLUDES); do $(INSTALL) -m 444  "$${header}" "$(prefix)/include/$(LIB_NAME)"; done
+	$(CP) -r $(DIR_INCLUDES)/* "$(prefix)/include/"
 
 uninstall :
 	$(RM) -f  "$(prefix)/lib/$(LIB_SO)"

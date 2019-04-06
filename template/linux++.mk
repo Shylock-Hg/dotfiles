@@ -4,11 +4,13 @@
 LN = ln
 INSTALL = install
 MKDIR = mkdir
+CP = cp
 
 DIR_BUILD = .build
+DIR_INCLUDES = include
 prefix = /usr/local
 
-PPFLAGS = -MT $@ -MMD -MP -MF $(patsubst %.o, %.d, $@)
+PPFLAGS = -MT $@ -MMD -MP -MF $(patsubst %.o, %.d, $@) -I$(DIR_INCLUDES)
 
 CFLAGS_LOCAL = -Wall -g -std=c++11 -coverage
 CFLAGS_LOCAL += $(CFLAGS)
@@ -19,7 +21,7 @@ APP_SOURCES = sample.cc
 APP_OBJECTS = $(patsubst %.cc, %.o, $(APP_SOURCES))
 APP = test
 
-LIB_INCLUDES = public/test1.h
+LIB_INCLUDES = include/lib/test1.h
 LIB_SOURCES = private/test.cc \
         private/test1.cc
 LIB_OBJECTS = $(patsubst %.cc, %.o, $(LIB_SOURCES))
@@ -72,8 +74,7 @@ install : all
 	$(INSTALL) -d "$(prefix)/bin"
 	$(INSTALL) "$(DIR_BUILD)/$(APP)" "$(prefix)/bin"
 	$(INSTALL) -d "$(prefix)/include"
-	$(MKDIR) -p "$(prefix)/include/$(LIB_NAME)"
-	for header in $(LIB_INCLUDES); do $(INSTALL) -m 444  "$${header}" "$(prefix)/include/$(LIB_NAME)"; done
+	$(CP) -r $(DIR_INCLUDES)/* "$(prefix)/include/"
 
 uninstall :
 	$(RM) -f  "$(prefix)/lib/$(LIB_SO)"
