@@ -39,10 +39,10 @@ let NERDTreeShowHidden=1
 let g:tagbar_width=20
 
 "airline
-let g:airline_solarized_bg='dark'
+let g:airline_solarized_bg='light'
 let g:airline_powerline_fonts = 1
 
 "solarized
-set background=dark
+set background=light
 colorscheme solarized
 
