@@ -9,10 +9,6 @@ script:
   - ./.travis-ci/build-docker.sh
   - ./.travis-ci/test-docker.sh
 
-#after_success:
-#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#  - docker push $DOCKER_USERNAME/$REPO
-
 deploy:
   provider: script
   script: ./.travis-ci/deploy-docker.sh
