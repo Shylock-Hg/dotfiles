@@ -15,12 +15,10 @@ eval \
 # Archlinux installation
 $NATIVE_INSTALL \
         base-devel \
-        git vi vim emacs-nox gdb clang lldb cmake \
+        git vi vim gdb clang lldb cmake \
         openssh boost boost-libs valgrind man man-pages \
         wget sudo \
-        python-pip python2-pip ruby nodejs yarn \
-        arm-none-eabi-gcc arm-none-eabi-gdb \
-        arm-none-eabi-newlib arm-none-eabi-binutils && \
+        python-pip python2-pip ruby nodejs yarn && \
 \
 # yay
 git clone https://aur.archlinux.org/yay.git && \
@@ -39,9 +37,6 @@ conda install --name=ml tensorflow-gpu && \
 conda install --name=ml -c pytorch pytorch torchvision cudatoolkit=10.0 && \
 yes y | conda clean --all && \
 \
-# boudica development environment
-pip2 install --no-cache-dir --user pyyaml scons && \
-\
 # rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y && \
 rustup install nightly && \
@@ -59,11 +54,3 @@ curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.
 \
 # Install my custom ultility to `/usr/local/bin`
 curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
-
-# mysql installation and config
-# eval ${AUR_INSTALL} mariadb \
-#        && sudo usermod -a -G mysql shylock \
-#        && sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-
-# Acceleration agent configuration for `github.com`, `archlinux sources`
-#eval curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-speed.sh | sh
