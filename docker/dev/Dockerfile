@@ -31,9 +31,47 @@ USER shylock
 WORKDIR /home/shylock
 
 # building dev image
-COPY build-dev.sh .
-RUN ./build-dev.sh && \
-rm build-dev.sh
+RUN $NATIVE_INSTALL \
+        base-devel \
+        git vi vim gdb clang lldb cmake \
+        openssh boost boost-libs valgrind man man-pages \
+        wget sudo \
+        python-pip python2-pip ruby nodejs yarn
+
+# yay
+RUN git clone https://aur.archlinux.org/yay.git && \
+cd yay && makepkg --noconfirm -si && cd .. && rm -rf yay .cache
+
+# Git configuration
+RUN git config --global user.name 'Shylock-Hg' && \
+git config --global user.email 'tcath2s@gmail.com'
+
+# Conda and torch, tensorflow
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 2>/dev/null && \
+sh Miniconda3-latest-Linux-x86_64.sh -b -p ./Miniconda3 && \
+rm Miniconda3-latest-Linux-x86_64.sh && \
+conda create --name=ml && \
+conda install --name=ml tensorflow-gpu && \
+conda install --name=ml -c pytorch pytorch torchvision cudatoolkit=10.0 && \
+yes y | conda clean --all
+
+# rust
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+rustup install nightly
+
+# zsh installation & oh-my-zsh configuration
+RUN $AUR_INSTALL zsh powerline-fonts && \
+sudo chsh -s $(which zsh) shylock && \
+curl -s https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# travis-ci cli
+RUN gem install travis -v 1.8.9
+
+# Vim installation and configuration
+RUN curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build-vim.sh | sh && \
+\
+# Install my custom ultility to `/usr/local/bin`
+curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/build.sh | sh
 
 # Set the locale
 #RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen \
