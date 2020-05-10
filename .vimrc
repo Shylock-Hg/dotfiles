@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline', {'do': 'sudo pacman --needed --noconfirm -Sy pow
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'wakatime/vim-wakatime', {'do': 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh \| sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Load all of the helptags now, after plugins have been loaded.
