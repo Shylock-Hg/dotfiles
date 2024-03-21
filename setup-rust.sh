@@ -22,3 +22,4 @@ if [ -f '~/.bashrc' ]; then
 fi
 
 cp .cargo.conf  ~/.cargo/config
+ln -s ~/.cargo/config ~/.cargo/config.toml
