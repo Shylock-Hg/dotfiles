@@ -1,0 +1,11 @@
+彻底取消proxy设置，请求不走127.0.0.1:7890才能正常访问。。。。
+用direct模式都不行。。。
+
+
+把clash配置设置一下：
+```
+
+dns:
+    enable: false
+```
+估计是clash配置的dns无法解析tailscale vpn分配的域名
