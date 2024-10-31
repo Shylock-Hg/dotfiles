@@ -1,8 +1,10 @@
 # Colors (Solarized Light)
+
 # Default colors
 [colors.primary]
 background = '#fdf6e3'
 foreground = '#586e75'
+
 # Normal colors
 [colors.normal]
 black   = '#073642'
@@ -13,6 +15,7 @@ blue    = '#268bd2'
 magenta = '#d33682'
 cyan    = '#2aa198'
 white   = '#eee8d5'
+
 # Bright colors
 [colors.bright]
 black   = '#002b36'
@@ -28,5 +31,8 @@ white   = '#fdf6e3'
 
 [font]
 size = 18
-normal = { family = "Hack", style = "Regular" }
+normal = { family = "Hack", style = "Regular>" }
+
+[keyboard]
+bindings = [{key = "T", mods = "Control", action = "CreateNewWindow"}]
 
