@@ -34,5 +34,6 @@ size = 18
 normal = { family = "Hack", style = "Regular>" }
 
 [keyboard]
+# Linux don't support `CreateNewTab`!
 bindings = [{key = "T", mods = "Control", action = "CreateNewWindow"}]
 
