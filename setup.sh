@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+pushd $(dirname $0)
+
 # bash
 ln -sf ~/dotfiles/bash/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/aliases/.alias ~/.alias
@@ -25,3 +27,5 @@ ln -sf ~/dotfiles/wakatime/.wakatime.cfg ~/.wakatime.cfg
 pushd ./rust
 ./setup-rust.sh
 popd
+
+popd # popd $(dirname $0)
