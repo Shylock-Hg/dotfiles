@@ -6,5 +6,5 @@ sudo zypper ar https://packages.microsoft.com/yumrepos/edge microsoft-edge
 # vsocode
 zypper ar -cf https://download.opensuse.org/repositories/devel:/tools:/ide:/vscode/openSUSE_Tumbleweed devel_tools_ide_vscode
 
-sudo zypper refresh
+sudo zypper --gpg-auto-import-keys refresh
 
