@@ -15,14 +15,16 @@ set hlsearch " highlight the search match
 """"""""""""""""""""""""""""""plugin setting""""""""""""""""""""""""""""""""""
 " vim-plug
 call plug#begin()
-Plug 'w0rp/ale', {'do': 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-ale.sh \| sh'}
+Plug 'dense-analysis/ale'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar', {'do': 'sudo pacman --noconfirm --needed -Sy ctags'}
-Plug 'vim-airline/vim-airline', {'do': 'sudo pacman --needed --noconfirm -Sy powerline-fonts'}
+" need install ctags
+Plug 'majutsushi/tagbar'
+" need install powerline-fonts
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'wakatime/vim-wakatime', {'do': 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh \| sh'}
+Plug 'wakatime/vim-wakatime'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
