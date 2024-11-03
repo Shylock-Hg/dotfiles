@@ -7,9 +7,7 @@ ln -sf ~/dotfiles/bash/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/aliases/.alias ~/.alias
 
 # install on opensuse tumbleweed
-./opensuse-tumbleweed/setup-mirror.opensuse-tumbleweed.sh
-./opensuse-tumbleweed/setup-ms-repo.opensuse.sh
-./install.opensuse.sh
+./opensuse-tumbleweed/setup.sh
 
 # alacritty
 mkdir -p ~/.config/alacritty
