@@ -11,19 +11,9 @@
 #	exit 1
 #fi
 
-if command -v curl > /dev/null ; then
-	echo 'Curl is satisfied!'
-else
-	eval $NATIVE_INSTALL curl
-fi
-
-# reduct vimrc
-curl -fLo $HOME/.vimrc \
-    https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/.vimrc
-
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://githubraw.com/junegunn/vim-plug/master/plug.vim
 
 # install and configure `pathogen`, `git`, `vim` and `viman`
 # curl https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh

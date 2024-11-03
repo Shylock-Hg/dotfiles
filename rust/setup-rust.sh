@@ -7,7 +7,7 @@ set -e
 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 if [ -f '~/.zshenv' ]; then
     echo "export RUSTUP_UPDATE_ROOT=${RUSTUP_UPDATE_ROOT}" >> ~/.zshenv
@@ -21,5 +21,5 @@ if [ -f '~/.bashrc' ]; then
     echo "export RUSTUP_DIST_SERVER=${RUSTUP_DIST_SERVER}" >>  ~/.bashrc
 fi
 
-cp .cargo.conf  ~/.cargo/config
-ln -s ~/.cargo/config ~/.cargo/config.toml
+ln -sf $(readlink -f .cargo.conf)  ~/.cargo/config
+ln -sf ~/.cargo/config ~/.cargo/config.toml
