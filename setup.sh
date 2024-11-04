@@ -13,6 +13,9 @@ ln -sf ~/dotfiles/aliases/.alias ~/.alias
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty/.alacritty.toml ~/.config/alacritty/.alacritty.toml
 
+# git
+ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
+
 # vim
 mkdir -p ~/.vim
 ./vim/setup-vim.sh
