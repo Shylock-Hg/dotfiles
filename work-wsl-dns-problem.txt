@@ -8,5 +8,6 @@
 dns:
     enable: false
 ```
+或者添加tailscale的DNS.
 估计是clash配置的dns无法解析tailscale vpn分配的域名
 可能也需要在rules里面给域名(work-wsl)设置direct访问。
