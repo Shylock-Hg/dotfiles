@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -ex
+
 pushd $(dirname $0)
 
 # bash
