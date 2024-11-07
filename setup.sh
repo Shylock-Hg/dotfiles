@@ -32,3 +32,9 @@ pushd ./rust
 popd
 
 popd # popd $(dirname $0)
+
+# datam
+# require rust
+cargo install datam
+mkdir -p ~/.datam
+ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
