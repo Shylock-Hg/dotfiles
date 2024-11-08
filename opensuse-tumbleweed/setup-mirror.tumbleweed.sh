@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 
-sudo zypper mr -da
+sudo zypper mr -d repo-non-oss repo-oss repo-oss-debug repo-oss-source update-tumbleweed
 
 
 sudo zypper ar -fcg 'https://mirrors.ustc.edu.cn/opensuse/tumbleweed/repo/oss' USTC:OSS
