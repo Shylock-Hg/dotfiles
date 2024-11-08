@@ -31,10 +31,10 @@ pushd ./rust
 ./setup-rust.sh
 popd
 
-popd # popd $(dirname $0)
-
 # datam
 # require rust
 cargo install datam
 mkdir -p ~/.datam
 ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
+
+popd # popd $(dirname $0)
