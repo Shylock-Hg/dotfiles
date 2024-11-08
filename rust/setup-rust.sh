@@ -23,3 +23,5 @@ fi
 
 ln -sf $(readlink -f .cargo.conf)  ~/.cargo/config
 ln -sf ~/.cargo/config ~/.cargo/config.toml
+
+ . "$HOME/.cargo/env" 
