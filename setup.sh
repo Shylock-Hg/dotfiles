@@ -30,6 +30,7 @@ ln -sf ~/dotfiles/wakatime/.wakatime.cfg ~/.wakatime.cfg
 pushd ./rust
 ./setup-rust.sh
 popd
+. "$HOME/.cargo/env"
 
 # datam
 # require rust
