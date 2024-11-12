@@ -38,4 +38,7 @@ cargo install datam
 mkdir -p ~/.datam
 ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
 
+# tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
+
 popd # popd $(dirname $0)
