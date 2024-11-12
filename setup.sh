@@ -5,15 +5,19 @@ set -ex
 pushd $(dirname $0)
 
 # bash
-ln -sf ~/dotfiles/bash/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/bash/.my.bashrc ~/.my.bashrc
+cp ~/dotfiles/bash/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/aliases/.alias ~/.alias
 
 # install on opensuse tumbleweed
 ./opensuse-tumbleweed/setup.sh
 
+# install by flatpak
+./flatpak/setup.sh
+
 # alacritty
 mkdir -p ~/.config/alacritty
-ln -sf ~/dotfiles/alacritty/.alacritty.toml ~/.config/alacritty/.alacritty.toml
+ln -sf ~/dotfiles/alacritty/.alacritty.toml ~/.config/alacritty/alacritty.toml
 
 # git
 ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
@@ -40,5 +44,8 @@ ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
 
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
+
+# ssh
+ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 
 popd # popd $(dirname $0)

@@ -3,7 +3,10 @@
 sudo zypper dup -yl
 
 sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts ctags clang \
-    microsoft-edge-stable code \
+    code \
     alacritty \
     google-noto-sans-cjk-fonts \
-    fcitx5 fcitx5-configtool
+    fcitx5 fcitx5-configtool \
+    jetbrains-mono-fonts \
+    bottles
+
