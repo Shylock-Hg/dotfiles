@@ -1,3 +1,3 @@
 FROM opensuse/tumbleweed
 
-RUN zypper install -y sudo
+RUN zypper install -y sudo flatpak
