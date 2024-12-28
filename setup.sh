@@ -46,6 +46,6 @@ ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
 curl -fsSL https://tailscale.com/install.sh | sh
 
 # ssh
-ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+#ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 
 popd # popd $(dirname $0)
