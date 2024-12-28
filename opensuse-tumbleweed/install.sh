@@ -2,7 +2,7 @@
 
 sudo zypper dup -yl
 
-sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts ctags clang \
+until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts ctags clang \
     code \
     alacritty \
     google-noto-sans-cjk-fonts \
@@ -10,4 +10,7 @@ sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts ctags cla
     jetbrains-mono-fonts \
     bottles \
     ripgrep
-
+do
+    echo 'Try again'
+done
+ 
