@@ -8,7 +8,8 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     google-noto-sans-cjk-fonts \
     fcitx5 fcitx5-configtool \
     jetbrains-mono-fonts \
-    ripgrep
+    ripgrep \
+    podman
 do
     echo 'Try again'
 done
