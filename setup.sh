@@ -48,4 +48,7 @@ curl -fsSL https://tailscale.com/install.sh | sh
 # ssh
 #ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 
+# podman
+ln -sf ~/dotfiles/containers ~/.config/containers
+
 popd # popd $(dirname $0)
