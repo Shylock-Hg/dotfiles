@@ -9,7 +9,8 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     fcitx5 fcitx5-configtool \
     jetbrains-mono-fonts \
     ripgrep \
-    podman
+    podman \
+    emacs
 do
     echo 'Try again'
 done
