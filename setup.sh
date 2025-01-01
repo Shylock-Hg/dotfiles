@@ -51,4 +51,7 @@ curl -fsSL https://tailscale.com/install.sh | sh
 # podman
 ln -sf ~/dotfiles/containers ~/.config/containers
 
+# emacs
+ln -sf ~/dotfiles/emacs/.emacs ~/.emacs
+
 popd # popd $(dirname $0)
