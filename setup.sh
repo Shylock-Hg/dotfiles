@@ -2,7 +2,9 @@
 
 set -ex
 
-pushd $(dirname $0)
+readonly SCRIPT_DIR=$(dirname $0)
+
+pushd $SCRIPT_DIR
 
 # bash
 ln -sf ~/dotfiles/bash/.my.bashrc ~/.my.bashrc
@@ -53,5 +55,8 @@ ln -sf ~/dotfiles/containers ~/.config/containers
 
 # emacs
 ln -sf ~/dotfiles/emacs/.emacs ~/.emacs
+
+# systemd
+ln -sf $SCRIPT_DIR/systemd ~/.config/systemd
 
 popd # popd $(dirname $0)
