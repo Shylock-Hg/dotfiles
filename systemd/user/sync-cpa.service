@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync cap to dropbox
+After=network.target
+
+[Service]
+ExecStart=rclone
+ExecStartArgs=sync --exclude 'build/' --exclude '.cache/' ~/Workspace/cpa/ dropbox:/Workspace/cpa --transfers 4
+Type=simple
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
