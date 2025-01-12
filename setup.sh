@@ -59,4 +59,7 @@ ln -sf ~/dotfiles/emacs/.emacs ~/.emacs
 # systemd
 ln -sf $SCRIPT_DIR/systemd ~/.config/systemd
 
+# crontab
+crontab $SCRIPT_DIR/crontab/jobs
+
 popd # popd $(dirname $0)

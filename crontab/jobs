@@ -1,0 +1,2 @@
+0 2 * * * rclone sync gdrive:/Documents /home/shylock/Documents --transfers 4
+
