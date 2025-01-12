@@ -12,7 +12,7 @@ cp ~/dotfiles/bash/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/aliases/.alias ~/.alias
 
 # install on opensuse tumbleweed
-./opensuse-tumbleweed/setup.sh
+./zypper/setup.sh
 
 # install by flatpak
 ./flatpak/setup.sh
