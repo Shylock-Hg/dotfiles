@@ -1,2 +1,7 @@
+
+# sync ~/Documents
 0 2 * * * rclone sync gdrive:/Documents /home/shylock/Documents --transfers 4
+
+# sync ~/Workspace/cpa
+0 2 * * * rclone sync --exclude build/ --exclude .cache/ ./Workspace/cpa/ dropbox:/Workspace/cpa --transfers 4
 
