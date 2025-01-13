@@ -1,10 +1,13 @@
 
 # sync ~/Documents
 0 1 * * * rclone sync ~/Documents gdrive:/Documents  --transfers 4
+MAILTO=tcath2s@icloud.com
 
 # sync ~/Tools
 0 2 * * * rclone sync ~/Tools gdrive:/Tools --transfers 4
+MAILTO=tcath2s@icloud.com
 
 # sync ~/Workspace/cpa
 0 3 * * * rclone sync --exclude build/ --exclude .cache/ ~/Workspace/cpa/ dropbox:/Workspace/cpa --transfers 4
+MAILTO=tcath2s@icloud.com
 
