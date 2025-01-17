@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync cap to dropbox
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=rclone sync ~/Tools gdrive:/Tools --transfers 4
+Type=simple
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Run sync cpa
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+WakeSystem=true
+
+[Install]
+WantedBy=timers.target
