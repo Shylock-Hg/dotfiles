@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync tigerc to dropbox
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=rclone sync ~/Workspace/TigerC dropbox:/Workspace/TigerC --transfers 4
+Type=simple
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
