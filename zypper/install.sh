@@ -10,7 +10,8 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     jetbrains-mono-fonts \
     ripgrep \
     podman \
-    emacs
+    emacs \
+    rclone
 do
     echo 'Try again'
 done
