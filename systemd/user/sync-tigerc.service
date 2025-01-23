@@ -4,7 +4,7 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-ExecStart=rclone --exclude='target/' sync ~/Workspace/TigerC dropbox:/Workspace/TigerC --transfers 4
+ExecStart=rclone --exclude='target/' sync Workspace/TigerC dropbox:/Workspace/TigerC --transfers 4
 Type=simple
 Restart=on-failure
 RestartSec=5
