@@ -1,9 +1,0 @@
-[Unit]
-Description=Run sync documents
-
-[Timer]
-OnCalendar=*-*-* 00:00:01
-WakeSystem=true
-
-[Install]
-WantedBy=timers.target

@@ -1,9 +1,0 @@
-[Unit]
-Description=Run sync tools
-
-[Timer]
-OnCalendar=*-*-* 00:00:03
-WakeSystem=true
-
-[Install]
-WantedBy=timers.target

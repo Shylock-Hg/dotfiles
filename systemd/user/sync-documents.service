@@ -4,7 +4,7 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-ExecStart=rclone sync Documents gdrive:/Documents  --transfers 4
+ExecStart=/home/shylock/sh/sync-documents.sh
 Type=simple
 Restart=on-failure
 RestartSec=5
