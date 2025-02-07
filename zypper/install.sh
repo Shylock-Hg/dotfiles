@@ -11,7 +11,8 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     ripgrep \
     podman \
     emacs \
-    rclone inotify-tools
+    rclone inotify-tools \
+    mold
 do
     echo 'Try again'
 done
