@@ -10,7 +10,6 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     jetbrains-mono-fonts \
     ripgrep \
     podman \
-    emacs \
     rclone inotify-tools \
     mold
 do
