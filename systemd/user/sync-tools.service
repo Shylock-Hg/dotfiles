@@ -1,5 +1,5 @@
 [Unit]
-Description=Sync cap to dropbox
+Description=Sync ~/Tools to Google drive
 Wants=network-online.target
 After=network-online.target
 
