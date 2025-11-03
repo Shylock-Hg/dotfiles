@@ -12,6 +12,10 @@ export PS1='\u@\h \[\e[32m\]\w\[\e[91m\]$(__git_ps1)\[\e[00m\]$ '
 # script
 PATH="$PATH:$HOME/sh"
 
+# for wine app
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # NL CPA
 alias cmake_llvm='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug  -DCMAKE_CXX_FLAGS="-stdlib=libc++" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_LLD=ON -G "Unix Makefiles"'
