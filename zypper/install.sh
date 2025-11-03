@@ -11,7 +11,7 @@ until sudo zypper install -yl vim gcc gcc-c++ make cmake git powerline-fonts cta
     ripgrep \
     podman \
     rclone inotify-tools \
-    mold ninja
+    mold ninja zstd
 do
     echo 'Try again'
 done
