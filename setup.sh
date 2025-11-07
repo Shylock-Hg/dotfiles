@@ -17,6 +17,9 @@ ln -sf ~/dotfiles/aliases/.alias ~/.alias
 # install by flatpak
 ./flatpak/setup.sh
 
+# wine and windows apps
+./wine/setup.sh
+
 # alacritty
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty/.alacritty.toml ~/.config/alacritty/alacritty.toml
