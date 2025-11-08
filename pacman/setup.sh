@@ -7,7 +7,7 @@ sudo pacman -S --noconfirm --needed code yay mold ninja make cmake gcc clang \
     ripgrep podman \
     rclone inotify-tools \
     flatpak \
-    fcitx5 fcitx5-configtool fcitx5-chinese-addons \
+    fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-rime \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk \
     remmina freerdp tailscale \
     steam \
