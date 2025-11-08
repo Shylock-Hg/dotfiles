@@ -2,16 +2,17 @@
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm code yay mold ninja make cmake gcc clang \
+sudo pacman -S --noconfirm --needed code yay mold ninja make cmake gcc clang \
     libc++ libc++abi \
     ripgrep podman \
     rclone inotify-tools \
     flatpak \
-    fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-chinese-rime \
+    fcitx5 fcitx5-configtool fcitx5-chinese-addons \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk \
-    remmina tailscale \
+    remmina freerdp tailscale \
     steam \
-    wine wine-mono
+    wine wine-mono \
+    cronie
 
-sudo yay -S microsoft-edge-stable-bin bottles \
+yay -S microsoft-edge-stable-bin \
     pgyvisitor
