@@ -1,5 +1,10 @@
 [user]
 	email = tcath2s@icloud.com
 	name = Shylock Hg
+	signingkey = 22D0067493F93E8D
 [color]
 	ui = auto
+[gpg]
+	program = gpg2
+[commit]
+	gpgsign = true
