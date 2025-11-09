@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm --needed code yay mold ninja make cmake gcc clang \
     remmina freerdp tailscale \
     steam \
     wine wine-mono \
-    cronie
+    cronie powertop
 
 yay -S microsoft-edge-stable-bin \
     pgyvisitor
