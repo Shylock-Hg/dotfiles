@@ -6,3 +6,6 @@ wine ~/Downloads/WeCom_5.0.0.8002.exe
 
 readonly SH_P=/home/$USER/.wine/drive_c/users/$USER/Documents
 rm $SH_P  && mkdir $SH_P
+
+
+# winetricks install all cjk fonts
