@@ -2,4 +2,5 @@
 
 
 # set tailscale0 mtu to avoid ssh blocked by pgy
-ip link set dev tailscale0 mtx 1200
+sudo ip link set dev tailscale0 mtu 1200
+
