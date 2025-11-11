@@ -2,7 +2,8 @@
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm --needed code yay mold ninja make cmake gcc clang \
+sudo pacman -S --noconfirm --needed \
+    code yay mold ninja make cmake gcc clang lldb \
     libc++ libc++abi \
     ripgrep podman \
     rclone inotify-tools \
