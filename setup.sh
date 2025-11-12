@@ -21,8 +21,7 @@ ln -sf ~/dotfiles/aliases/.alias ~/.alias
 ./wine/setup.sh
 
 # alacritty
-mkdir -p ~/.config/alacritty
-ln -sf ~/dotfiles/alacritty/.alacritty.toml ~/.config/alacritty/alacritty.toml
+ln -sf $(readlink -f .config/alacritty) ~/.config/alacritty
 
 # git
 ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
@@ -54,13 +53,13 @@ curl -fsSL https://tailscale.com/install.sh | sh
 #ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 
 # podman
-ln -sf ~/dotfiles/containers ~/.config/containers
+ln -sf $(readlink -f .config/containers) ~/.config/containers
 
 # emacs
 ln -sf ~/dotfiles/emacs/.emacs ~/.emacs
 
 # systemd
-# ln -sf $SCRIPT_DIR/systemd ~/.config/systemd
+ln -sf $(readlink -f .config/systemd) ~/.config/systemd
 
 # crontab
 crontab $SCRIPT_DIR/crontab/jobs
