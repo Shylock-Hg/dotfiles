@@ -59,6 +59,9 @@ ln -sf $(readlink -f .config/containers) ~/.config/containers
 ln -sf $(readlink -f .config/emacs) ~/.config/emacs
 rm -rf ~/.emacs*
 
+# spacemacs
+ln -sf $(readlink -f .spacemacs) ~/.spacemacs
+
 # systemd
 ln -sf $(readlink -f .config/systemd) ~/.config/systemd
 
