@@ -57,6 +57,7 @@ ln -sf $(readlink -f .config/containers) ~/.config/containers
 
 # emacs
 ln -sf $(readlink -f .config/emacs) ~/.config/emacs
+rm -rf ~/.emacs*
 
 # systemd
 ln -sf $(readlink -f .config/systemd) ~/.config/systemd
