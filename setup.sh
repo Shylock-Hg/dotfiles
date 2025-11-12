@@ -56,7 +56,7 @@ curl -fsSL https://tailscale.com/install.sh | sh
 ln -sf $(readlink -f .config/containers) ~/.config/containers
 
 # emacs
-ln -sf ~/dotfiles/emacs/.emacs ~/.emacs
+ln -sf $(readlink -f .config/emacs) ~/.config/emacs
 
 # systemd
 ln -sf $(readlink -f .config/systemd) ~/.config/systemd
