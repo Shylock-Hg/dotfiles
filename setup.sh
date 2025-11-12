@@ -24,15 +24,15 @@ ln -sf ~/dotfiles/aliases/.alias ~/.alias
 ln -sf $(readlink -f .config/alacritty) ~/.config/alacritty
 
 # git
-ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
+ln -sf $(readlink -f ./git/.gitconfig) ~/.gitconfig
 
 # vim
 mkdir -p ~/.vim
 ./vim/setup-vim.sh
-ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -sf $(readlink -f ./vim/.vimrc) ~/.vimrc
 
 # wakatime
-ln -sf ~/dotfiles/wakatime/.wakatime.cfg ~/.wakatime.cfg
+ln -sf $(readlink -f ./wakatime/.wakatime.cfg) ~/.wakatime.cfg
 
 # rust
 pushd ./rust
@@ -44,13 +44,13 @@ popd
 # require rust
 cargo install datam
 mkdir -p ~/.datam
-ln -sf ~/dotfiles/datam/store.json ~/.datam/store.json
+ln -sf $(readlink -f ./datam/store.json) ~/.datam/store.json
 
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
 
 # ssh
-#ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+#ln -sf $(readlink -f ./ssh/config) ~/.ssh/config
 
 # podman
 ln -sf $(readlink -f .config/containers) ~/.config/containers
