@@ -68,4 +68,7 @@ crontab $SCRIPT_DIR/crontab/jobs
 # script
 ln -sf $SCRIPT_DIR/sh ~/sh
 
+# rustdesk
+ln -sf $(readlink -f .config/rustdesk) ~/.config/rustdesk
+
 popd # popd $(dirname $0)
