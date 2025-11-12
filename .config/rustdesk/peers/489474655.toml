@@ -1,0 +1,128 @@
+password = [
+    48,
+    48,
+    50,
+    99,
+    115,
+    52,
+    83,
+    43,
+    82,
+    50,
+    74,
+    80,
+    104,
+    120,
+    55,
+    119,
+    76,
+    47,
+    90,
+    108,
+    104,
+    100,
+    114,
+    43,
+    108,
+    112,
+    115,
+    100,
+    101,
+    74,
+    89,
+    115,
+    71,
+    71,
+    85,
+    55,
+    50,
+    114,
+    83,
+    48,
+    99,
+    68,
+    77,
+    87,
+    79,
+    71,
+    87,
+    111,
+    118,
+    117,
+    100,
+    56,
+    118,
+    103,
+    106,
+    84,
+    53,
+    103,
+    112,
+    110,
+    101,
+    102,
+    78,
+    116,
+    49,
+    87,
+]
+size = [
+    0,
+    0,
+    0,
+    0,
+]
+size_ft = [
+    0,
+    0,
+    0,
+    0,
+]
+size_pf = [
+    0,
+    0,
+    0,
+    0,
+]
+view_style = 'adaptive'
+scroll_style = 'scrollauto'
+image_quality = 'balanced'
+custom_image_quality = [50]
+show_remote_cursor = false
+lock_after_session_end = false
+terminal-persistent = false
+privacy_mode = false
+allow_swap_key = false
+port_forwards = []
+direct_failures = 0
+disable_audio = false
+disable_clipboard = false
+enable-file-copy-paste = true
+show_quality_monitor = false
+follow_remote_cursor = false
+follow_remote_window = false
+keyboard_mode = 'map'
+view_only = false
+show_my_cursor = false
+sync-init-clipboard = false
+trackpad-speed = 100
+
+[options]
+zoom-cursor = ''
+custom-fps = '30'
+codec-preference = 'auto'
+collapse_toolbar = ''
+i444 = ''
+swap-left-right-mouse = ''
+
+[ui_flutter]
+wm_RemoteDesktop = '{"width":1300.0,"height":740.0,"offsetWidth":0.0,"offsetHeight":0.0,"isMaximized":true,"isFullscreen":false}'
+
+[info]
+username = 'shylock'
+hostname = 'chinami-ms1tc2l'
+platform = 'Windows'
+
+[transfer]
+write_jobs = []
+read_jobs = []
