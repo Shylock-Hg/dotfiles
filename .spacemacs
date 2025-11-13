@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(yaml
+   '(python
+     yaml
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -575,6 +576,15 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  ;; 1. Enable all follow modes (so Treemacs always shows current file/project)
+  (setq treemacs-follow-mode t
+        treemacs-tag-follow-mode t
+        treemacs-project-follow-mode t
+        treemacs-file-follow-delay 0.2)
+
+  (treemacs)
+  (treemacs-add-and-display-current-project)
   )
 
 
