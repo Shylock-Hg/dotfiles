@@ -8,3 +8,5 @@
 	program = gpg2
 [commit]
 	gpgsign = true
+[core]
+	editor = "emacsclient -c -a emacs"
