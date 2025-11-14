@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      version-control
      treemacs
      (llm-client :variables llm-client-enable-gptel t)
+     github-copilot
      )
 
 
@@ -69,7 +70,9 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(vterm-toggle)
+   dotspacemacs-additional-packages '(vterm-toggle
+                                      ;;(codeium :location (recipe :fetcher github :repo "Exafunction/codeium.el"))
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -571,6 +574,20 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (use-package company
+    :defer 0.1
+    :config
+    (global-company-mode t)
+    (setq-default
+     company-idle-delay 0.05
+     company-require-match nil
+     company-minimum-prefix-length 0
+
+     ;; get only preview
+     company-frontends '(company-preview-frontend)
+     ;; also get a drop down
+     ;; company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
+     ))
   )
 
 (defun dotspacemacs/user-config ()
@@ -601,6 +618,9 @@ before packages are loaded."
                    :key "AIzaSyDYg_G_Dp9OYafeJK9n3S2uLqrobPmBEps"
                    :stream t))
   (global-set-key (kbd "C-u") 'gptel-send)
+
+  ;; github copilot
+  (global-set-key (kbd "C-<return>") 'copilot-accept-completion)
   )
 
 
