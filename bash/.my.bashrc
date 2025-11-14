@@ -36,3 +36,5 @@ alias cmake_nl="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clan
 # alias cmake for nl simulator
 alias cmake_sim="cmake .. -D3RD_PATH='~/local/qtbase' -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
 
+restartplasma='systemctl --user restart plasma-plasmashell.service'
+
