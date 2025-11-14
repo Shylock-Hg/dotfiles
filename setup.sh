@@ -30,9 +30,6 @@ fi
 # wine and windows apps
 ./wine/setup.sh
 
-# alacritty
-ln -sf $(readlink -f .config/alacritty) ~/.config/alacritty
-
 # git
 ln -sf $(readlink -f ./git/.gitconfig) ~/.gitconfig
 
@@ -62,31 +59,16 @@ curl -fsSL https://tailscale.com/install.sh | sh
 # ssh
 #ln -sf $(readlink -f ./ssh/config) ~/.ssh/config
 
-# podman
-ln -sf $(readlink -f .config/containers) ~/.config/containers
-
 # emacs
-ln -sf $(readlink -f .config/emacs) ~/.config/emacs
 rm -rf ~/.emacs*
 
 # spacemacs
 ln -sf $(readlink -f .spacemacs) ~/.spacemacs
 
-# systemd
-ln -sf $(readlink -f .config/systemd) ~/.config/systemd
-
 # crontab
-crontab $SCRIPT_DIR/crontab/jobs
+#crontab $SCRIPT_DIR/crontab/jobs
 
-# script
-ln -sf $SCRIPT_DIR/sh ~/sh
-
-# rustdesk
-rm -rf ~/.config/rustdesk
-ln -sf $(readlink -f .config/rustdesk) ~/.config/rustdesk
-
-# ghostty
-rm -rf ~/.config/ghostty
-ln -sf $(readlink -f .config/ghostty) ~/.config/ghostty
+# sync home
+stow shylock
 
 popd # popd $(dirname $0)
