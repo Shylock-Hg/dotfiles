@@ -13,8 +13,16 @@ ln -sf ~/dotfiles/bash/.my.bashrc ~/.my.bashrc
 cp ~/dotfiles/bash/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/aliases/.alias ~/.alias
 
-# install on opensuse tumbleweed
-./zypper/setup.sh
+# Install by native package manager
+if command -v zypper >/dev/null 2>&1; then
+  # install on opensuse tumbleweed
+  ./zypper/setup.sh
+elif command -v pacman > /dev/null 2>&1; then
+  ./pacman/setup.sh
+else
+  echo "Error: unsupported package manager."
+  exit 1
+fi
 
 # install by flatpak
 ./flatpak/setup.sh
