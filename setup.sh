@@ -2,6 +2,8 @@
 
 set -ex
 
+readonly CONFIG_DIR='.config'
+
 readonly SCRIPT_DIR=$(dirname $0)
 
 pushd $SCRIPT_DIR
@@ -72,6 +74,11 @@ crontab $SCRIPT_DIR/crontab/jobs
 ln -sf $SCRIPT_DIR/sh ~/sh
 
 # rustdesk
+rm -rf ~/.config/rustdesk
 ln -sf $(readlink -f .config/rustdesk) ~/.config/rustdesk
+
+# ghostty
+rm -rf ~/.config/ghostty
+ln -sf $(readlink -f .config/ghostty) ~/.config/ghostty
 
 popd # popd $(dirname $0)
