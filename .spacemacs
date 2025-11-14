@@ -57,6 +57,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      version-control
      treemacs
+     (llm-client :variables llm-client-enable-gptel t)
      )
 
 
@@ -592,6 +593,14 @@ before packages are loaded."
   (require 'server)
   (unless (server-running-p)
     (server-start))
+
+  ;; gemini for gptel
+  (setq
+   gptel-model 'gemini-2.5-pro-exp-03-25
+   gptel-backend (gptel-make-gemini "Gemini"
+                   :key "AIzaSyDYg_G_Dp9OYafeJK9n3S2uLqrobPmBEps"
+                   :stream t))
+  (global-set-key (kbd "C-u") 'gptel-send)
   )
 
 
