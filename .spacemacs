@@ -578,15 +578,20 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (global-set-key (kbd "C-`") 'vterm-toggle)
 
   ;; 1. Enable all follow modes (so Treemacs always shows current file/project)
-  (setq treemacs-follow-mode t
-        treemacs-tag-follow-mode t
-        treemacs-project-follow-mode t
-        treemacs-file-follow-delay 0.2)
+  (setq-default treemacs-follow-mode t
+                treemacs-tag-follow-mode t
+                treemacs-project-follow-mode t)
+  (when (fboundp 'treemacs)
+    (treemacs)
+    )
 
-  (treemacs)
-  (treemacs-add-and-display-current-project)
+  ;; auto run emacs server
+  (require 'server)
+  (unless (server-running-p)
+    (server-start))
   )
 
 
