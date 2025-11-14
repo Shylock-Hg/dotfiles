@@ -52,3 +52,5 @@
 ################################ my custom config #################################
 keybind = ctrl+t=new_tab
 theme = Builtin Solarized Light
+font-size=20
+
