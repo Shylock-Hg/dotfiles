@@ -9,4 +9,4 @@
 [commit]
 	gpgsign = true
 [core]
-	editor = "emacsclient -c -a emacs"
+	editor = vim
