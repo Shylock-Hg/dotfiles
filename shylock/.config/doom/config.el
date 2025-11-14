@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-light)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -74,3 +74,31 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(global-set-key (kbd "C-`") 'vterm-toggle)
+
+;; Enable all follow modes (so Treemacs always shows current file/project)
+(setq-default treemacs-follow-mode t
+            treemacs-tag-follow-mode t
+            treemacs-project-follow-mode t)
+(when (fboundp 'treemacs)
+(treemacs)
+)
+
+;; auto run emacs server
+(require 'server)
+(unless (server-running-p)
+(server-start))
+
+
+;; === 优先使用 LSP 跳转，禁用 tags 跳转 ===
+(after! evil
+  ;; 禁用 evil-goto-definition 的 tags 行为
+  (setq evil-goto-definition-functions
+        '(evil-goto-definition-xref   ; 使用 xref + LSP
+          evil-goto-definition-imenu)))
+
+(after! lsp-mode
+  ;; 强制使用 LSP 的 find-definition
+  (define-key lsp-mode-map [remap evil-goto-definition] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions))
