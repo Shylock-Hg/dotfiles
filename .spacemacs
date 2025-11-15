@@ -621,6 +621,10 @@ before packages are loaded."
 
   ;; github copilot
   (global-set-key (kbd "C-<return>") 'copilot-accept-completion)
+
+  ;; git
+  (require 'git-commit)
+  (global-git-commit-mode t)
   )
 
 
