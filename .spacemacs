@@ -72,6 +72,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(vterm-toggle
                                       ;;(codeium :location (recipe :fetcher github :repo "Exafunction/codeium.el"))
+                                      typst-ts-mode
+                                      eglot
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -625,6 +627,15 @@ before packages are loaded."
   ;; git
   (require 'git-commit)
   (global-git-commit-mode t)
+
+  ;; tinymist
+  (with-eval-after-load 'eglot
+    (with-eval-after-load 'typst-ts-mode
+      (add-to-list 'eglot-server-programs
+                   `((typst-ts-mode) .
+                     ,(eglot-alternatives `(,typst-ts-lsp-download-path
+                                            "tinymist"
+                                            "typst-lsp"))))))
   )
 
 
