@@ -636,6 +636,9 @@ before packages are loaded."
                      ,(eglot-alternatives `(,typst-ts-lsp-download-path
                                             "tinymist"
                                             "typst-lsp"))))))
+
+  ;; key bindg emacs command
+  (global-set-key (kbd "C-i") 'spacemacs/helm-M-x-fuzzy-matching)
   )
 
 
