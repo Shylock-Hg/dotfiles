@@ -38,3 +38,7 @@ alias cmake_sim="cmake .. -D3RD_PATH='~/local/qtbase' -DCMAKE_BUILD_TYPE=DEBUG -
 
 alias restartplasma='systemctl --user restart plasma-plasmashell.service'
 
+# enable starship
+eval "$(starship init bash)"
+
+
