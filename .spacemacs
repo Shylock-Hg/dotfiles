@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      version-control
      (treemacs :variables treemacs-width 25)
      (llm-client :variables llm-client-enable-gptel t)
-     ;;github-copilot
+     github-copilot
      )
 
 
