@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
+   '(toml
+     javascript
      python
      c-c++
      yaml
@@ -666,7 +667,7 @@ This function is called at the very end of Spacemacs initialization."
                 simple-httpd skewer-mode solarized-theme space-doc spaceline
                 spacemacs-purpose-popwin spacemacs-whitespace-cleanup
                 string-edit-at-point string-inflection symbol-overlay symon
-                term-cursor tern toc-org transient treemacs-evil
+                term-cursor tern toc-org toml-mode transient treemacs-evil
                 treemacs-icons-dired treemacs-persp treemacs-projectile
                 undo-fu-session uuidgen vi-tilde-fringe volatile-highlights vundo
                 web-beautify wgrep winum writeroom-mode ws-butler yaml-mode)))
