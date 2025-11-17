@@ -13,7 +13,7 @@ sudo pacman -S --noconfirm --needed \
     remmina freerdp tailscale \
     steam \
     wine wine-mono winetricks \
-    cronie powertop typst
+    cronie powertop typst starship
 
 yay -S microsoft-edge-stable-bin \
     pgyvisitor \
