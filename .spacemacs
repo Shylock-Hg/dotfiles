@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      version-control
      (treemacs :variables treemacs-width 25)
      (llm-client :variables llm-client-enable-gptel t)
-     github-copilot
+     ;;github-copilot
      )
 
 
@@ -576,20 +576,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (use-package company
-    :defer 0.1
-    :config
-    (global-company-mode t)
-    (setq-default
-     company-idle-delay 0.05
-     company-require-match nil
-     company-minimum-prefix-length 0
-
-     ;; get only preview
-     company-frontends '(company-preview-frontend)
-     ;; also get a drop down
-     ;; company-frontends '(company-pseudo-tooltip-frontend company-preview-frontend)
-     ))
   )
 
 (defun dotspacemacs/user-config ()
