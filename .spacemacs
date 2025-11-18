@@ -585,7 +585,15 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (global-set-key (kbd "C-`") 'vterm-toggle)
+  (defvar my-vterm-toggle-key (kbd "C-`") "My keybinding of vterm-toggle")
+  (global-set-key my-vterm-toggle-key 'vterm-toggle)
+  (advice-add 'vterm--exclude-keys :override #'ignore)
+  ;; Let EVERY key go to the shell (disable all normal vterm stealing)
+  (setq vterm-keymap-exceptions nil)   ; ← this is the key line!
+  ;; Only steal C-` for yourself
+  (add-hook 'vterm-mode-hook
+            (lambda ()
+              (local-set-key my-vterm-toggle-key #'vterm-toggle)))   ; ← replace with whatever you want
 
   ;; 1. Enable all follow modes (so Treemacs always shows current file/project)
   (setq-default treemacs-follow-mode t
