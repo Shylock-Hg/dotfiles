@@ -14,7 +14,8 @@ sudo pacman -S --noconfirm --needed \
     steam \
     wine wine-mono winetricks \
     cronie powertop typst starship \
-    hunspell hunspell-en_us
+    hunspell hunspell-en_us \
+    docker docker-compose
 
 yay -S microsoft-edge-stable-bin \
     pgyvisitor \
