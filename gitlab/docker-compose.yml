@@ -3,12 +3,12 @@ services:
     image: gitlab/gitlab-ee:18.6.0-ee.0
     container_name: gitlab
     restart: always
-    hostname: 'localhost'
+    hostname: 'gitlab'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         # Add any other gitlab.rb configuration here, each on its own line
         # access by https://localhost
-        external_url 'https://localhost'
+        external_url 'http://gitlab'
     ports:
       - '80:80'
       - '443:443'
