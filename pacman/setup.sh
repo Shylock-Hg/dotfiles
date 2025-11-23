@@ -16,7 +16,8 @@ sudo pacman -S --noconfirm --needed \
     cronie powertop typst starship \
     hunspell hunspell-en_us \
     docker docker-compose \
-    nginx nginx-mod-stream
+    nginx nginx-mod-stream \
+    qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils
 
 yay -S microsoft-edge-stable-bin \
     pgyvisitor \
