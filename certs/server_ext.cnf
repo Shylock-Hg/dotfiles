@@ -1,0 +1,11 @@
+[ server_cert ]
+# Basic constraints
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+
+# Subject Alternative Names (SANs) - IMPORTANT for modern browsers
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = my-pc               # Your local hostname
