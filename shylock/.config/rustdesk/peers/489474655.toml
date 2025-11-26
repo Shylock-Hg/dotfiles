@@ -108,12 +108,12 @@ sync-init-clipboard = false
 trackpad-speed = 100
 
 [options]
-zoom-cursor = ''
-custom-fps = '30'
 codec-preference = 'auto'
 collapse_toolbar = ''
 i444 = ''
 swap-left-right-mouse = ''
+zoom-cursor = ''
+custom-fps = '30'
 
 [ui_flutter]
 wm_RemoteDesktop = '{"width":1300.0,"height":740.0,"offsetWidth":0.0,"offsetHeight":0.0,"isMaximized":true,"isFullscreen":false}'
