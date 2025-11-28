@@ -20,7 +20,7 @@ sudo pacman -S --noconfirm --needed \
     qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
-# problem of guest
+# of NAT network problem of guest
 
 yay -S microsoft-edge-stable-bin \
     pgyvisitor \
