@@ -2,6 +2,12 @@
 
 sudo pacman -Syu
 
+MY_WINE="wine"
+
+if [ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ];then
+  MY_WINE="wine-cachyos wine-cachyos-opt"
+fi
+
 sudo pacman -S --noconfirm --needed \
     code yay mold ninja make cmake gcc clang lldb \
     libc++ libc++abi \
@@ -12,7 +18,7 @@ sudo pacman -S --noconfirm --needed \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk \
     remmina freerdp tailscale \
     steam \
-    wine wine-mono winetricks \
+    $MY_WINE wine-mono wine-gecko wine-nine winetricks \
     cronie powertop typst starship \
     hunspell hunspell-en_us \
     docker docker-compose podman podman-compose \
