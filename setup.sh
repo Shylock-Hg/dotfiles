@@ -8,11 +8,6 @@ readonly SCRIPT_DIR=$(dirname $0)
 
 pushd $SCRIPT_DIR
 
-# bash
-ln -sf ~/dotfiles/bash/.my.bashrc ~/.my.bashrc
-cp ~/dotfiles/bash/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/aliases/.alias ~/.alias
-
 # Install by native package manager
 if command -v zypper >/dev/null 2>&1; then
   # install on opensuse tumbleweed
@@ -64,7 +59,7 @@ rm -rf ~/.emacs*
 git clone --depth=1 git@github.com:Shylock-Hg/prelude.git ~/.config/emacs
 
 # spacemacs
-ln -sf $(readlink -f .spacemacs) ~/.spacemacs
+#ln -sf $(readlink -f .spacemacs) ~/.spacemacs
 
 # crontab
 #crontab $SCRIPT_DIR/crontab/jobs
