@@ -15,7 +15,7 @@ sudo pacman -S --noconfirm --needed \
     rclone inotify-tools \
     flatpak nodejs \
     fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-rime \
-    ttf-jetbrains-mono noto-fonts noto-fonts-cjk \
+    ttf-jetbrains-mono noto-fonts noto-fonts-cjk wqy-microhei wqy-zenhei wqy-bitmapfont \
     remmina freerdp tailscale \
     steam \
     $MY_WINE wine-mono wine-gecko wine-nine winetricks \
