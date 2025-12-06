@@ -26,7 +26,7 @@ fi
 ./wine/setup.sh
 
 # git
-ln -sf $(readlink -f ./git/.gitconfig) ~/.gitconfig
+# ln -sf $(readlink -f ./git/.gitconfig) ~/.gitconfig
 
 # vim
 mkdir -p ~/.vim
@@ -34,7 +34,7 @@ mkdir -p ~/.vim
 ln -sf $(readlink -f ./vim/.vimrc) ~/.vimrc
 
 # wakatime
-ln -sf $(readlink -f ./wakatime/.wakatime.cfg) ~/.wakatime.cfg
+# ln -sf $(readlink -f ./wakatime/.wakatime.cfg) ~/.wakatime.cfg
 
 # rust
 pushd ./rust
