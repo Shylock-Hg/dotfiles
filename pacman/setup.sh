@@ -16,6 +16,7 @@ sudo pacman -S --noconfirm --needed \
     flatpak nodejs \
     fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-rime \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk wqy-microhei wqy-zenhei wqy-bitmapfont \
+    ttf-roboto adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu \
     remmina freerdp tailscale \
     steam \
     $MY_WINE wine-mono wine-gecko wine-nine winetricks \
