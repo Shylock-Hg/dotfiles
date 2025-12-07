@@ -24,7 +24,8 @@ sudo pacman -S --noconfirm --needed \
     hunspell hunspell-en_us \
     docker docker-compose podman podman-compose \
     nginx nginx-mod-stream \
-    qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils
+    qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils \
+    samba
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
