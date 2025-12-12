@@ -24,9 +24,9 @@ export XMODIFIERS=@im=fcitx
 # NL CPA
 alias cmake_llvm='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Debug  -DCMAKE_CXX_FLAGS="-stdlib=libc++" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" -DLLVM_ENABLE_RTTI=ON -DLLVM_ENABLE_LLD=ON -G "Unix Makefiles"'
 
-#alias cmake_3rd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-w" -DCMAKE_CXX_FLAGS="-stdlib=libc++ -w" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DNL_JOBS=16'
+alias cmake_3rd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-w" -DCMAKE_CXX_FLAGS="-stdlib=libc++ -w" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DNL_JOBS=16'
 
-alias cmake_3rd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-w" -DCMAKE_CXX_FLAGS="-w" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DNL_JOBS=16'
+#alias cmake_3rd='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-w" -DCMAKE_CXX_FLAGS="-w" -DCMAKE_COLOR_DIAGNOSTICS=ON -DCMAKE_INSTALL_PREFIX=~/local -DNL_JOBS=16'
 
 readonly CPA_CLANG_TOOL_INCLUDES='/home/shylock/local/include/c++/v1:/home/shylock/local/lib/clang/18/include:/home/shylock/local/include/x86_64-unknown-linux-gnu/c++/v1:/usr/include'
 readonly CPA_CLANG_TOOL_OPTIONS='-nostdinc'
@@ -51,4 +51,6 @@ alias restartplasma='systemctl --user restart plasma-plasmashell.service'
 # enable starship
 #eval "$(starship init bash)"
 
+
+PATH="$PATH:$HOME/.local/bin"
 
