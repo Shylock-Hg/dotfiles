@@ -2,6 +2,7 @@
 
 pushd ~
 
-tar --zst -cf shylock.tar.zst Tools Documents Pictures Videos Music
+tar --zst -cf ~/Data/shylock.tar.zst Tools Documents Pictures Videos Music
+gpg2 --encrypt --recipient 'tcath2s@icloud.com' ~/Data/shylock.tar.zst
 
 popd
