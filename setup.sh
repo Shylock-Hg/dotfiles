@@ -58,9 +58,6 @@ curl -fsSL https://tailscale.com/install.sh | sh
 rm -rf ~/.emacs*
 git clone --depth=1 git@github.com:Shylock-Hg/prelude.git ~/.config/emacs
 
-# spacemacs
-#ln -sf $(readlink -f .spacemacs) ~/.spacemacs
-
 # crontab
 #crontab $SCRIPT_DIR/crontab/jobs
 
