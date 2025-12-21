@@ -27,7 +27,8 @@ sudo pacman -S --noconfirm --needed \
     qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils \
     samba mupdf tesseract-data-chi_sim tesseract-data-chi_tra tesseract-data-eng \
     libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-fresh-zh-tw \
-    cdrtools dvd+rw-tools
+    cdrtools dvd+rw-tools \
+    gitleaks
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
