@@ -1,7 +1,0 @@
-We can forward gitlab ssh server by nginx stream forward method(with stream module).
-
-For example, if we forward gitlab to `work-wsl:7070`, we can set
-git remote to
-```
-git remote add gitlab ssh://git@work-wsl:7070/shylock/cpa.git
-```
