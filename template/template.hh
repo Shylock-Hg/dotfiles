@@ -4,10 +4,5 @@
  *  \email tcath2s@gmail.com
  * */
 
-#ifndef _TEMPLATE_HH_
-#define _TEMPLATE_HH_
-
-
-
-#endif  //!< _TEMPLATE_HH_
+#pragma once
 

@@ -25,11 +25,9 @@ do
 
 			# c
                         elif [ ${OPTARG##*.} = $suffix_cheader ]; then
-                                uppername=${OPTARG%.*}
-                                uppername=${uppername^^}
                                 if curl $prefix/template.h -o $PWD/$OPTARG; then
                                         sed -i  -e "s/\\date.\+/\\date $today/g" \
-                                                -e "s/_.\+_H_/_${uppername}_H_/g" $PWD/$OPTARG
+                                                $PWD/$OPTARG
                                 fi
                         elif [ ${OPTARG##*.} = $suffix_csource ]; then
                                 if curl $prefix/template.c -o $PWD/$OPTARG; then
@@ -38,11 +36,9 @@ do
 
 			# c++
                         elif [ ${OPTARG##*.} = $suffix_ccheader ]; then
-                                uppername=${OPTARG%.*}
-                                uppername=${uppername^^}
                                 if curl $prefix/template.hh -o $PWD/$OPTARG; then
                                         sed -i  -e "s/\\date.\+/\\date $today/g" \
-                                                -e "s/_.\+_HH_/_${uppername}_HH_/g" $PWD/$OPTARG
+                                                $PWD/$OPTARG
                                 fi
                         elif [ ${OPTARG##*.} = $suffix_ccsource ]; then
                                 if curl $prefix/template.cc -o $PWD/$OPTARG; then

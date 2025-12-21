@@ -4,18 +4,15 @@
  *  \email tcath2s@gmail.com
  * */
 
-#ifndef _TEMPLATE_H_
-#define _TEMPLATE_H_
+#pragma once
 
 #ifdef __cplusplus
-	extern "C" {
+    extern "C" {
 #endif
 
 
 
 #ifdef __cplusplus
-	}
+    }
 #endif
-
-#endif  //!< _TEMPLATE_H_
 
