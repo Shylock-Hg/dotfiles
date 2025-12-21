@@ -64,6 +64,11 @@ git clone --depth=1 git@github.com:Shylock-Hg/prelude.git ~/.config/emacs
 # crontab
 #crontab $SCRIPT_DIR/crontab/jobs
 
+# decrypt keys
+./shylock/sh/de-gpg-b64.sh ./shylock/.authinfo.gpg.b64
+./shylock/sh/de-gpg-b64.sh ./shylock/.ssh/id_ed25519.gpg.b64
+./shylock/sh/de-gpg-b64.sh ./shylock/.wakatime.cfg.gpg.b64
+
 # sync home
 stow shylock
 

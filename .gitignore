@@ -1,4 +1,9 @@
-shylock/.config/emacs/elpa
-shylock/.config/emacs/eln-cache
+/shylock/.config/emacs/elpa
+/shylock/.config/emacs/eln-cache
 
-shylock/.config/rustdesk/RustDesk_ab
+/shylock/.config/rustdesk/RustDesk_ab
+
+/shylock/.authinfo
+/shylock/.ssh/id_ed25519
+/shylock/.wakatime.cfg
+
