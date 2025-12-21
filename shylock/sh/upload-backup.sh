@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
 
-readonly TARBALL=shylock.tar.zst
+readonly TARBALL=bundle.tar
 
-rclone sync ~/$TARBALL dropbox:/$TARBALL --transfers 4
+rclone sync ~/Data/$TARBALL dropbox:/$TARBALL --transfers 4
