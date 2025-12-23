@@ -10,3 +10,11 @@
 	gpgsign = true
 [core]
 	editor = "emacsclient -c -a emacs"
+[gitlab]
+	user = shylock
+[gitlab "work-wsl:9000/api/v4"]
+	user = shylock
+[forge]
+	remote = forge
+[url "ssh://git@work-wsl:"]
+	insteadOf = work-gl:
