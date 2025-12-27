@@ -32,6 +32,5 @@ sudo pacman -S --noconfirm --needed \
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
-yay -S microsoft-edge-stable-bin \
-    pgyvisitor \
+yay -S pgyvisitor \
     tinymist
