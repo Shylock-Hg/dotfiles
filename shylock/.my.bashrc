@@ -49,7 +49,7 @@ alias cmake_sim="cmake .. -D3RD_PATH='~/local' -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_
 alias restartplasma='systemctl --user restart plasma-plasmashell.service'
 
 # enable starship
-#eval "$(starship init bash)"
+eval "$(starship init bash)"
 
 
 PATH="$PATH:$HOME/.local/bin"
