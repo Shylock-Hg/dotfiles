@@ -21,7 +21,7 @@ sudo pacman -S --noconfirm --needed \
     steam \
     $MY_WINE wine-mono wine-gecko wine-nine winetricks \
     cronie powertop typst starship \
-    hunspell hunspell-en_us \
+    aspell aspell-en \
     docker docker-compose podman podman-compose \
     nginx nginx-mod-stream \
     qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils \
