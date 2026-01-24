@@ -29,7 +29,9 @@ sudo pacman -S --noconfirm --needed \
     libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-fresh-zh-tw \
     cdrtools dvd+rw-tools \
     gitleaks \
-    opam
+    opam \
+    opencode
+
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
