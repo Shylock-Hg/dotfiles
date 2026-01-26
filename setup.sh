@@ -1,5 +1,19 @@
 #! /usr/bin/env bash
 
+in_docker() {
+  # Method 1: cgroups (most reliable)
+  if [ -f /proc/1/cgroup ]; then
+    if grep -qE "(docker|lxc|containerd)" /proc/1/cgroup; then
+      return 0
+    fi
+  fi
+
+  return 1
+}
+
+readonly IN_DOCKER=$(in_docker)
+echo $IN_DOCKER
+
 set -ex
 
 readonly CONFIG_DIR='.config'
@@ -20,10 +34,14 @@ else
 fi
 
 # install by flatpak
+if ! [ in_docker ]; then
 ./flatpak/setup.sh
+fi
 
 # wine and windows apps
+if ! [ in_docker ]; then
 ./wine/setup.sh
+fi
 
 # git
 # ln -sf $(readlink -f ./git/.gitconfig) ~/.gitconfig
@@ -56,15 +74,17 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 # emacs
 rm -rf ~/.emacs*
-git clone --depth=1 git@github.com:Shylock-Hg/prelude.git ~/.config/emacs
+git clone --depth=1 https://github.com/Shylock-Hg/prelude.git ~/.config/emacs
 
 # crontab
 #crontab $SCRIPT_DIR/crontab/jobs
 
 # decrypt keys
+if ! [ in_docker ];then
 ./shylock/sh/de-gpg-b64.sh ./shylock/.authinfo.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.ssh/id_ed25519.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.wakatime.cfg.gpg.b64
+fi
 
 # ocaml
 ./ocaml/setup.sh

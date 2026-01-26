@@ -24,6 +24,6 @@ fi
 ln -sf $(readlink -f .cargo.conf)  ~/.cargo/config
 ln -sf ~/.cargo/config ~/.cargo/config.toml
 
-rustup component add rust-analyzer
-
  . "$HOME/.cargo/env"
+
+rustup component add rust-analyzer

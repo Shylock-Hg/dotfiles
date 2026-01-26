@@ -1,12 +1,19 @@
 #! /usr/bin/env bash
 
-sudo pacman -Syu
+readonly SCRIPT_DIR=$(dirname $0)
+# set mirrors
+$SCRIPT_DIR/setup-mirror.sh
+if [ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ];then
+  $SCRIPT_DIR/setup-mirror-v4.sh
+fi
 
 MY_WINE="wine"
 
 if [ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ];then
   MY_WINE="wine-cachyos wine-cachyos-opt"
 fi
+
+sudo pacman -Syu
 
 sudo pacman -S --noconfirm --needed \
     code yay mold ninja make cmake gcc clang lldb \
@@ -32,8 +39,11 @@ sudo pacman -S --noconfirm --needed \
     opam \
     opencode
 
-
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
-yay -S pgyvisitor \
+if [ in_docker ]; then
+yay -S --noconfirm tinymist
+else
+yay -S --noconfirm pgyvisitor \
     tinymist
+fi
