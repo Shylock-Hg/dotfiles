@@ -2,13 +2,15 @@
 
 ############################### sign CA ###############################
 # Generate a 4096-bit RSA private key and encrypt it with a passphrase
-openssl genrsa -aes256 -out ca.key 4096
+#openssl genrsa -aes256 -out ca.key 4096
 
 # Create the Certificate Signing Request (CSR)
-openssl req -new -key ca.key -out ca.csr
+#openssl req -new -key ca.key -out ca.csr
 
 # Self-sign the CSR to create the Root Certificate
-openssl x509 -req -days 3650 -sha256 -extensions v3_ca -in ca.csr -signkey ca.key -out ca.crt
+##openssl x509 -req -days 3650 -sha256 -in ca.csr -signkey ca.key -out ca.crt -config ca.cnf
+#openssl req -x509 -new -nodes -key ca.key -sha256 -days 3650 -out ca.crt
+  -config ca.cnf
 
 ################################ sign cert by CA ############################
 # Generate a new 2048-bit RSA private key (can omit -aes256 if you don't need encryption)
