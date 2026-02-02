@@ -10,6 +10,7 @@
 	gpgsign = true
 [core]
 	editor = "emacsclient -c -a emacs"
+	excludesfile = /home/shylock/.gitignore.global
 [gitlab]
 	user = shylock
 [gitlab "work-wsl:9000/api/v4"]
