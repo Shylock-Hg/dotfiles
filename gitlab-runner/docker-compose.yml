@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  gitlab-runner:
+    image: gitlab/gitlab-runner:v18.6.0  # 固定版本避免兼容问题
+    container_name: gitlab-runner
+    restart: always
+    environment:
+      # ⚠️ 敏感信息建议通过 .env 文件注入（见下方说明）
+      #- REGISTRATION_TOKEN=${GITLAB_REGISTRATION_TOKEN}
+      - CI_SERVER_URL=${GITLAB_URL:-https://shylock-server/gitlab/}
+      - RUNNER_NAME=${RUNNER_NAME:-docker-runner-prod}
+      #- RUNNER_TAG_LIST=${RUNNER_TAGS:-docker,linux,ci}
+      - RUNNER_EXECUTOR=docker
+      #- DOCKER_IMAGE=alpine:3.18
+      # 安全加固：禁止特权模式（关键！）
+      - DOCKER_PRIVILEGED=false
+      # 可选：设置构建超时（秒）
+      - BUILDS_DIR=/builds
+      - CACHE_DIR=/cache
+    volumes:
+      # 持久化 Runner 配置（注册后 config.toml 会存于此）
+      - ./config:/etc/gitlab-runner:Z
+      # 挂载宿主机 Docker Socket（使 Runner 能创建构建容器）
+      - /var/run/docker.sock:/var/run/docker.sock:Z
+      # 挂载构建缓存目录（加速后续构建）
+      - ./cache:/cache:Z
+      # 挂载构建工作目录（避免容器内残留）
+      - ./builds:/builds:Z
+    #networks:
+    #  - ci-network
+    network_mode: host
+    # 安全限制（生产环境强烈建议）
+    security_opt:
+      - no-new-privileges:true
+    # 资源限制（防耗尽宿主机资源）
+    mem_limit: 16g
+    cpus: 8
+    # 健康检查（监控 Runner 状态）
+    healthcheck:
+      test: ["CMD-SHELL", "gitlab-runner status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+#networks:
+  #ci-network:
+    #driver: bridge
+    #ipam:
+      #config:
+        #- subnet: 172.25.0.0/16
+
+# =============== 使用前必读 ===============
+# 1️⃣ 创建 .env 文件（与 docker-compose.yml 同目录）：
+#    GITLAB_URL=https://gitlab.your-company.com/
+#    GITLAB_REGISTRATION_TOKEN=glrt-xxxxxx  # 从 GitLab: 项目/组/实例 → Settings → CI/CD → Runners
+#    RUNNER_NAME=prod-docker-runner
+#    RUNNER_TAGS=docker,linux,prod
+#
+# 2️⃣ 首次启动（自动注册）：
+#    docker-compose up -d
+#    # 查看日志确认注册成功：docker-compose logs -f
+#
+# 3️⃣ 后续重启（配置已持久化在 ./config）：
+#    docker-compose restart
+#
+# 🔒 安全加固建议：
+#   • 将 ./config 目录权限设为 600（chmod 600 ./config/config.toml）
+#   • 宿主机执行：sudo usermod -aG docker gitlab-runner（若宿主机有 gitlab-runner 用户）
+#   • 生产环境：用 HashiCorp Vault 等管理 REGISTRATION_TOKEN
+#   • 禁用特权模式：已在环境变量中设置 DOCKER_PRIVILEGED=false
+#
+# ⚠️ 重要警告：
+#   • 挂载 /var/run/docker.sock 有安全风险！确保此 Runner 仅运行可信代码
+#   • 切勿在公共仓库提交 .env 文件！将 .env 加入 .gitignore
+#   • 如需更高安全：改用 Kubernetes Executor 或 Docker-in-Docker (dind) 模式
+#
+# 📚 官方参考：
+#   • 注册参数详解：https://docs.gitlab.com/runner/register/#docker
+#   • 安全最佳实践：https://docs.gitlab.com/runner/security/
