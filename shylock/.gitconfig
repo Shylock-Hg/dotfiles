@@ -21,3 +21,5 @@
 	remote = forge
 [url "ssh://git@work-wsl:"]
 	insteadOf = work-gl:
+[url "ssh://git@work-wsl:7070/"]
+	insteadOf = git@10.17.0.223:
