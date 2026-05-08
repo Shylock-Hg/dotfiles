@@ -23,3 +23,9 @@
 	insteadOf = work-gl:
 [url "ssh://git@work-wsl:7070/"]
 	insteadOf = git@10.17.0.223:
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
