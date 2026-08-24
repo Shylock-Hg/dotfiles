@@ -56,6 +56,9 @@ eval "$(starship init bash)"
 
 PATH="$PATH:$HOME/.local/bin"
 
+# kimi-code
+export PATH="~/.kimi-code/bin:$PATH"
+
 ###-begin-opencode-completions-###
 #
 # yargs command completion script
