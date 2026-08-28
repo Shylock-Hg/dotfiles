@@ -3,7 +3,7 @@ version: '3.8'
 services:
   gitlab-runner:
     image: gitlab/gitlab-runner:v18.6.0  # 固定版本避免兼容问题
-    container_name: gitlab-runner
+    container_name: shylock-gitlab-runner
     restart: always
     environment:
       # ⚠️ 敏感信息建议通过 .env 文件注入（见下方说明）
