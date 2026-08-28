@@ -6,6 +6,7 @@ readonly SCRIPT_DIR=$(dirname $0)
 
 $SCRIPT_DIR/encrypt-gitlab-backup.sh
 $SCRIPT_DIR/backup-home.sh
+$SCRIPT_DIR/backup-elpa-mirror.sh
 
 cp -r $SCRIPT_DIR/../../gpg ~/Data
 
