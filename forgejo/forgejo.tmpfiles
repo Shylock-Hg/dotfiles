@@ -1,0 +1,22 @@
+# /usr/lib/tmpfiles.d/forgejo.conf
+# Directories owned by the forgejo user/group.
+# Install with: sudo install -m 0644 forgejo.tmpfiles /usr/lib/tmpfiles.d/forgejo.conf
+# Apply with:   sudo systemd-tmpfiles --create /usr/lib/tmpfiles.d/forgejo.conf
+
+# Server data / working directory (also the user's $HOME)
+d /var/lib/forgejo          0750 forgejo forgejo -
+d /var/lib/forgejo/custom   0750 forgejo forgejo -
+d /var/lib/forgejo/data     0750 forgejo forgejo -
+d /var/lib/forgejo/log      0750 forgejo forgejo -
+d /var/lib/forgejo/repositories 0750 forgejo forgejo -
+d /var/lib/forgejo/lfs      0750 forgejo forgejo -
+
+# Runner registration + work directory
+d /var/lib/forgejo-runner   0750 forgejo forgejo -
+
+# Configuration (root owned, readable by the forgejo group)
+d /etc/forgejo              0750 root    forgejo -
+d /etc/forgejo/runner       0750 root    forgejo -
+
+# Runtime dir for the runner (not strictly required, but tidy)
+d /run/forgejo              0750 forgejo forgejo -

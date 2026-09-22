@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   gitlab-runner:
     image: gitlab/gitlab-runner:v18.6.0  # 固定版本避免兼容问题
@@ -27,6 +25,9 @@ services:
       - ./cache:/cache:Z
       # 挂载构建工作目录（避免容器内残留）
       - ./builds:/builds:Z
+      # 使用宿主机 DNS（systemd-resolved stub），保留 MagicDNS 搜索域。
+      # 因 network_mode: host，容器内的 127.0.0.53 即宿主机的 stub resolver。
+      - /run/systemd/resolve/stub-resolv.conf:/etc/resolv.conf:ro
     #networks:
     #  - ci-network
     network_mode: host

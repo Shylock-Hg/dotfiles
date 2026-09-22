@@ -1,4 +1,5 @@
-[ server_cert ]
+
+[ shylockhg.me_cert ]
 # Basic constraints
 basicConstraints = CA:FALSE
 keyUsage = nonRepudiation, digitalSignature, keyEncipherment
@@ -8,4 +9,4 @@ extendedKeyUsage = serverAuth, clientAuth
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1 = my-pc               # Your local hostname
+DNS.1 = shylockhg.me               # Your local hostname

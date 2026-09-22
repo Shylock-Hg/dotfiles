@@ -37,7 +37,8 @@ sudo pacman -S --noconfirm --needed \
     cdrtools dvd+rw-tools \
     gitleaks \
     opam \
-    opencode glab github-cli openai-codex claude-code
+    opencode glab github-cli openai-codex claude-code \
+    forgejo forgejo-cli forgejo-runner dnsmasq
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
