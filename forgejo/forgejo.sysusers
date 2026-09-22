@@ -1,0 +1,7 @@
+# /usr/lib/sysusers.d/forgejo.conf
+# Creates the dedicated forgejo group and system user.
+# Install with: sudo install -m 0644 forgejo.sysusers /usr/lib/sysusers.d/forgejo.conf
+# Apply with:   sudo systemd-sysusers /usr/lib/sysusers.d/forgejo.conf
+
+g forgejo -
+u forgejo - "Forgejo" /var/lib/forgejo /usr/bin/nologin

@@ -1,0 +1,57 @@
+[Unit]
+Description=Forgejo (Beyond coding. We forge.)
+Documentation=https://forgejo.org/docs/latest/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=forgejo
+Group=forgejo
+
+# $HOME and the work dir are the same directory: /var/lib/forgejo
+Environment=USER=forgejo
+Environment=HOME=/var/lib/forgejo
+Environment=GITEA_WORK_DIR=/var/lib/forgejo
+WorkingDirectory=/var/lib/forgejo
+
+ExecStart=/usr/local/bin/forgejo web --config /etc/forgejo/app.ini
+ExecReload=/bin/kill -USR1 $MAINPID
+Restart=always
+RestartSec=2s
+
+# --- Hardening -------------------------------------------------------------
+# ProtectSystem=strict turns the whole filesystem read-only; only the paths
+# listed in ReadWritePaths stay writable. Adjust if your app.ini points
+# elsewhere (e.g. a custom repositories/LFS/log location).
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+ProtectProc=invisible
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+StateDirectory=forgejo
+ConfigurationDirectory=forgejo
+ReadWritePaths=/var/lib/forgejo
+ReadOnlyPaths=/etc/forgejo
+
+# Uncomment if Forgejo must bind to a privileged port (<1024), e.g. 22/80/443:
+#AmbientCapabilities=CAP_NET_BIND_SERVICE
+#CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
