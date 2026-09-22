@@ -1,3 +1,8 @@
+# Disabled: this workflow is deprecated. It ran in the default
+# node:20-bookworm job container, which has no Docker CLI or Docker socket, so
+# `docker build` failed with "docker: command not found". The shylockhg/opensuse
+# image is now maintained/built out of band. Rename back to docker.yaml to
+# re-enable.
 name: Docker Image CI
 
 on:

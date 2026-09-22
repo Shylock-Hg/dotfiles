@@ -1,3 +1,3 @@
 FROM opensuse/tumbleweed
 
-RUN zypper install -y sudo flatpak
+RUN zypper install -y sudo flatpak git nodejs
