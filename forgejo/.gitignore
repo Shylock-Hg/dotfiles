@@ -1,0 +1,3 @@
+# Local convenience files holding the runner registration secret; never commit.
+/token
+/uuid
