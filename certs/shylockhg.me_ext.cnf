@@ -9,4 +9,4 @@ extendedKeyUsage = serverAuth, clientAuth
 subjectAltName = @alt_names
 
 [ alt_names ]
-DNS.1 = shylockhg.me               # Your local hostname
+DNS.1 = *.shylockhg.me               # Your local hostname
