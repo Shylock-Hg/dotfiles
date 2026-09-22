@@ -9,6 +9,24 @@ readonly CONFIG_DIR="/etc/nginx/conf.d"
 readonly TARGET_CONFIG="$CONFIG_DIR/forgejo.conf"
 readonly INCLUDE_DIRECTIVE='    include /etc/nginx/conf.d/*.conf;'
 
+in_docker() {
+    # Container engines advertise themselves in the cgroup hierarchy (cgroup v1)
+    # or use the unified "0::/" root (cgroup v2).
+    if [ -f /proc/1/cgroup ]; then
+        if grep -qE "(docker|lxc|containerd|kubepods)" /proc/1/cgroup \
+            || grep -qE "^0::/$" /proc/1/cgroup; then
+            return 0
+        fi
+    fi
+
+    # CI runners (GitHub/Forgejo/Gitea Actions, etc.) set these variables.
+    if [ -n "${CI:-}" ] || [ -n "${GITHUB_ACTIONS:-}" ]; then
+        return 0
+    fi
+
+    return 1
+}
+
 if (( EUID != 0 )); then
     echo "Run this script as root (for example: sudo $0)." >&2
     exit 1
@@ -41,7 +59,11 @@ if ! grep -Eq '^[[:space:]]*include[[:space:]]+(/etc/nginx/)?conf\.d/\*\.conf;' 
     sed -i "/^[[:space:]]*http[[:space:]]*{/a\\$INCLUDE_DIRECTIVE" "$NGINX_CONFIG"
 fi
 
-nginx -t
+if in_docker; then
+    echo "Skipping nginx configuration test in container/CI." >&2
+else
+    nginx -t
+fi
 
 echo "Installed $TARGET_CONFIG."
 echo "Reload nginx to apply it: systemctl reload nginx"
