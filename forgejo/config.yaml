@@ -41,8 +41,18 @@ cache:
   enabled: true
 
 container:
-  # Empty network = the runner creates a dedicated Docker network per job.
-  network: ""
+  # Run job containers in the host network namespace.
+  #
+  # With the default (empty) value the runner creates a dedicated Docker
+  # network per job. Containers on that network cannot reach the Forgejo
+  # instance running on this host: the host firewall drops container -> host
+  # traffic on the instance port and the container resolver does not resolve
+  # the instance hostname. The temporary network also disappears after the
+  # job, so a gateway IP such as 172.18.0.1:3000 is never a stable target.
+  # Sharing the host network lets jobs use the instance URL directly and also
+  # reach the Actions cache proxy. It removes network isolation between jobs,
+  # so only run trusted workflows.
+  network: host
   # Required for Docker-in-Docker workflows; keep disabled for untrusted code.
   privileged: false
   # Uncomment to expose the host Docker socket to job containers:
@@ -54,7 +64,14 @@ container:
 server:
   connections:
     shylock:
-      url: https://forgejo.shylockhg.me/
+      # Address used by the runner itself and, via GITHUB_SERVER_URL, by the
+      # job containers to clone the repository. Plain HTTP on the instance
+      # port is intentional: the public HTTPS endpoint serves a self-signed
+      # certificate that the pinned CI images do not trust, and the traffic is
+      # already encrypted by Tailscale on the way to forgejo.shylockhg.me.
+      # No trailing slash: it becomes GITHUB_SERVER_URL verbatim and workflows
+      # build clone URLs such as $GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git.
+      url: http://forgejo.shylockhg.me:3000
       # UUID returned when creating the runner in Forgejo:
       # Site Administration -> Actions -> Runners -> Create new Runner.
       # setup.sh substitutes this placeholder.
