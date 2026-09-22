@@ -1,0 +1,64 @@
+# Forgejo Actions runner configuration for shylock-pc.
+#
+# Installed to /etc/forgejo-runner/config.yaml by setup.sh.
+#
+# Since runner v13 a `.runner` registration file is deprecated: the connection
+# to the Forgejo instance is declared under `server.connections` instead.
+#
+# The registration token is deliberately NOT stored in this file. It is injected
+# by systemd as a credential and referenced with
+#     token_url: file:$CREDENTIALS_DIRECTORY/forgejo-token
+# (see forgejo-runner.service.d/override.conf).
+
+log:
+  level: info
+  # Level of the logs sent to the Forgejo web UI for each job.
+  job_level: info
+
+runner:
+  # How many jobs this runner executes concurrently.
+  capacity: 1
+  # Maximum runtime of a single job (Forgejo also enforces its own timeout).
+  timeout: 3h
+  # How long to wait for running jobs when systemd sends TERM.
+  shutdown_timeout: 3h
+  # Timeouts for fetching jobs from the instance.
+  fetch_timeout: 30s
+  fetch_interval: 2s
+  # Empty value disables the legacy jobs env file, avoiding the
+  # 'Missing env file ".env" is ignored' warning.
+  env_file: ""
+  # Labels decide which `runs-on:` values this runner accepts and how jobs run.
+  # `host` runs directly on this machine, `docker://IMAGE` runs in a container.
+  labels:
+    - ubuntu-latest:docker://node:20-bookworm
+    - ubuntu-22.04:docker://node:20-bookworm
+    # Runs untrusted code directly on the host -- remove if undesirable.
+    - self-hosted:host
+
+cache:
+  # Gives workflows ACTIONS_CACHE_URL via the built-in cache server/proxy.
+  enabled: true
+
+container:
+  # Empty network = the runner creates a dedicated Docker network per job.
+  network: ""
+  # Required for Docker-in-Docker workflows; keep disabled for untrusted code.
+  privileged: false
+  # Uncomment to expose the host Docker socket to job containers:
+  # docker_host: automount
+  # Uncomment to allow bind mounts from the host inside job containers:
+  # valid_volumes:
+  #   - '**'
+
+server:
+  connections:
+    shylock:
+      url: https://forgejo.shylockhg.me/
+      # UUID returned when creating the runner in Forgejo:
+      # Site Administration -> Actions -> Runners -> Create new Runner.
+      # setup.sh substitutes this placeholder.
+      uuid: __RUNNER_UUID__
+      # Token injected by systemd (LoadCredential); never stored in this file.
+      token_url: file:$CREDENTIALS_DIRECTORY/forgejo-token
+      fetch_interval: 2s
