@@ -62,9 +62,9 @@ popd
 
 # datam
 # require rust
-cargo install datam
-mkdir -p ~/.datam
-ln -sf $(readlink -f ./datam/store.json) ~/.datam/store.json
+#cargo install datam
+#mkdir -p ~/.datam
+#ln -sf $(readlink -f ./datam/store.json) ~/.datam/store.json
 
 # tailscale
 curl -fsSL https://tailscale.com/install.sh | sh
@@ -95,7 +95,9 @@ fi
 stow shylock
 
 # certs
+if ! [ in_docker ];then
 ./certs/setup.sh
+fi
 
 # nginx
 ./nginx/setup.sh
