@@ -84,6 +84,8 @@ if ! [ in_docker ];then
 ./shylock/sh/de-gpg-b64.sh ./shylock/.authinfo.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.ssh/id_ed25519.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.wakatime.cfg.gpg.b64
+./shylock/sh/de-gpg-b64.sh ./certs/shylockhg.me.key.gpg.b64
+./shylock/sh/de-gpg-b64.sh ./certs/ca.key.gpg.b64
 fi
 
 # ocaml
@@ -91,5 +93,14 @@ fi
 
 # sync home
 stow shylock
+
+# certs
+./certs/setup.sh
+
+# nginx
+./nginx/setup.sh
+
+# dnsmasq
+./dnsmasq/setup.sh
 
 popd # popd $(dirname $0)
