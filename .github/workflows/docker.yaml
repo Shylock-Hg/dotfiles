@@ -3,8 +3,11 @@ name: Docker Image CI
 on:
   push:
     branches: [ "master" ]
-  schedule:
-    - cron: '30 0 * * *'
+    paths:
+      - "docker/Dockerfile"
+      - "zypper/**"
+      - "rust/**"
+      - "ocaml/**"
 
 jobs:
   build:
