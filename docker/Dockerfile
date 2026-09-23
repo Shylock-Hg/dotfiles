@@ -3,10 +3,11 @@ FROM opensuse/tumbleweed
 LABEL maintainer="tcath2s@gmail.com"
 
 ENV CI=true \
+    IN_CI=true \
     PATH="/root/.cargo/bin:/root/.opam/default/bin:${PATH}"
 
-# Bootstrap only what the repository's package installer needs. The complete
-# system package set is installed in the next layer.
+# Bootstrap only what the repository's package installer needs. The next layer
+# installs packages used by later build stages and dry-runs the workstation set.
 RUN zypper --non-interactive install --no-recommends \
         ca-certificates curl git sudo \
     && zypper clean --all

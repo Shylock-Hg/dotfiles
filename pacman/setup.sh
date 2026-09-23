@@ -3,48 +3,54 @@
 readonly SCRIPT_DIR=$(dirname $0)
 # set mirrors
 $SCRIPT_DIR/setup-mirror.sh
-if [ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ];then
-  $SCRIPT_DIR/setup-mirror-v4.sh
+
+WINE_PACKAGES=(wine)
+
+if [[ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ]]; then
+  WINE_PACKAGES=(wine-cachyos wine-cachyos-opt)
 fi
 
-MY_WINE="wine"
+sudo pacman -Syu --noconfirm
 
-if [ $(grep '^ID=' /etc/os-release) == "ID=cachyos" ];then
-  MY_WINE="wine-cachyos wine-cachyos-opt"
-fi
+REQUIRED_PACKAGES=(
+    gcc make stow tailscale opam nginx dnsmasq
+)
 
-sudo pacman -Syu
-
-sudo pacman -S --noconfirm --needed \
-    code yay mold ninja make cmake gcc clang lldb \
+OPTIONAL_PACKAGES=(
+    code yay mold ninja cmake clang lldb \
     libc++ libc++abi \
-    ripgrep vim emacs stow \
+    ripgrep vim emacs \
     rclone inotify-tools \
     flatpak nodejs \
     fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-rime \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk wqy-microhei wqy-zenhei wqy-bitmapfont \
     ttf-roboto adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu \
-    remmina freerdp tailscale \
+    remmina freerdp \
     steam \
-    $MY_WINE wine-mono wine-gecko wine-nine winetricks \
+    "${WINE_PACKAGES[@]}" wine-mono wine-gecko winetricks \
     cronie powertop typst starship \
     aspell aspell-en \
     docker docker-compose podman podman-compose \
-    nginx nginx-mod-stream \
-    qemu-full libvirt virt-manager virt-viewer dnsmasq vde2 bridge-utils \
+    nginx-mod-stream \
+    qemu-full libvirt virt-manager virt-viewer vde2 \
     samba mupdf tesseract-data-chi_sim tesseract-data-chi_tra tesseract-data-eng \
     libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-fresh-zh-tw \
     cdrtools dvd+rw-tools \
     gitleaks \
-    opam \
     opencode glab github-cli openai-codex claude-code \
-    forgejo forgejo-cli forgejo-runner dnsmasq
+    forgejo forgejo-cli forgejo-runner
+)
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
 if [[ ${IN_CI:-false} == true ]]; then
-yay -S --noconfirm tinymist
+  sudo pacman -S --noconfirm --needed "${REQUIRED_PACKAGES[@]}"
+  # Resolve the remaining workstation packages without downloading gigabytes
+  # that no later CI setup step uses.
+  sudo pacman -Sp --needed --print-format '%n %v' \
+      "${OPTIONAL_PACKAGES[@]}" tinymist
 else
-yay -S --noconfirm pgyvisitor \
-    tinymist
+  sudo pacman -S --noconfirm --needed \
+      "${REQUIRED_PACKAGES[@]}" "${OPTIONAL_PACKAGES[@]}"
+  yay -S --noconfirm pgyvisitor tinymist
 fi

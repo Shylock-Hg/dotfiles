@@ -8,10 +8,25 @@ jobs:
 
   build:
 
+    name: build (${{ matrix.name }})
     runs-on: ubuntu-latest
-    container: shylockhg/opensuse:latest
+    strategy:
+      matrix:
+        include:
+          - name: openSUSE
+            image: shylockhg/opensuse:latest
+            bootstrap: ":"
+          - name: CachyOS
+            image: cachyos/cachyos:latest
+            bootstrap: >-
+              sed -i '1iServer = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch'
+              /etc/pacman.d/mirrorlist &&
+              pacman -Sy --noconfirm --needed nodejs
+    container: ${{ matrix.image }}
 
     steps:
+    - name: Bootstrap checkout dependencies
+      run: ${{ matrix.bootstrap }}
     - uses: actions/checkout@v4
     - name: test setup
       run: |
