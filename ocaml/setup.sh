@@ -10,7 +10,7 @@ if [[ ${IN_CI:-false} == true ]]; then
     # sandbox explicitly instead of waiting for its interactive fallback.
     opam init --yes --disable-sandboxing \
         default https://mirrors.sjtug.sjtu.edu.cn/git/opam-repository.git
-    opam install --dry-run --yes "${OPAM_PACKAGES[@]}"
+    opam install --dry-run --yes --assume-depexts "${OPAM_PACKAGES[@]}"
 else
     opam init --yes
     opam install --yes "${OPAM_PACKAGES[@]}"
