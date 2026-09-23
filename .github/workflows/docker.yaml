@@ -1,9 +1,11 @@
 name: Docker Image CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "master" ]
     paths:
+      - ".github/workflows/docker.yaml"
       - "docker/Dockerfile"
       - "zypper/**"
       - "rust/**"
@@ -22,11 +24,11 @@ jobs:
       run: |
         docker build . \
           --file docker/Dockerfile \
-          --tag "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_USERNAME }}/opensuse:latest"
+          --tag "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/opensuse:latest"
     - name: Log in to Aliyun Container Registry
       run: |
         printf '%s' "${{ secrets.ACR_PASSWORD }}" | docker login \
           --username "${{ secrets.ACR_USERNAME }}" \
           --password-stdin registry.cn-hangzhou.aliyuncs.com
     - name: Push the Docker image
-      run: docker push "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_USERNAME }}/opensuse:latest"
+      run: docker push "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/opensuse:latest"
