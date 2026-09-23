@@ -9,9 +9,17 @@
 
 # archlinux sources
 readonly ALIYUN_MIRROR='Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch'
+as_root() {
+    if [ "$(id -u)" -eq 0 ]; then
+        "$@"
+    else
+        sudo "$@"
+    fi
+}
+
 if ! grep -Fqx "$ALIYUN_MIRROR" /etc/pacman.d/mirrorlist; then
-    printf '%s\n' "$ALIYUN_MIRROR" | sudo tee /tmp/aliyun-mirrorlist >/dev/null
-    sudo tee -a /tmp/aliyun-mirrorlist </etc/pacman.d/mirrorlist >/dev/null
-    sudo cp /tmp/aliyun-mirrorlist /etc/pacman.d/mirrorlist
-    sudo rm /tmp/aliyun-mirrorlist
+    printf '%s\n' "$ALIYUN_MIRROR" | as_root tee /tmp/aliyun-mirrorlist >/dev/null
+    as_root tee -a /tmp/aliyun-mirrorlist </etc/pacman.d/mirrorlist >/dev/null
+    as_root cp /tmp/aliyun-mirrorlist /etc/pacman.d/mirrorlist
+    as_root rm /tmp/aliyun-mirrorlist
 fi

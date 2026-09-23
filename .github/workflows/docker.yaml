@@ -28,7 +28,16 @@ jobs:
             image: cachyos
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out repository
+      env:
+        FORGEJO_TOKEN: ${{ github.token }}
+      run: |
+        git init .
+        git remote add origin "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git"
+        auth_header=$(printf 'x-access-token:%s' "$FORGEJO_TOKEN" | base64 -w0)
+        git -c "http.extraHeader=Authorization: Basic ${auth_header}" \
+          fetch --depth=1 origin "${GITHUB_SHA}"
+        git checkout --detach FETCH_HEAD
     - name: Build the Docker image
       run: |
         docker build . \
