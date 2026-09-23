@@ -42,7 +42,7 @@ sudo pacman -S --noconfirm --needed \
 
 # Append firewall_backend = "iptables" to /etc/libvirt/network.conf resolve the network connection
 # of NAT network problem of guesthk
-if [ in_docker ]; then
+if [[ ${IN_CI:-false} == true ]]; then
 yay -S --noconfirm tinymist
 else
 yay -S --noconfirm pgyvisitor \
