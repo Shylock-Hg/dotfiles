@@ -1,20 +1,14 @@
 #! /usr/bin/env bash
 
-in_docker() {
-  # Method 1: cgroups (most reliable)
-  if [ -f /proc/1/cgroup ]; then
-    if grep -qE "(docker|lxc|containerd)" /proc/1/cgroup; then
-      return 0
-    fi
-  fi
-
-  return 1
-}
-
-readonly IN_DOCKER=$(in_docker)
-echo $IN_DOCKER
-
 set -ex
+
+if [[ $# -gt 1 || ( $# -eq 1 && $1 != "IN_CI" ) ]]; then
+  echo "Usage: $0 [IN_CI]" >&2
+  exit 2
+fi
+
+readonly IN_CI=$([[ ${1:-} == "IN_CI" ]] && echo true || echo false)
+export IN_CI
 
 readonly CONFIG_DIR='.config'
 
@@ -34,12 +28,12 @@ else
 fi
 
 # install by flatpak
-if ! [ in_docker ]; then
+if [[ $IN_CI == false ]]; then
 ./flatpak/setup.sh
 fi
 
 # wine and windows apps
-if ! [ in_docker ]; then
+if [[ $IN_CI == false ]]; then
 ./wine/setup.sh
 fi
 
@@ -80,7 +74,7 @@ git clone --depth=1 https://github.com/Shylock-Hg/prelude.git ~/.config/emacs
 #crontab $SCRIPT_DIR/crontab/jobs
 
 # decrypt keys
-if ! [ in_docker ];then
+if [[ $IN_CI == false ]];then
 ./shylock/sh/de-b64.sh ./shylock/.authinfo.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.ssh/id_ed25519.gpg.b64
 ./shylock/sh/de-gpg-b64.sh ./shylock/.wakatime.cfg.gpg.b64
@@ -95,7 +89,7 @@ fi
 stow shylock
 
 # certs
-if ! [ in_docker ];then
+if [[ $IN_CI == false ]];then
 ./certs/setup.sh
 fi
 
