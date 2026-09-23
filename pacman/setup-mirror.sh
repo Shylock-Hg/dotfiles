@@ -8,6 +8,10 @@
 #echo -e '# github\n192.30.253.112 assets-cdn.github.com\n151.101.88.249 github.global.ssl.fastly.net' | sudo tee --append /etc/hosts
 
 # archlinux sources
-sudo sed -i '1iServer = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
-sudo sed -i '1iServer = https://mirrors.nju.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
-sudo sed -i '1iServer = https://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
+readonly ALIYUN_MIRROR='Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch'
+if ! grep -Fqx "$ALIYUN_MIRROR" /etc/pacman.d/mirrorlist; then
+    printf '%s\n' "$ALIYUN_MIRROR" | sudo tee /tmp/aliyun-mirrorlist >/dev/null
+    sudo tee -a /tmp/aliyun-mirrorlist </etc/pacman.d/mirrorlist >/dev/null
+    sudo cp /tmp/aliyun-mirrorlist /etc/pacman.d/mirrorlist
+    sudo rm /tmp/aliyun-mirrorlist
+fi

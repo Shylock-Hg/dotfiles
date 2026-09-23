@@ -7,7 +7,9 @@ on:
     paths:
       - ".github/workflows/docker.yaml"
       - "docker/Dockerfile"
+      - "docker/cachyos.Dockerfile"
       - "zypper/**"
+      - "pacman/**"
       - "rust/**"
       - "ocaml/**"
 
@@ -17,18 +19,26 @@ jobs:
     # off pull_request events: Docker access is root-equivalent and registry
     # credentials must only be exposed to trusted revisions.
     runs-on: self-hosted
+    strategy:
+      matrix:
+        include:
+          - dockerfile: docker/Dockerfile
+            image: opensuse
+          - dockerfile: docker/cachyos.Dockerfile
+            image: cachyos
 
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: |
         docker build . \
-          --file docker/Dockerfile \
-          --tag "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/opensuse:latest"
+          --file "${{ matrix.dockerfile }}" \
+          --tag "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/${{ matrix.image }}:latest"
     - name: Log in to Aliyun Container Registry
       run: |
         printf '%s' "${{ secrets.ACR_PASSWORD }}" | docker login \
           --username "${{ secrets.ACR_USERNAME }}" \
           --password-stdin registry.cn-hangzhou.aliyuncs.com
     - name: Push the Docker image
-      run: docker push "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/opensuse:latest"
+      timeout-minutes: 30
+      run: docker push "registry.cn-hangzhou.aliyuncs.com/${{ secrets.ACR_NAMESPACE }}/${{ matrix.image }}:latest"
