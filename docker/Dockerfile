@@ -6,6 +6,11 @@ ENV CI=true \
     IN_CI=true \
     PATH="/root/.cargo/bin:/root/.opam/default/bin:${PATH}"
 
+# Select the fast mirror before the first repository refresh. Copy this script
+# separately so changes to the package list do not invalidate the bootstrap.
+COPY zypper/setup-mirror.tumbleweed.sh ./zypper/setup-mirror.tumbleweed.sh
+RUN ./zypper/setup-mirror.tumbleweed.sh
+
 # Bootstrap only what the repository's package installer needs. The next layer
 # installs packages used by later build stages and dry-runs the workstation set.
 RUN zypper --non-interactive install --no-recommends \

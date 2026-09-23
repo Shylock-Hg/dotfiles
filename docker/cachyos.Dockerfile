@@ -6,6 +6,11 @@ ENV CI=true \
     IN_CI=true \
     PATH="/root/.cargo/bin:/root/.opam/default/bin:${PATH}"
 
+# Select Aliyun before the first package database synchronization. Keep this
+# copy separate so package-list changes do not invalidate the bootstrap layer.
+COPY pacman/setup-mirror.sh /tmp/setup-pacman-mirror.sh
+RUN /tmp/setup-pacman-mirror.sh
+
 RUN pacman -Syu --noconfirm --needed \
         ca-certificates curl git sudo \
     && pacman -Scc --noconfirm
