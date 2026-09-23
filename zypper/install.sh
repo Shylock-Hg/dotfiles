@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 sudo zypper dup -yl
 
 # Packages from pacman/setup.sh that have no openSUSE zypper package are not
