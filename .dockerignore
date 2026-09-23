@@ -1,0 +1,9 @@
+.git
+.github
+
+# Registration credentials and encrypted personal material are not required by
+# the CI image.
+forgejo/token*
+forgejo/uuid*
+certs/*.gpg.b64
+shylock/**/*.gpg.b64
