@@ -10,3 +10,12 @@ My config file for linux.
 ## Standard development environment in docker
 
 ./docker/dev/Dockerfile
+
+## CI image
+
+`docker/Dockerfile` preinstalls the system packages, Rust toolchain, and opam
+switch in separate cacheable layers:
+
+```sh
+docker build --file docker/Dockerfile --tag shylockhg/opensuse:latest .
+```
