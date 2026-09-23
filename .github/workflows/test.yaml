@@ -4,6 +4,9 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  ACR_NAMESPACE: ${{ secrets.ACR_NAMESPACE }}
+
 jobs:
 
   build:
@@ -14,19 +17,13 @@ jobs:
       matrix:
         include:
           - name: openSUSE
-            image: shylockhg/opensuse:latest
-            bootstrap: zypper --non-interactive install --no-recommends git
+            image: opensuse
           - name: CachyOS
-            image: cachyos/cachyos:latest
-            bootstrap: >-
-              sed -i '1iServer = https://mirrors.aliyun.com/archlinux/\$repo/os/\$arch'
-              /etc/pacman.d/mirrorlist &&
-              pacman -Sy --noconfirm --needed nodejs
-    container: ${{ matrix.image }}
+            image: cachyos
+    container:
+      image: registry.cn-hangzhou.aliyuncs.com/${{ env.ACR_NAMESPACE }}/${{ matrix.image }}:latest
 
     steps:
-    - name: Bootstrap checkout dependencies
-      run: ${{ matrix.bootstrap }}
     - name: Check out repository
       env:
         FORGEJO_TOKEN: ${{ github.token }}
