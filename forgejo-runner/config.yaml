@@ -17,7 +17,7 @@ log:
 
 runner:
   # How many jobs this runner executes concurrently.
-  capacity: 2
+  capacity: 4
   # Maximum runtime of a single job (Forgejo also enforces its own timeout).
   timeout: 3h
   # How long to wait for running jobs when systemd sends TERM.
