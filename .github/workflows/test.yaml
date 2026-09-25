@@ -15,7 +15,7 @@ jobs:
         include:
           - name: openSUSE
             image: shylockhg/opensuse:latest
-            bootstrap: ":"
+            bootstrap: zypper --non-interactive install --no-recommends git
           - name: CachyOS
             image: cachyos/cachyos:latest
             bootstrap: >-
