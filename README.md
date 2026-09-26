@@ -19,3 +19,11 @@ switch in separate cacheable layers:
 ```sh
 docker build --file docker/Dockerfile --tag shylockhg/opensuse:latest .
 ```
+
+## AaaU
+
+Normal workstation setup installs the latest Linux release of
+[AaaU](https://github.com/AgentaaU/AaaU) into `/usr/local/bin`. To update it
+separately, run `./aaau/setup.sh`. After installation, initialize the agent
+user and directories with `sudo aaau-server init`, then start the server as
+described in the [upstream instructions](https://github.com/AgentaaU/AaaU#quick-start).

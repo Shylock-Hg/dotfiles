@@ -85,6 +85,11 @@ fi
 # ocaml
 ./ocaml/setup.sh
 
+# Agent-as-User tools
+if [[ $IN_CI == false ]]; then
+./aaau/setup.sh
+fi
+
 # sync home
 stow shylock
 
