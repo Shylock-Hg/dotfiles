@@ -9,8 +9,8 @@ together:
 | Component | Where | Role |
 | --- | --- | --- |
 | **Forgejo** | <https://forgejo.shylockhg.me> (configuration in this repo: `forgejo/dump.sh`, `forgejo-runner/`, `nginx/forgejo.conf`, `dnsmasq/`, `certs/`) | Hosts the repositories, issues, pull requests, comments and the self-hosted Actions runner. It is the conversation and the code of record. |
-| **forge-bot** | <https://forgejo.shylockhg.me/shylock/forge-bot> | Forge-agnostic gateway that turns an `@shylock-bot` mention into a coding-agent run. Runs as the dedicated `agent` account (systemd *user* service) and listens on `127.0.0.1:8080`. |
-| **AaaU (Agent-as-User)** | <https://forgejo.shylockhg.me/shylock/aaau> | PTY bridge that runs an agent under the dedicated `agent` system user. Authorized humans (group `aaau-users`) attach with the `aaau` client to start, watch or interact with an agent session. |
+| **forge-bot** | <https://github.com/Shylock-Hg/forge-bot> | Forge-agnostic gateway that turns an `@shylock-bot` mention into a coding-agent run. Runs as the dedicated `agent` account (systemd *user* service) and listens on `127.0.0.1:8080`. |
+| **AaaU (Agent-as-User)** | <https://github.com/AgentaaU/AaaU> | PTY bridge that runs an agent under the dedicated `agent` system user. Authorized humans (group `aaau-users`) attach with the `aaau` client to start, watch or interact with an agent session. |
 | *Human* | `shylock` account, member of `aaau-users` | Writes the task, reviews the result, and can attach to the same agent account through AaaU. |
 
 The important separation is between the **human account** (`shylock`) and the
@@ -217,9 +217,9 @@ port 3000 and the Actions cache.
 ## Reference
 
 * [中文版 (Chinese version)](workflow.cn.md)
-* forge-bot repo and docs: <https://forgejo.shylockhg.me/shylock/forge-bot>
+* forge-bot repo and docs: <https://github.com/Shylock-Hg/forge-bot>
   (`README.md`, `deploy.md`, `doc/forgejo-webhook.md`)
-* AaaU repo and docs: <https://forgejo.shylockhg.me/shylock/aaau>
+* AaaU repo and docs: <https://github.com/AgentaaU/AaaU>
   (`README.md`, `AGENTS.md`)
 * This repository's setup: `setup.sh`, `aaau/setup.sh`, `forgejo/`,
   `forgejo-runner/`, `nginx/`

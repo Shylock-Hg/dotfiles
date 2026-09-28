@@ -8,8 +8,8 @@
 | 组件 | 位置 | 职责 |
 | --- | --- | --- |
 | **Forgejo** | <https://forgejo.shylockhg.me>（本仓库中的配置：`forgejo/dump.sh`、`forgejo-runner/`、`nginx/forgejo.conf`、`dnsmasq/`、`certs/`） | 托管仓库、issue、pull request、评论以及自托管的 Actions runner。它是对话与代码的权威记录。 |
-| **forge-bot** | <https://forgejo.shylockhg.me/shylock/forge-bot> | 与具体 forge 无关的网关，把一次 `@shylock-bot` 提及转换为一次编码 agent 运行。它以专用的 `agent` 账户（systemd *用户*服务）运行，监听 `127.0.0.1:8080`。 |
-| **AaaU (Agent-as-User)** | <https://forgejo.shylockhg.me/shylock/aaau> | PTY 桥接，在专用的 `agent` 系统用户下运行 agent。被授权的人类（`aaau-users` 组）使用 `aaau` 客户端接入，以启动、观察或交互一个 agent 会话。 |
+| **forge-bot** | <https://github.com/Shylock-Hg/forge-bot> | 与具体 forge 无关的网关，把一次 `@shylock-bot` 提及转换为一次编码 agent 运行。它以专用的 `agent` 账户（systemd *用户*服务）运行，监听 `127.0.0.1:8080`。 |
+| **AaaU (Agent-as-User)** | <https://github.com/AgentaaU/AaaU> | PTY 桥接，在专用的 `agent` 系统用户下运行 agent。被授权的人类（`aaau-users` 组）使用 `aaau` 客户端接入，以启动、观察或交互一个 agent 会话。 |
 | *人类* | `shylock` 账户，`aaau-users` 组成员 | 编写任务、审查结果，并可通过 AaaU 接入同一个 agent 账户。 |
 
 关键隔离在于 **人类账户**（`shylock`）与 **agent 账户**（`agent`）之间。
@@ -200,9 +200,9 @@ CI 与提及流程相互独立，但运行在同一台主机上：自托管 runn
 
 ## 参考资料
 
-* forge-bot 仓库与文档：<https://forgejo.shylockhg.me/shylock/forge-bot>
+* forge-bot 仓库与文档：<https://github.com/Shylock-Hg/forge-bot>
   （`README.md`、`deploy.md`、`doc/forgejo-webhook.md`）
-* AaaU 仓库与文档：<https://forgejo.shylockhg.me/shylock/aaau>
+* AaaU 仓库与文档：<https://github.com/AgentaaU/AaaU>
   （`README.md`、`AGENTS.md`）
 * 本仓库的安装：`setup.sh`、`aaau/setup.sh`、`forgejo/`、
   `forgejo-runner/`、`nginx/`

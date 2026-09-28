@@ -10,8 +10,8 @@ My config file for linux.
 ## Agent workflow
 
 How a Forgejo comment becomes an autonomous coding-agent run — Forgejo,
-[forge-bot](https://forgejo.shylockhg.me/shylock/forge-bot) and
-[AaaU](https://forgejo.shylockhg.me/shylock/aaau) — is documented in
+[forge-bot](https://github.com/Shylock-Hg/forge-bot) and
+[AaaU](https://github.com/AgentaaU/AaaU) — is documented in
 [`docs/workflow.md`](docs/workflow.md) ([中文](docs/workflow.cn.md)).
 
 ## Standard development environment in docker
