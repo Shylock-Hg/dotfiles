@@ -134,5 +134,6 @@ depend on the deployment.
 
 ## Reference
 
+* [Plain text version](workflow.txt)
 * forge-bot: <https://github.com/Shylock-Hg/forge-bot>
 * AaaU: <https://github.com/AgentaaU/AaaU>

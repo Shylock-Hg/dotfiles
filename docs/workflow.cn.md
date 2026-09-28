@@ -119,5 +119,6 @@ aaau -n <session-id> -r    # 只读观察
 
 ## 参考资料
 
+* [纯文本版本](workflow.cn.txt)
 * forge-bot：<https://github.com/Shylock-Hg/forge-bot>
 * AaaU：<https://github.com/AgentaaU/AaaU>

@@ -1,0 +1,146 @@
+AGENT WORKFLOW
+
+How a comment on the self-hosted Forgejo instance becomes a code change,
+without giving an autonomous agent the human's account. Three pieces fit
+together.
+
+COMPONENTS
+
+Forgejo (https://forgejo.shylockhg.me)
+    The forge: repositories, issues, pull requests, comments and CI. It is
+    the conversation and the code of record.
+
+forge-bot (https://github.com/Shylock-Hg/forge-bot)
+    Forge-agnostic gateway that turns a bot mention into a coding-agent run.
+
+AaaU / Agent-as-User (https://github.com/AgentaaU/AaaU)
+    PTY bridge into the dedicated agent account, so an authorized human can
+    start, watch or join an agent session.
+
+Human (shylock account)
+    Writes the task, reviews the result, and can attach to the agent account
+    through AaaU.
+
+The key separation is between the human account and the agent account.
+Forgejo, forge-bot and the agents run as the agent account; the human never
+hands over their own account. AaaU is the bridge that lets an authorized human
+reach that account for interactive work.
+
+        @shylock-bot <task>  on an issue / PR
+                   |
+                   v
+        +----------------------+
+        |       Forgejo        |  issues / PRs / CI
+        +----------+-----------+
+                   | mention
+                   v
+        +----------------------+
+        |      forge-bot       |  verify -> authorize
+        |                      |  queue -> start agent
+        +----------+-----------+
+                   | location + message
+                   v
+        +----------------------+        +----------------------+
+        |    agent account     |<------>|        AaaU          |
+        |  coding agent runs   |  PTY   |  human joins session |
+        +----------+-----------+        +----------------------+
+                   |
+                   v  commit / push / reply
+              (Forgejo thread)
+
+
+ARCHITECTURE
+
+The system has three layers:
+
+1. Conversation. Forgejo hosts the threads. A bot mention on an issue or pull
+   request is the only trigger, and the thread is where the result is reported
+   and reviewed.
+
+2. Gateway. forge-bot receives the mention, verifies and authorizes it,
+   serializes runs per conversation, and starts an agent. It deliberately
+   hands the agent only a location and a message, never pre-built context.
+
+3. Execution and access. Agents run as the dedicated agent account with
+   auto-approve, so they can read the repository, edit it, run commands and
+   tests, and push. AaaU exposes a PTY into that same account for humans.
+
+Two properties hold across the whole system:
+
+- Isolation. The agent account is separate from the human account, and the
+  human's credentials are never given to the agent.
+
+- Minimal hand-off. An agent learns what to do from the location and the
+  message, then discovers the surrounding context itself.
+
+
+USAGE
+
+Trigger a run
+
+Comment on an issue or pull request:
+
+    @shylock-bot fix the failing test in utils/
+
+Only allow-listed users and repositories are accepted, and mentions written by
+the bot itself are ignored to avoid loops. To choose a specific agent, name it:
+
+    @shylock-bot:codex fix the failing test in utils/
+
+A plain mention uses the default agent sequence.
+
+Follow up on a run
+
+Reply in the same thread. If a run is already in flight, the message is merged
+into the current run so you can steer it; otherwise it is queued as the next
+turn. Each issue or pull request has at most one run at a time, while different
+threads run in parallel.
+
+Work with an agent interactively
+
+Authorized humans attach to the agent account with the aaau client:
+
+    aaau pi                    # start pi in the agent account
+    aaau codex                 # start codex in the agent account
+    aaau -n <session-id>       # join an existing session
+    aaau -n <session-id> -r    # observe read-only
+
+This is how a human reproduces, watches or rescues the same environment the
+automated runs use. Only members of the authorized group can attach, and the
+agent cannot connect back to the human.
+
+
+WORKFLOW
+
+A mention travels through the system like this:
+
+1. A human comments @shylock-bot <task> on an issue or pull request.
+2. Forgejo delivers the comment to forge-bot - by webhook where possible, or
+   by polling as a fallback.
+3. forge-bot verifies and authorizes the mention, records the location and the
+   message, and queues the job for that conversation.
+4. The repository is checked out into a per-conversation workspace, and an
+   agent is selected and started with auto-approve.
+5. The agent reads the forge, edits the checkout, runs commands and tests,
+   commits, pushes a branch, opens a pull request and replies on the thread.
+   It works exactly like a developer would.
+6. The human reviews the pull request, then merges it or asks for changes in
+   the same thread - which starts the next turn.
+
+If an agent reports a usage, rate or quota limit, the run retries on the next
+agent in the sequence; if none is available, the thread is told why. The bot
+acknowledges each mention as soon as it is queued.
+
+
+OPERATIONS
+
+A status page lists every known thread with its state (running / queued /
+idle), the agent involved and its last result. Health and status endpoints are
+available for monitoring, and logs record each run. The services and paths
+depend on the deployment.
+
+
+REFERENCE
+
+forge-bot: https://github.com/Shylock-Hg/forge-bot
+AaaU:      https://github.com/AgentaaU/AaaU
