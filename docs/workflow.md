@@ -161,19 +161,7 @@ forward an editor buffer from a Codex/Claude session back to the operator's
 Emacs (`aaau-editor`). See the AaaU README for the full protocol and security
 model.
 
-## 6. Installation in dotfiles
-
-This repository is the machine's provisioning entry point:
-
-| Path | Purpose |
-| --- | --- |
-| `aaau/setup.sh` | Downloads the latest AaaU Linux release and installs `aaau`, `aaau-server` and `aaau-editor` to `/usr/local/bin`. Called by the top-level `setup.sh` outside CI. |
-| `forgejo/` | `dump.sh` dumps the whole Forgejo instance (stop → `forgejo dump` → start) to `~/Data/forgejo.tar.zst`. |
-| `forgejo-runner/` | `config.yaml` + `setup.sh` install the self-hosted Actions runner and inject its registration token as a systemd credential (`LoadCredential`), so the token never lands in config or process args. |
-| `nginx/`, `dnsmasq/`, `certs/` | Public HTTPS front end (`forgejo.shylockhg.me`), DNS and the certificates. |
-| `setup.sh` | Orchestrates the above; AaaU and the secret decryption steps are skipped with `IN_CI`. |
-
-## 7. Operations
+## 6. Operations
 
 | Thing | Command / location |
 | --- | --- |
@@ -196,7 +184,7 @@ pull requests) and `.github/workflows/docker.yaml` (image builds on `master`).
 Container jobs share the host network so they can reach the Forgejo instance on
 port 3000 and the Actions cache.
 
-## 8. Worked example: this repository's issue #231
+## 7. Worked example: this repository's issue #231
 
 1. `shylock` opened issue #231 with the task "write a workflow document…" and
    commented `@shylock-bot Do this` (comment 10832).

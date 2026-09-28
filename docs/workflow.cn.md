@@ -149,19 +149,7 @@ AaaU 会保留审计日志（`audit-YYYY-MM-DD.logl`，保留五天），并且�
 Codex/Claude 会话中的编辑器缓冲区转发回操作者的 Emacs（`aaau-editor`）。关于
 完整协议与安全模型，参见 AaaU README。
 
-## 6. 在 dotfiles 中的安装
-
-本仓库是机器的配置入口：
-
-| 路径 | 用途 |
-| --- | --- |
-| `aaau/setup.sh` | 下载最新的 AaaU Linux 发行版，并将 `aaau`、`aaau-server` 和 `aaau-editor` 安装到 `/usr/local/bin`。由顶层 `setup.sh` 在 CI 之外调用。 |
-| `forgejo/` | `dump.sh` 转储整个 Forgejo 实例（停止 → `forgejo dump` → 启动）到 `~/Data/forgejo.tar.zst`。 |
-| `forgejo-runner/` | `config.yaml` + `setup.sh` 安装自托管 Actions runner，并将其注册 token 作为 systemd credential（`LoadCredential`）注入，使 token 永远不会出现在配置或进程参数中。 |
-| `nginx/`、`dnsmasq/`、`certs/` | 公共 HTTPS 前端（`forgejo.shylockhg.me`）、DNS 与证书。 |
-| `setup.sh` | 编排上述内容；AaaU 与密钥解密步骤在 `IN_CI` 时会被跳过。 |
-
-## 7. 运维
+## 6. 运维
 
 | 事项 | 命令 / 位置 |
 | --- | --- |
@@ -182,7 +170,7 @@ CI 与提及流程相互独立，但运行在同一台主机上：自托管 runn
 安装）和 `.github/workflows/docker.yaml`（在 `master` 上构建镜像）。容器任务
 共享主机网络，因此可以访问 3000 端口上的 Forgejo 实例与 Actions 缓存。
 
-## 8. 实例：本仓库的 issue #231
+## 7. 实例：本仓库的 issue #231
 
 1. `shylock` 打开 issue #231，任务为 "write a workflow document…"，并评论
    `@shylock-bot Do this`（评论 10832）。
