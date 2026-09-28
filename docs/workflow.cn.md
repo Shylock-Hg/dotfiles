@@ -7,7 +7,7 @@
 
 | 组件 | 位置 | 职责 |
 | --- | --- | --- |
-| **Forgejo** | <https://forgejo.shylockhg.me>（本仓库中的配置：`forgejo/dump.sh`、`forgejo-runner/`、`nginx/forgejo.conf`、`dnsmasq/`、`certs/`） | 托管仓库、issue、pull request、评论以及自托管的 Actions runner。它是对话与代码的权威记录。 |
+| **Forgejo** | <https://forgejo.shylockhg.me> | 托管仓库、issue、pull request、评论以及自托管的 Actions runner。它是对话与代码的权威记录。 |
 | **forge-bot** | <https://github.com/Shylock-Hg/forge-bot> | 与具体 forge 无关的网关，把一次 `@shylock-bot` 提及转换为一次编码 agent 运行。它以专用的 `agent` 账户（systemd *用户*服务）运行，监听 `127.0.0.1:8080`。 |
 | **AaaU (Agent-as-User)** | <https://github.com/AgentaaU/AaaU> | PTY 桥接，在专用的 `agent` 系统用户下运行 agent。被授权的人类（`aaau-users` 组）使用 `aaau` 客户端接入，以启动、观察或交互一个 agent 会话。 |
 | *人类* | `shylock` 账户，`aaau-users` 组成员 | 编写任务、审查结果，并可通过 AaaU 接入同一个 agent 账户。 |
@@ -86,7 +86,7 @@ Forgejo 与 forge-bot 绝不以人类身份运行；AaaU 正是让人类能够�
    issue/PR 描述会被哈希，因此改变文本的编辑只会触发一次。
 3. **鉴权** 作者与仓库是否符合 `[policy]`。
 4. **提取** `AgentRequest { location, message }`：评论 URL（例如
-   `https://forgejo.shylockhg.me/shylock/dotfiles/issues/231#issuecomment-10832`）
+   `https://forgejo.shylockhg.me/owner/repo/issues/123#issuecomment-456`）
    与提及文本。
 5. **排队** 任务。每个会话（一个 issue 或 PR）同一时刻至多一次运行，而不同
    会话可并行运行。`[session] workers`（此处为 16）是并发 agent 运行的唯一
@@ -170,21 +170,20 @@ CI 与提及流程相互独立，但运行在同一台主机上：自托管 runn
 安装）和 `.github/workflows/docker.yaml`（在 `master` 上构建镜像）。容器任务
 共享主机网络，因此可以访问 3000 端口上的 Forgejo 实例与 Actions 缓存。
 
-## 7. 实例：本仓库的 issue #231
+## 7. 实例：一条 issue 上的提及
 
-1. `shylock` 打开 issue #231，任务为 "write a workflow document…"，并评论
-   `@shylock-bot Do this`（评论 10832）。
+1. 用户打开 issue #123，任务为 "write a workflow document…"，并评论
+   `@shylock-bot Do this`。
 2. Forgejo 将该评论投递到 webhook；forge-bot 校验它、接受该触发，并为
-   `shylock/dotfiles` issue 231 排入一个任务。
-3. 它将 `shylock/dotfiles` 克隆到
-   `~/.local/state/forge-bot/workspaces/shylock__dotfiles-231`。
+   `owner/repo` issue 123 排入一个任务。
+3. 它将 `owner/repo` 克隆到
+   `~/.local/state/forge-bot/workspaces/owner__repo-123`。
 4. 先尝试 `codex`，然后是 `agy`；两者都容量不足，因此任务落到 `pi-rpc`
    池。机器人的确认被编辑，以指出不可用的 agent。
 5. 正在运行的 agent（即本文档）只收到位置
-   `https://forgejo.shylockhg.me/shylock/dotfiles/issues/231#issuecomment-10832`
+   `https://forgejo.shylockhg.me/owner/repo/issues/123#issuecomment-456`
    与消息 `Do this`，随后从仓库中收集其余上下文。
 6. 结果是一个分支和一个针对 `master` 的 pull request；由人类审查。
-   `shylock` 被请求为 reviewer。
 
 ## 参考资料
 
@@ -192,5 +191,3 @@ CI 与提及流程相互独立，但运行在同一台主机上：自托管 runn
   （`README.md`、`deploy.md`、`doc/forgejo-webhook.md`）
 * AaaU 仓库与文档：<https://github.com/AgentaaU/AaaU>
   （`README.md`、`AGENTS.md`）
-* 本仓库的安装：`setup.sh`、`aaau/setup.sh`、`forgejo/`、
-  `forgejo-runner/`、`nginx/`

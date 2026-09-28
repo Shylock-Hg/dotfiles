@@ -8,7 +8,7 @@ together:
 
 | Component | Where | Role |
 | --- | --- | --- |
-| **Forgejo** | <https://forgejo.shylockhg.me> (configuration in this repo: `forgejo/dump.sh`, `forgejo-runner/`, `nginx/forgejo.conf`, `dnsmasq/`, `certs/`) | Hosts the repositories, issues, pull requests, comments and the self-hosted Actions runner. It is the conversation and the code of record. |
+| **Forgejo** | <https://forgejo.shylockhg.me> | Hosts the repositories, issues, pull requests, comments and the self-hosted Actions runner. It is the conversation and the code of record. |
 | **forge-bot** | <https://github.com/Shylock-Hg/forge-bot> | Forge-agnostic gateway that turns an `@shylock-bot` mention into a coding-agent run. Runs as the dedicated `agent` account (systemd *user* service) and listens on `127.0.0.1:8080`. |
 | **AaaU (Agent-as-User)** | <https://github.com/AgentaaU/AaaU> | PTY bridge that runs an agent under the dedicated `agent` system user. Authorized humans (group `aaau-users`) attach with the `aaau` client to start, watch or interact with an agent session. |
 | *Human* | `shylock` account, member of `aaau-users` | Writes the task, reviews the result, and can attach to the same agent account through AaaU. |
@@ -90,7 +90,7 @@ and a message**, never pre-built context.
    changes the text triggers once.
 3. **Authorize** the author and repository against `[policy]`.
 4. **Extract** `AgentRequest { location, message }`: the comment URL (for
-   example `https://forgejo.shylockhg.me/shylock/dotfiles/issues/231#issuecomment-10832`)
+   example `https://forgejo.shylockhg.me/owner/repo/issues/123#issuecomment-456`)
    and the mention text.
 5. **Queue** the job. There is at most one run per conversation (one issue or
    PR) at a time, while different conversations run in parallel. `[session] workers`
@@ -184,23 +184,23 @@ pull requests) and `.github/workflows/docker.yaml` (image builds on `master`).
 Container jobs share the host network so they can reach the Forgejo instance on
 port 3000 and the Actions cache.
 
-## 7. Worked example: this repository's issue #231
+## 7. Worked example: a mention on an issue
 
-1. `shylock` opened issue #231 with the task "write a workflow document…" and
-   commented `@shylock-bot Do this` (comment 10832).
+1. A user opened issue #123 with the task "write a workflow document…" and
+   commented `@shylock-bot Do this`.
 2. Forgejo delivered the comment to the webhook; forge-bot verified it,
-   accepted the trigger, and queued a job for `shylock/dotfiles` issue 231.
-3. It cloned `shylock/dotfiles` into
-   `~/.local/state/forge-bot/workspaces/shylock__dotfiles-231`.
+   accepted the trigger, and queued a job for `owner/repo` issue 123.
+3. It cloned `owner/repo` into
+   `~/.local/state/forge-bot/workspaces/owner__repo-123`.
 4. `codex` was tried first, then `agy`; both were out of capacity, so the
    job fell through to the `pi-rpc` pool. The bot's acknowledgement was edited
    to name the unavailable agents.
 5. The running agent (this document) received only the location
-   `https://forgejo.shylockhg.me/shylock/dotfiles/issues/231#issuecomment-10832`
+   `https://forgejo.shylockhg.me/owner/repo/issues/123#issuecomment-456`
    and the message `Do this`, then gathered the rest of the context from the
    repository.
 6. The result is a branch and a pull request against `master`; the human
-   reviews it. `shylock` is requested as reviewer.
+   reviews it.
 
 ## Reference
 
@@ -209,5 +209,3 @@ port 3000 and the Actions cache.
   (`README.md`, `deploy.md`, `doc/forgejo-webhook.md`)
 * AaaU repo and docs: <https://github.com/AgentaaU/AaaU>
   (`README.md`, `AGENTS.md`)
-* This repository's setup: `setup.sh`, `aaau/setup.sh`, `forgejo/`,
-  `forgejo-runner/`, `nginx/`
