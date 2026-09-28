@@ -1,5 +1,7 @@
 # Agent workflow
 
+[English](workflow.md) | [中文](workflow.cn.md)
+
 How a comment on the self-hosted Forgejo instance becomes a code change,
 without giving an autonomous agent the human's account. Three pieces fit
 together:
@@ -214,6 +216,7 @@ port 3000 and the Actions cache.
 
 ## Reference
 
+* [中文版 (Chinese version)](workflow.cn.md)
 * forge-bot repo and docs: <https://forgejo.shylockhg.me/shylock/forge-bot>
   (`README.md`, `deploy.md`, `doc/forgejo-webhook.md`)
 * AaaU repo and docs: <https://forgejo.shylockhg.me/shylock/aaau>
