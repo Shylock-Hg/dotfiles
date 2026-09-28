@@ -8,3 +8,6 @@
 /shylock/.wakatime.cfg
 /gpg/myprikeys.asc
 
+# Local secrets for docker compose files (never commit).
+/docker/compose/.env
+

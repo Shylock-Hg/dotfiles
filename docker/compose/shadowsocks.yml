@@ -6,4 +6,7 @@ services:
         ports:
             - "8388:8388"
         environment:
-            - PASSWORD="OWU2YzUxNW"
+            # The password must be supplied at run time, e.g. through a
+            # gitignored docker/compose/.env file (see .env.example) or the
+            # shell environment. Never commit it: this repository is public.
+            - PASSWORD=${SHADOWSOCKS_PASSWORD:?set SHADOWSOCKS_PASSWORD}
