@@ -14,8 +14,6 @@ readonly MIRRORS=(
     'BFSU:UPDATE|https://mirrors.bfsu.edu.cn/opensuse/update/tumbleweed'
 )
 
-readonly ADD_ATTEMPTS=5
-
 # Remove the previous mirror configuration when upgrading an existing image.
 # A missing alias is expected here, so tolerate failures.
 "${SUDO[@]}" zypper rr USTC:OSS USTC:NON-OSS USTC:UPDATE || true
@@ -32,26 +30,16 @@ for repo in repo-non-oss repo-oss repo-oss-debug repo-oss-source update-tumblewe
 done
 
 # Add every required mirror. -C keeps the addition local and fast: probing the
-# URI here (-c) downloads repodata immediately, and one slow mirror used to
-# abort the whole run with a Curl timeout before the installer's retrying
-# refresh could recover it. Retry the local addition and fail the whole setup
-# if a required mirror cannot be added.
+# URI here (-c) downloads repodata immediately and one slow mirror aborts the
+# whole run with a Curl timeout. Fail the setup if a required mirror cannot be
+# added.
 for mirror in "${MIRRORS[@]}"; do
     alias=${mirror%%|*}
     uri=${mirror#*|}
-    attempt=1
-    while true; do
-        if "${SUDO[@]}" zypper ar -fCg "$uri" "$alias"; then
-            break
-        fi
-        if (( attempt >= ADD_ATTEMPTS )); then
-            echo "Failed to add required repository ${alias} (${uri}) after ${ADD_ATTEMPTS} attempts" >&2
-            exit 1
-        fi
-        echo "Failed to add required repository ${alias} (attempt ${attempt}/${ADD_ATTEMPTS}); retrying" >&2
-        sleep $(( attempt * 5 ))
-        attempt=$(( attempt + 1 ))
-    done
+    if ! "${SUDO[@]}" zypper ar -fCg "$uri" "$alias"; then
+        echo "Failed to add required repository ${alias} (${uri})" >&2
+        exit 1
+    fi
 done
 
 # Verify every required alias is configured and enabled before package

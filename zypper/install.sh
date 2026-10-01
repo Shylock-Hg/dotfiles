@@ -32,21 +32,9 @@ OPTIONAL_PACKAGES=(
 )
 
 if [[ ${IN_CI:-false} == true ]]; then
-    # A transient mirror outage used to abort the run during the automatic
-    # pre-command refresh. Refresh once with retries, then pin the freshly
-    # fetched metadata with --no-refresh so the following zypper calls do not
-    # trigger another fragile network round-trip.
-    readonly REFRESH_ATTEMPTS=5
-    refresh_attempt=1
-    until sudo zypper --gpg-auto-import-keys refresh; do
-        if (( refresh_attempt >= REFRESH_ATTEMPTS )); then
-            echo "zypper refresh failed after ${REFRESH_ATTEMPTS} attempts" >&2
-            exit 1
-        fi
-        echo "zypper refresh failed (attempt ${refresh_attempt}/${REFRESH_ATTEMPTS}); retrying" >&2
-        sleep $(( refresh_attempt * 5 ))
-        refresh_attempt=$(( refresh_attempt + 1 ))
-    done
+    # Fetch the repository metadata once, then reuse it with --no-refresh so
+    # the following zypper calls do not hit the network again.
+    sudo zypper --gpg-auto-import-keys refresh
 
     sudo zypper --no-refresh dup --dry-run -yl
     sudo zypper --no-refresh install -yl "${REQUIRED_PACKAGES[@]}"
