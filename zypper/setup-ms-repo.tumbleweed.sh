@@ -6,5 +6,9 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 # vsocode
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" |sudo tee /etc/zypp/repos.d/vscode.repo > /dev/null
 
-sudo zypper --gpg-auto-import-keys refresh
+# Only refresh the repository that was just added. Refreshing every
+# repository here also contacts the unrelated openSUSE defaults
+# (download.opensuse.org, codecs.opensuse.org); a transient failure of any
+# of them would abort the whole setup before the package installer runs.
+sudo zypper --gpg-auto-import-keys refresh code
 

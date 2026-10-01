@@ -32,10 +32,26 @@ OPTIONAL_PACKAGES=(
 )
 
 if [[ ${IN_CI:-false} == true ]]; then
-    sudo zypper dup --dry-run -yl
-    sudo zypper install -yl "${REQUIRED_PACKAGES[@]}"
+    # A transient mirror outage used to abort the run during the automatic
+    # pre-command refresh. Refresh once with retries, then pin the freshly
+    # fetched metadata with --no-refresh so the following zypper calls do not
+    # trigger another fragile network round-trip.
+    readonly REFRESH_ATTEMPTS=5
+    refresh_attempt=1
+    until sudo zypper --gpg-auto-import-keys refresh; do
+        if (( refresh_attempt >= REFRESH_ATTEMPTS )); then
+            echo "zypper refresh failed after ${REFRESH_ATTEMPTS} attempts" >&2
+            exit 1
+        fi
+        echo "zypper refresh failed (attempt ${refresh_attempt}/${REFRESH_ATTEMPTS}); retrying" >&2
+        sleep $(( refresh_attempt * 5 ))
+        refresh_attempt=$(( refresh_attempt + 1 ))
+    done
+
+    sudo zypper --no-refresh dup --dry-run -yl
+    sudo zypper --no-refresh install -yl "${REQUIRED_PACKAGES[@]}"
     # Resolve packages unused by later CI stages without downloading them.
-    sudo zypper install --dry-run -yl "${OPTIONAL_PACKAGES[@]}"
+    sudo zypper --no-refresh install --dry-run -yl "${OPTIONAL_PACKAGES[@]}"
 else
     sudo zypper dup -yl
     sudo zypper install -yl \
