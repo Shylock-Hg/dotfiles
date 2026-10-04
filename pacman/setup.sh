@@ -21,7 +21,7 @@ OPTIONAL_PACKAGES=(
     libc++ libc++abi \
     ripgrep vim emacs \
     rclone inotify-tools \
-    flatpak nodejs \
+    flatpak nodejs npm python python-pip \
     fcitx5 fcitx5-configtool fcitx5-chinese-addons fcitx5-rime \
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk wqy-microhei wqy-zenhei wqy-bitmapfont \
     ttf-roboto adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu \
@@ -36,6 +36,7 @@ OPTIONAL_PACKAGES=(
     samba mupdf tesseract-data-chi_sim tesseract-data-chi_tra tesseract-data-eng \
     libreoffice-fresh libreoffice-fresh-zh-cn libreoffice-fresh-zh-tw \
     cdrtools dvd+rw-tools \
+    ffmpeg imagemagick blender espeak-ng kdenlive \
     gitleaks \
     opencode glab github-cli openai-codex claude-code \
     forgejo forgejo-cli forgejo-runner

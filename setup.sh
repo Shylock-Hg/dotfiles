@@ -88,6 +88,7 @@ fi
 # Agent-as-User tools
 if [[ $IN_CI == false ]]; then
 ./aaau/setup.sh
+./video/setup.sh
 fi
 
 # sync home

@@ -6,22 +6,32 @@ else
     SUDO=(sudo)
 fi
 
-# Required openSUSE mirrors, as "alias|URI". Every entry must be configured
-# before package installation can proceed.
-readonly MIRRORS=(
-    'BFSU:OSS|https://mirrors.bfsu.edu.cn/opensuse/tumbleweed/repo/oss'
-    'BFSU:NON-OSS|https://mirrors.bfsu.edu.cn/opensuse/tumbleweed/repo/non-oss'
-    'BFSU:UPDATE|https://mirrors.bfsu.edu.cn/opensuse/update/tumbleweed'
-)
+# Use upstream repositories in CI: regional mirrors can publish repomd.xml
+# before its referenced metadata has synchronized, causing refresh HTTP 404s.
+if [[ ${IN_CI:-false} == true ]]; then
+    MIRRORS=(
+        'UPSTREAM:OSS|https://download.opensuse.org/tumbleweed/repo/oss'
+        'UPSTREAM:NON-OSS|https://download.opensuse.org/tumbleweed/repo/non-oss'
+        'UPSTREAM:UPDATE|https://download.opensuse.org/update/tumbleweed'
+    )
+else
+    MIRRORS=(
+        'BFSU:OSS|https://mirrors.bfsu.edu.cn/opensuse/tumbleweed/repo/oss'
+        'BFSU:NON-OSS|https://mirrors.bfsu.edu.cn/opensuse/tumbleweed/repo/non-oss'
+        'BFSU:UPDATE|https://mirrors.bfsu.edu.cn/opensuse/update/tumbleweed'
+    )
+fi
+readonly MIRRORS
 
 # Remove the previous mirror configuration when upgrading an existing image.
 # A missing alias is expected here, so tolerate failures.
-"${SUDO[@]}" zypper rr USTC:OSS USTC:NON-OSS USTC:UPDATE || true
-for mirror in "${MIRRORS[@]}"; do
-    "${SUDO[@]}" zypper rr "${mirror%%|*}" || true
+for repo in USTC:OSS USTC:NON-OSS USTC:UPDATE \
+    BFSU:OSS BFSU:NON-OSS BFSU:UPDATE \
+    UPSTREAM:OSS UPSTREAM:NON-OSS UPSTREAM:UPDATE; do
+    "${SUDO[@]}" zypper rr "$repo" || true
 done
 
-# BFSU:UPDATE replaces repo-update, so drop the redundant default update
+# The selected UPDATE mirror replaces repo-update, so drop the redundant default update
 # repository. Disable each alias separately because zypper mr stops at the
 # first alias that does not exist. Missing aliases are expected for these
 # cleanup/disable operations.
