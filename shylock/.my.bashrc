@@ -89,3 +89,6 @@ _opencode_yargs_completions()
 complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 ###-end-opencode-completions-###
 
+if [ -f "$HOME/.local/py/bin/activate" ]; then
+  source "$HOME/.local/py/bin/activate"
+fi

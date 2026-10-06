@@ -32,3 +32,5 @@
 [credential "https://shylock-server"]
 	helper = 
 	helper = !/usr/bin/glab auth git-credential
+[forgejo "forgejo.shylockhg.me"]
+	user = shylock

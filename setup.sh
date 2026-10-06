@@ -105,4 +105,9 @@ fi
 # dnsmasq
 ./dnsmasq/setup.sh
 
+# local common python env (workstation only: CI images do not install python)
+if [[ $IN_CI == false ]]; then
+  python3 -m venv "$HOME/.local/py"
+fi
+
 popd # popd $(dirname $0)
