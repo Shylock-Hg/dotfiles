@@ -53,5 +53,5 @@ if [[ ${IN_CI:-false} == true ]]; then
 else
   sudo pacman -S --noconfirm --needed \
       "${REQUIRED_PACKAGES[@]}" "${OPTIONAL_PACKAGES[@]}"
-  yay -S --noconfirm pgyvisitor tinymist
+  yay -S --noconfirm pgyvisitor tinymist antigravit-cli
 fi
