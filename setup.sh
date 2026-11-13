@@ -12,9 +12,9 @@ export IN_CI
 
 readonly CONFIG_DIR='.config'
 
-readonly SCRIPT_DIR=$(dirname $0)
+readonly SCRIPT_DIR="$(dirname -- "$0")"
 
-pushd $SCRIPT_DIR
+pushd "$SCRIPT_DIR"
 
 # Install by native package manager
 if command -v zypper >/dev/null 2>&1; then
@@ -43,7 +43,7 @@ fi
 # vim
 mkdir -p ~/.vim
 ./vim/setup-vim.sh
-ln -sf $(readlink -f ./vim/.vimrc) ~/.vimrc
+ln -sf "$(readlink -f ./vim/.vimrc)" "$HOME/.vimrc"
 
 # wakatime
 # ln -sf $(readlink -f ./wakatime/.wakatime.cfg) ~/.wakatime.cfg
@@ -60,15 +60,21 @@ popd
 #mkdir -p ~/.datam
 #ln -sf $(readlink -f ./datam/store.json) ~/.datam/store.json
 
-# tailscale
-curl -fsSL https://tailscale.com/install.sh | sh
+# Tailscale is installed by both native package-manager paths above.
+# Verify that installation instead of downloading a second installer without
+# a timeout (which can hang CI even when the package is already available).
+tailscale --version
 
 # ssh
 #ln -sf $(readlink -f ./ssh/config) ~/.ssh/config
 
 # emacs
-rm -rf ~/.emacs*
-git clone --depth=1 https://github.com/Shylock-Hg/prelude.git ~/.config/emacs
+if [[ ! -e "$HOME/.config/emacs" && ! -L "$HOME/.config/emacs" ]]; then
+  mkdir -p "$HOME/.config"
+  git clone --depth=1 https://github.com/Shylock-Hg/prelude.git "$HOME/.config/emacs"
+else
+  echo "Preserving existing Emacs configuration at $HOME/.config/emacs"
+fi
 
 # crontab
 #crontab $SCRIPT_DIR/crontab/jobs
@@ -96,11 +102,11 @@ stow shylock
 
 # certs
 if [[ $IN_CI == false ]];then
-./certs/setup.sh
+sudo env IN_CI="$IN_CI" ./certs/setup.sh
 fi
 
 # nginx
-./nginx/setup.sh
+sudo env IN_CI="$IN_CI" ./nginx/setup.sh
 
 # dnsmasq
 ./dnsmasq/setup.sh

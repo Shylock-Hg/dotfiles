@@ -1,4 +1,5 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-rm -f ~/Data/forgejo.tar.zst.gpg
-gpg2 --encrypt --recipient 'E63EE5A890228C2A' ~/Data/forgejo.tar.zst
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/encrypt-backup.sh" "$HOME/Data/forgejo.tar.zst" 'E63EE5A890228C2A'

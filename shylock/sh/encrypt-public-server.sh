@@ -1,7 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-rm -f ~/Data/headscale.dump.tar.zst.gpg
-gpg2 --encrypt --recipient 'E63EE5A890228C2A' ~/Data/headscale.dump.tar.zst
-
-rm -f ~/Data/openclash.dump.tar.zst.gpg
-gpg2 --encrypt --recipient 'E63EE5A890228C2A' ~/Data/openclash.dump.tar.zst
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+"$SCRIPT_DIR/encrypt-backup.sh" "$HOME/Data/headscale.dump.tar.zst" 'E63EE5A890228C2A'
+"$SCRIPT_DIR/encrypt-backup.sh" "$HOME/Data/openclash.dump.tar.zst" 'E63EE5A890228C2A'
