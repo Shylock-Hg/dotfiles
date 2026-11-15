@@ -26,7 +26,7 @@ OPTIONAL_PACKAGES=(
     ttf-jetbrains-mono noto-fonts noto-fonts-cjk wqy-microhei wqy-zenhei wqy-bitmapfont \
     ttf-roboto adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts ttf-dejavu \
     remmina freerdp \
-    steam \
+    steam waydroid \
     "${WINE_PACKAGES[@]}" wine-mono wine-gecko winetricks \
     cronie powertop typst starship \
     aspell aspell-en \
