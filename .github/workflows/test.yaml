@@ -5,7 +5,11 @@ on:
     branches: [ "master" ]
 
 env:
-  ACR_NAMESPACE: ${{ secrets.ACR_NAMESPACE }}
+  # The ACR namespace is public, not a credential. Repository variables are
+  # available to pull-request workflows, including uploaded PRs that do not
+  # receive repository secrets. Keep the literal fallback so those runs work
+  # even when the repository variable has not been configured yet.
+  ACR_NAMESPACE: ${{ vars.ACR_NAMESPACE || 'shylockhg' }}
 
 jobs:
 
