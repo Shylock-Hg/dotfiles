@@ -158,6 +158,15 @@ website ping alone did not indicate failed app connectivity.
 
 ## Download and run Soul
 
+With an initialized, running Waydroid session and ARM translation already set
+up, run `./waydroid/setup.sh --app soul` from the repository root. The installer
+downloads and validates the official ARM64 APK, waits for the package to appear,
+and refreshes KDE's cache. Already installed packages are skipped. Supply
+`--soul-apk /path/to/soul.apk` to use a local publisher APK instead. To install
+both apps from their default publisher URLs, use `./waydroid/setup.sh`.
+See `./waydroid/setup.sh --help` for options. Installation does not establish
+that an app can log in or play media in this Android environment.
+
 The [official website](https://www.soulapp.cn/) links this APK. The initial
 plain request returned HTTP 403; the Android user agent and referrer worked:
 

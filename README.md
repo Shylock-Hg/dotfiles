@@ -7,13 +7,6 @@
 
 My config file for linux.
 
-## Waydroid and Soul
-
-See [the CachyOS setup guide](notes/waydroid-soul.md) for Android initialization,
-systemd container management, ARM translation, UFW networking, Soul installation,
-and Chinese Pinyin input. Reusable Android Fcitx5 settings are in
-[`waydroid/fcitx5`](waydroid/fcitx5).
-
 ## Standard development environment in docker
 
 ./docker/dev/Dockerfile
